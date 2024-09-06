@@ -12,6 +12,7 @@
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+
 set -x 
 pwd
 ls
@@ -19,15 +20,16 @@ ls
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
-
-#!/bin/bash
 #=================================================
 # 自定义
 #=================================================
 ##########################################添加额外包##########################################
 
 # Git稀疏克隆，只克隆指定目录到本地
+pwd
+ll
 mkdir -p package/linpc
+pwd
 
 function git_sparse_clone() {
  branch="$1" repourl="$2" && shift 2
@@ -37,6 +39,7 @@ function git_sparse_clone() {
  mv -f $@ ../package/linpc
  cd .. && rm -rf $repodir
 }
+pwd
 
 #lucky
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
