@@ -22,7 +22,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: immortalwrt_x86_64.config
   DIY_P1_SH: diy-immortalwrt_x86_64.sh
-  DIY_P2_SH: diy-part2.sh
+  DIY_P2_SH: diy-immortalwrt-cs.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -118,6 +118,16 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+    - name: 修改参数
+      run: |
+        pwd
+        ls -a
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+         
+        
 
     - name: Compile the firmware
       id: compile
