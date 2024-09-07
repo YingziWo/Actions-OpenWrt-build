@@ -60,7 +60,7 @@ echo "DISTRIB_REVISION='v$(date +'%Y.%m.%d')'" >> /etc/openwrt_release
 sed -i '/DISTRIB_RELEASE/d' /etc/openwrt_release
 echo "DISTRIB_RELEASE='v$(date +'%Y.%m.%d')'" >> /etc/openwrt_release
 sed -i '/DISTRIB_DESCRIPTION/d' /etc/openwrt_release
-echo "DISTRIB_DESCRIPTION='Compiled by Linpc'" >> /etc/openwrt_release
+echo "DISTRIB_DESCRIPTION='Compiled by Yingziwo'" >> /etc/openwrt_release
 sed -i '/DISTRIB_ID/d' /etc/openwrt_release
 echo "DISTRIB_ID='Yingziwo'" >> /etc/openwrt_release
 
