@@ -4,13 +4,13 @@
 
 [![immortalwrt_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml)
 [![Lede_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml)
-[![LEDE_x86_64](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml)
+
 
 Cloud Building OpenWrt with the GitHub Actions
 
 ## Usage
 
-- Fock the [Use this template](https://github.com/YingziWo/Actions-OpenWrt-build) button to create a new repository.
+- Click the [ Template ](https://github.com/YingziWo/Actions-OpenWrt-build) button ，fork to create a new repository.
 - Generate `.config` files using [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) source code. ( You can change it through environment variables in the workflow file. )
 - Push `.config` file to the GitHub repository.
 - Select `openwrt-builder` on the Actions page.
