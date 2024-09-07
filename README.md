@@ -13,9 +13,9 @@ Cloud Building OpenWrt with the GitHub Actions
 - Fock the [Use this template](https://github.com/YingziWo/Actions-OpenWrt-build) button to create a new repository.
 - Generate `.config` files using [Lean's OpenWrt](https://github.com/coolsnowwolf/lede) source code. ( You can change it through environment variables in the workflow file. )
 - Push `.config` file to the GitHub repository.
-- Select `Build OpenWrt` on the Actions page.
+- Select `openwrt-builder` on the Actions page.
 - Click the `Run workflow` button.
-- When the build is complete, click the `Artifacts` button in the upper right corner of the Actions page to download the binaries.
+- When the build is complete, click the your self [Artifacts](https://github.com/YingziWo/Actions-OpenWrt-build/actions/runs/10750393701) button in the upper right corner of the Actions page to download the binaries.
 
 ## Tips
 
