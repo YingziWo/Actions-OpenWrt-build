@@ -16,6 +16,7 @@ Cloud Building OpenWrt with the GitHub Actions
 - Select `openwrt-builder` on the Actions page.
 - Click the `Run workflow` button.
 - When the build is complete, click the your self [Artifacts](https://github.com/YingziWo/Actions-OpenWrt-build/actions/runs/10750393701) button in the upper right corner of the Actions page to download the binaries.
+- When you need to upload the release area, you need to set your GitHub_Token for this repository.
 
 ## Tips
 
