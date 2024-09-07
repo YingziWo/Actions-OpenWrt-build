@@ -28,7 +28,7 @@ echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.defau
 # Git稀疏克隆，只克隆指定目录到本地
 pwd
 ll
-mkdir -p package/linpc
+mkdir -p package/yingziwo
 pwd
 
 function git_sparse_clone() {
@@ -36,7 +36,7 @@ function git_sparse_clone() {
  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
  cd $repodir && git sparse-checkout set $@
- mv -f $@ ../package/linpc
+ mv -f $@ ../package/yingziwo
  cd .. && rm -rf $repodir
 }
 pwd
