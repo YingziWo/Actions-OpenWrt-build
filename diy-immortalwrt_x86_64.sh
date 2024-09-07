@@ -22,14 +22,14 @@ echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.defau
 ##########################################添加额外包##########################################
 
 # Git稀疏克隆，只克隆指定目录到本地
-mkdir -p package/linpc
+mkdir -p package/yingziwo
 
 function git_sparse_clone() {
  branch="$1" repourl="$2" && shift 2
  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
  cd $repodir && git sparse-checkout set $@
- mv -f $@ ../package/linpc
+ mv -f $@ ../package/yingziwo
  cd .. && rm -rf $repodir
 }
 
@@ -54,7 +54,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-tas
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
 #更换插件名称
-sed -i 's/("iStore"),/("软件仓库"),/g' package/linpc/luci-app-store/luasrc/controller/store.lua
+sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
