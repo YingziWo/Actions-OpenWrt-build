@@ -75,7 +75,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr
 
 #Netdata
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages netdata
-#git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/linpc/luci-app-netdata
+#git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
 # 调整 netdata 到 服务 菜单
 #sed -i 's/"system"/"services"/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/*.lua
 #sed -i 's/"system"/"services"/g' feeds/luci/applications/luci-app-netdata/luasrc/model/cgi/*.lua
