@@ -63,7 +63,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-tas
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
 #更换插件名称
-sed -i 's/("iStore"),/("软件仓库"),/g' package/linpc/luci-app-store/luasrc/controller/store.lua
+sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
@@ -84,10 +84,10 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddn
 
 #Netdata
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/linpc/luci-app-netdata
-sed -i 's/"status"/"system"/g' package/linpc/luci-app-netdata/luasrc/controller/*.lua
-sed -i 's/"status"/"system"/g' package/linpc/luci-app-netdata/luasrc/model/cgi/*.lua
-sed -i 's/admin\/status/admin\/system/g' package/linpc/luci-app-netdata/luasrc/view/netdata/*.htm
+git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
+sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
+sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
+sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
