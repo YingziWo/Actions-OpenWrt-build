@@ -2,8 +2,9 @@
 
 # Actions-OpenWrt
 
-[![immortalwrt_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml=pass)] (https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml)
-![lede_x86_64]
+[![immortalwrt_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml)
+[![Lede_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml)
+[![LEDE_x86_64](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml/badge.svg)](https://github.com/YingziWo/OpenWrt-Build-System/actions/workflows/LEDE_x86_64.yml)
 
 A template for building OpenWrt with GitHub Actions
 
