@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-21.02                               #23.05该版本截止2024.09.07 编译出的固件存在防火墙使用旧版的提示，故安全起见，使用21.02版本
+  REPO_BRANCH: openwrt-23.05                               #23.05该版本截止2024.09.07 编译出的固件存在防火墙使用旧版的提示，故安全起见，建议使用21.02版本。目前测试关闭firewall4下会否有提示
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: immortalwrt_x86_64.config
   DIY_P1_SH: diy-immortalwrt_x86_64.sh
