@@ -89,13 +89,13 @@ sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controll
 sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
 sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
-#mosdns
+#mosdns 编译中出错，屏蔽掉
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
 rm -rf feeds/packages/utils/v2dat
 rm -rf package/feeds/packages/v2dat
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 
 
 #zerotier
