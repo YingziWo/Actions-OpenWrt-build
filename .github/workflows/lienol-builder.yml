@@ -159,9 +159,9 @@ jobs:
         ls -la
         echo "------ 显示release.txt文件中内容：------"
         cat release.txt
-        echo "------ 显示变量GITHUB_OUTPUT的内容：------"
-        print GITHUB_OUTPUT
-
+        echo "------ 显示$GITHUB_OUTPUT文件中内容：------"
+        .$GITHUB_OUTPUT
+               
     - name: Upload firmware to release
       uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
