@@ -160,7 +160,7 @@ jobs:
         echo "------ 显示release.txt文件中内容：------"
         cat release.txt
         echo "------ 显示变量GITHUB_OUTPUT的内容：------"
-        print $GITHUB_OUTPUT
+        print GITHUB_OUTPUT
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@master
