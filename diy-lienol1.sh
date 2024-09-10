@@ -89,7 +89,7 @@ sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controll
 sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
 sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
-#mosdns 编译中出错，屏蔽掉
+#mosdns 编译中出错，注释掉
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
@@ -128,8 +128,8 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata # 在lede应用时被注释掉
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin #编译中出错，注释掉
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
