@@ -155,6 +155,12 @@ jobs:
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+        pwd
+        ls -la
+        echo "------ 显示release.txt文件中内容：------"
+        cat release.txt
+        echo "------ 显示变量GITHUB_OUTPUT的内容：------"
+        print $GITHUB_OUTPUT
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@master
