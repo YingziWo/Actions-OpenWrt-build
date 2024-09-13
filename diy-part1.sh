@@ -27,7 +27,7 @@ echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.defau
 
 # Git稀疏克隆，只克隆指定目录到本地
 pwd
-ll
+ls -la
 mkdir -p package/yingziwo
 pwd
 
