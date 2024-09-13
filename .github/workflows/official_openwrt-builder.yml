@@ -112,6 +112,7 @@ jobs:
         ls -la
         rm -rf package/yingziwo/v2ray-plugin    #编译中报错，去除24.09.13
         rm -rf package/yingziwo/xray-core
+        rm -rf package/yingziwo/v2ray-plugin
 
     - name: Compile the firmware
       id: compile
