@@ -91,11 +91,11 @@ sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasr
 
 #mosdns
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns #编译中报错，去除于24.09.13
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns          #编译中报错，去除于24.09.13
 rm -rf feeds/packages/utils/v2dat
 rm -rf package/feeds/packages/v2dat
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
+# git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat          #编译中报错，去除于24.09.13
 
 
 #zerotier
