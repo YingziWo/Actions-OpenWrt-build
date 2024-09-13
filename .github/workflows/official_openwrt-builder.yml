@@ -108,6 +108,10 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        pwd
+        ls -la
+        rm -rf package/yingziwo/v2ray-plugin    #编译中报错，去除24.09.13
+        rm -rf package/yingziwo/xray-core
 
     - name: Compile the firmware
       id: compile
