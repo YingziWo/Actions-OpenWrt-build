@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: official openwrt v21.02 build
+name: official openwrt v22.03 build
 
 on:
   repository_dispatch:
