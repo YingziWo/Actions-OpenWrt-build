@@ -119,7 +119,7 @@ jobs:
         #rm -rf package/yingziwo/v2ray-plugin    #编译中报错，去除24.09.13
         #rm -rf package/yingziwo/xray-core
         #rm -rf package/yingziwo/v2ray-plugin
-        rm -rf package/network/services/dnsmasq  #openclash 和 passwall会安装dnsmasq-pull 时报被占用文件或目录，去除自身的dnsmasq 240919
+        #rm -rf package/network/services/dnsmasq  #openclash 和 passwall会安装dnsmasq-pull 时报被占用文件或目录，去除自身的dnsmasq 240919
 
     - name: Compile the firmware
       id: compile
