@@ -47,10 +47,10 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        #sudo mkdir -p /workdir             #配合SPD的使用，在SPD中建立编译目录，这里去掉
+        #sudo chown $USER:$GROUPS /workdir
 
-    - name: Create simulated physical disk   #from  breakings/OpenWrt 
+    - name: Create simulated physical disk   #from  breakings/OpenWrt 简称SPD，可以将编译环境的硬盘空间扩大到百G
       run: |
         df -hT
         mnt_size=$(expr $(df -h /mnt | tail -1 | awk '{print $4}' | sed 's/[[:alpha:]]//g' | sed 's/\..*//') - 1)
@@ -64,9 +64,12 @@ jobs:
         sudo vgcreate github /dev/loop6 /dev/loop7
         sudo lvcreate -n runner -l 100%FREE github
         sudo mkfs.xfs /dev/github/runner
-        sudo mkdir -p /builder
-        sudo mount /dev/github/runner /builder
-        sudo chown -R runner.runner /builder
+        #sudo mkdir -p /builder                 #本仓库用的编译目录名是workdir，这里去掉SPD的目录，改下面一段，同时屏蔽掉上面步骤的建目录环节
+        #sudo mount /dev/github/runner /builder
+        #sudo chown -R runner.runner /builder
+        sudo mkdir -p /workdir                  #前初始化环境中的建编译目录workdir搬到此处
+        sudo mount /dev/github/runner /workdir
+        sudo chown -R runner.runner /workdir
         df -Th
 
     
