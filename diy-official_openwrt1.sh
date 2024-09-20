@@ -54,8 +54,8 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+##git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
+##git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
@@ -84,17 +84,17 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddn
 
 #Netdata
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
-sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
-sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
-sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
+##git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
+##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
+##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
+##sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns #编译中报错，去除于24.09.13
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns          #编译中报错，去除于24.09.13
-rm -rf feeds/packages/utils/v2dat
-rm -rf package/feeds/packages/v2dat
+##rm -rf feeds/packages/utils/v2dat
+##rm -rf package/feeds/packages/v2dat
 # git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat          #编译中报错，去除于24.09.13
 
 
@@ -179,10 +179,10 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
 
 
 # 修改默认登录地址
-sed -i 's/192.168.1.1/10.1.1.254/g' ./package/base-files/files/bin/config_generate
+##sed -i 's/192.168.1.1/10.1.1.254/g' ./package/base-files/files/bin/config_generate
 
 #2. 修改默认登录密码
-sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
+##sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
 
 # 修改内核版本
 #sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.15/g' ./target/linux/x86/Makefile
@@ -194,35 +194,35 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings
 #添加项目地址
 #sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/lmxslpc\/OpenWrt-Build-System" target="_blank">云编译系统<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
 # sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/OpenWrt-Build-System" target="_blank">云编译系统<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
-sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/Actions-OpenWrt-build" target="_blank">云编译固件项目<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
+##sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/Actions-OpenWrt-build" target="_blank">云编译固件项目<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
 
 # 修改本地时间格式
-sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+##sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
 
 #修改镜像源
-sed -i 's#mirror.iscas.ac.cn/kernel.org#mirrors.edge.kernel.org/pub#' scripts/download.pl
+##sed -i 's#mirror.iscas.ac.cn/kernel.org#mirrors.edge.kernel.org/pub#' scripts/download.pl
 
 # 修改版本为编译日期
-date_version=$(date +"%y.%m.%d")
-orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+##date_version=$(date +"%y.%m.%d")
+##orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 #sed -i "s/${orig_version}/R${date_version} by Yingziwo/g" package/lean/default-settings/files/zzz-default-settings
-sed -i "s/${orig_version}/R${date_version} by Yingziwo/g" package/lean/default-settings/files/zzz-default-settings
+##sed -i "s/${orig_version}/R${date_version} by Yingziwo/g" package/lean/default-settings/files/zzz-default-settings
 
 #删除无效opkg源
-sed -i '/exit 0/i sed -i "/kiddin9/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
-sed -i '/exit 0/i sed -i "/kenzo/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
-sed -i '/exit 0/i sed -i "/small/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
+##sed -i '/exit 0/i sed -i "/kiddin9/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
+##sed -i '/exit 0/i sed -i "/kenzo/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
+##sed -i '/exit 0/i sed -i "/small/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 
 #删除多余文件
-sed -i '/exit 0/i\rm -f /etc/config/adguardhome\nrm -f /etc/init.d/adguardhome' ./package/lean/default-settings/files/zzz-default-settings
+##sed -i '/exit 0/i\rm -f /etc/config/adguardhome\nrm -f /etc/init.d/adguardhome' ./package/lean/default-settings/files/zzz-default-settings
 
 
 
 # 修改 Makefile
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+##find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
+##find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
+##find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
+##find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 # 替换go版本到1.22.x  -- > default
 rm -rf feeds/packages/lang/golang
