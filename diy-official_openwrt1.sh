@@ -157,7 +157,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
- #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus       #编译中报passwall缺少该依赖 240920
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
