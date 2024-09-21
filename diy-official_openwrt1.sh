@@ -54,8 +54,8 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone
-##git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
-##git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
@@ -72,9 +72,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 #科学上网
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 #更换插件名称
-#sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
@@ -84,10 +84,10 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddn
 
 #Netdata
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages netdata
-##git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
-##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
-##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
-##sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
+git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
+sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
+sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
+sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
