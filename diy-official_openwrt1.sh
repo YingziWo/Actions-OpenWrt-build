@@ -150,7 +150,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aut
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt
  git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev             #official-openwrt-main版本的依赖，23.05不需要
- git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust               #official-openwrt-main版本的依赖，23.05不需要
+ #git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust              
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
