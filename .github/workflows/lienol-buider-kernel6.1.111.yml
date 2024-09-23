@@ -80,7 +80,8 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
-        git checkout f68dcce3bb2a5d1043db7282809ef9b197dec99a   #指定内核到kernel6.1分支上
+        #git checkout f68dcce3bb2a5d1043db7282809ef9b197dec99a   #指定内核到kernel6.1分支上,这个分支没有和目录include目录下以kernel-6.1文件中的LINUX_KERNEL_HASH-6.1.109 =值一样，若要用这个分支编译，必须更改kernel-6.1的内容。 
+        git checkout fe4573ab07e019e0af4ec5cfff508a5177638639
         sed -i 's/\(KERNEL_PATCHVER: *= *\).*/\16.1/' target/linux/x86/Makefile         #内核编译文件Makefile版本指定到6.1上
         
 
