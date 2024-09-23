@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: main   # main --> kernel6.6-6.6.52 ; openwrt-23.05 --> kernel5.15-5.15.167 ; openwrt-22.03 --> kernel5.10-5.10.221 ; openwrt-21.02 --> kernel5.4-5.4.238 ; openwrt-19.07 --> kernel4.14-4.14.275 ; openwrt-18.06 --> kernel4.9-4.9.243 .
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official_openwrt.config
   DIY_P1_SH: diy-official_openwrt1.sh
@@ -79,6 +79,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd openwrt
+        ls -al include
+        cat target/linux/x86/Makefile
+    
 
     - name: Load custom feeds
       run: |
@@ -111,16 +115,16 @@ jobs:
       id: package
       run: |
         cd openwrt
+        cat target/linux/x86/Makefile       #检查显示编译前的内核版本情况设置是否变化
+        ls -al include
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         pwd
         ls -la
-        #rm -rf package/yingziwo/v2ray-plugin    #编译中报错，去除24.09.13
-        #rm -rf package/yingziwo/xray-core
-        #rm -rf package/yingziwo/v2ray-plugin
-        #rm -rf package/network/services/dnsmasq  #openclash 和 passwall会安装dnsmasq-pull 时报被占用文件或目录，去除自身的dnsmasq 240919
+        ls -al include
+        
 
     - name: Compile the firmware
       id: compile
