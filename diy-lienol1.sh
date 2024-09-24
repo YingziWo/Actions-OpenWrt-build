@@ -71,7 +71,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
 
 #科学上网
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
