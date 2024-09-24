@@ -58,10 +58,15 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd   #更新不及时，版本在最新的openwrt版本和最新的内核下编译报错版本太低要升级。因此改用iStore的源头linkease下
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+git_sparse_clone main https://github.com/linkease/istore luci/taskd
+ls -al package/yingziwo
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
@@ -201,6 +206,7 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2r
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-plugin
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-core
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-plugin
+
 #############################################################################################
 
 ############改用fw876的ssr-plus源头自己的依赖，若与上面的passwall依赖重复，是否要注释掉，注意编译信息 oepwnwrt23.05下版本太高不支持##########
@@ -284,3 +290,5 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xra
 rm -rf feeds/packages/lang/golang
 #git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+ls -al package/yingziwo
+
