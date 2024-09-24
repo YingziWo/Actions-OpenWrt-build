@@ -17,7 +17,7 @@ set -x
 pwd
 ls
 # Add a feed source
-echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default                      #仅支持openwrt21.02版本或以下
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 #=================================================
@@ -77,7 +77,7 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-pas
 ##git_sparse_clone master https://github.com/fw876/helloworld luci-app-ssr-plus               #换源头到fw876上 ，哈，源头的只支持For OpenWrt 21.02 or lower version 和 You have to manually upgrade Golang toolchain to 1.21 or higher to compile Xray-core. 这是要在openwrt23.05版本上，不能用
 
 #更换插件名称
-sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+#sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
