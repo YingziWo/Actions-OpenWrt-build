@@ -59,10 +59,14 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd   #版本更新不及时，编译高版本openwrt23.05 内核6.6.52时报 pkg_hash_check_unresolved: cannot find dependency luci-lib-taskd (>= 1.0.19) for luci-app-store 改到iStore的源头上去
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+git_sparse_clone main https://github.com/linkease/istore luci/taskd
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
