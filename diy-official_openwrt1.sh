@@ -73,7 +73,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall       #换源头到xiaorouji上
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
+git_sparse_clone master https://github.com/fw876/helloworld luci-app-ssr-plus               #换源头到fw876上
+
 #更换插件名称
 sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
@@ -200,6 +202,32 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2r
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-core
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-plugin
 #############################################################################################
+
+############改用fw876的ssr-plus源头自己的依赖，若与上面的passwall依赖重复，是否要注释掉，注意编译信息##########
+git_sparse_clone master https://github.com/fw876/helloworld chinadns-ng
+git_sparse_clone master https://github.com/fw876/helloworld dns2socks
+git_sparse_clone master https://github.com/fw876/helloworld dns2tcp
+git_sparse_clone master https://github.com/fw876/helloworld gn
+git_sparse_clone master https://github.com/fw876/helloworld hysteria
+git_sparse_clone master https://github.com/fw876/helloworld pt2socks
+git_sparse_clone master https://github.com/fw876/helloworld lua-neturl
+git_sparse_clone master https://github.com/fw876/helloworld microsocks
+git_sparse_clone master https://github.com/fw876/helloworld mosdns
+git_sparse_clone master https://github.com/fw876/helloworld naiveproxy
+git_sparse_clone master https://github.com/fw876/helloworld redsocks2
+git_sparse_clone master https://github.com/fw876/helloworld shadow-tls
+git_sparse_clone master https://github.com/fw876/helloworld shadowsocks-rust
+git_sparse_clone master https://github.com/fw876/helloworld shadowsocksr-libev
+git_sparse_clone master https://github.com/fw876/helloworld simple-obfs
+git_sparse_clone master https://github.com/fw876/helloworld tcping
+git_sparse_clone master https://github.com/fw876/helloworld trojan
+git_sparse_clone master https://github.com/fw876/helloworld tuic-client
+git_sparse_clone master https://github.com/fw876/helloworld v2ray-core
+git_sparse_clone master https://github.com/fw876/helloworld v2ray-plugin
+git_sparse_clone master https://github.com/fw876/helloworld v2raya
+git_sparse_clone master https://github.com/fw876/helloworld xray-core
+git_sparse_clone master https://github.com/fw876/helloworld xray-plugin
+##############################################################################################
 
 
 # 更改 Argon 主题背景
