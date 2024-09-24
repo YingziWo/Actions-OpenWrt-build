@@ -17,7 +17,7 @@ set -x
 pwd
 ls
 # Add a feed source
-echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default          #高版本的openwrt不支持，要openwrt21.02或以下
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 
