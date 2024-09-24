@@ -82,9 +82,9 @@ jobs:
         cd openwrt
         ls -al include
         #git checkout f68dcce3bb2a5d1043db7282809ef9b197dec99a   #指定内核到kernel6.1分支上,这个分支没有和目录include目录下以kernel-6.1文件中的LINUX_KERNEL_HASH-6.1.109 =值一样，若要用这个分支编译，必须更改kernel-6.1的内容。 
-        git checkout 85161b432f7b72f56063125e79f8c95792c3290e    # 改6.6.52      这个6.1.109 fe4573ab07e019e0af4ec5cfff508a5177638639
+        #git checkout 85161b432f7b72f56063125e79f8c95792c3290e    # 改6.6.52      这个6.1.109 fe4573ab07e019e0af4ec5cfff508a5177638639  指定6.6.62后，竟然linux系统编译报错，妖精！！！ 注释了再看看
         cat target/linux/x86/Makefile
-        sed -i 's/\(KERNEL_PATCHVER: *= *\).*/\16.6/' target/linux/x86/Makefile         #内核编译文件Makefile版本指定到6.1上
+        #sed -i 's/\(KERNEL_PATCHVER: *= *\).*/\16.6/' target/linux/x86/Makefile         #内核编译文件Makefile版本指定到6.6上
         
 
     - name: Load custom feeds
