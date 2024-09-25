@@ -78,11 +78,11 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 #git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall       #换源头到xiaorouji上，降低内核版本换回原来的源
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 ##git_sparse_clone master https://github.com/fw876/helloworld luci-app-ssr-plus               #换源头到fw876上 ，哈，源头的只支持For OpenWrt 21.02 or lower version 和 You have to manually upgrade Golang toolchain to 1.21 or higher to compile Xray-core. 这是要在openwrt23.05版本上，不能用
 
 #更换插件名称
-sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+#sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
@@ -164,8 +164,8 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aut
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
- #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus       #编译中报passwall缺少该依赖 240920
+ #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go       #下面这句是编译中报passwall缺少该依赖 240920
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus       
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
