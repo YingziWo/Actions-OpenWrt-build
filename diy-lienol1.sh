@@ -54,9 +54,9 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
-#luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+#luci-theme-argone     #固件出来运行该主题报错
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
