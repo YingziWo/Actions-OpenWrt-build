@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: employ   # main  23.05  22.03  21.02 19.07 employ 其中employ为项目默认项 
+  REPO_BRANCH: 22.03   # main  23.05  22.03  21.02 19.07 employ 其中employ为项目默认项 
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lienol.config
   DIY_P1_SH: diy-lienol1.sh
