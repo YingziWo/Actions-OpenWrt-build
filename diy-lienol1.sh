@@ -126,7 +126,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt   
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box                               #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan                                 #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for ssr-plus
@@ -143,8 +143,8 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2   
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns                                 #for ssr-plus
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages upx                                    #for nps
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-samba4                        #for autosamba
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages upx                                    #for nps       增加又牵扯出更多的依赖，无视
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-samba4                        #for autosamba 增加又牵扯出更多的依赖，无视
 ##########################################其他设置##########################################
 ########依赖包######## from diy-immortalwrt_x86_64.sh 的配置
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
