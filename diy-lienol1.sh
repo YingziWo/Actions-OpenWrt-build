@@ -112,7 +112,7 @@ sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasr
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
 
 
-########依赖包########
+########依赖包########  ubuntu-22.04 Leinol-openwrt23.05 kernel5.15.167编译条件下的依赖需要情况（含下面immortal的依赖中的四条），服务的插件有 autosamba；nps；ssr-plus；passwall；mwan3helper：
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages chinadns-ng
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2socks
@@ -138,12 +138,13 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client 
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin                           #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall 和
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl     #for ssr-plus
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl                             #for ssr-plus
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2                              #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for ssr-plus
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns           #for ssr-plus
-
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns                                 #for ssr-plus
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages upx                                    #for nps
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-samba4                        #for autosamba
 ##########################################其他设置##########################################
 ########依赖包######## from diy-immortalwrt_x86_64.sh 的配置
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
