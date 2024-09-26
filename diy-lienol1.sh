@@ -58,15 +58,15 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
-#luci-app-store
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd   #版本更新不及时，编译高版本openwrt23.05 内核6.6.52时报 pkg_hash_check_unresolved: cannot find dependency luci-lib-taskd (>= 1.0.19) for luci-app-store 改到iStore的源头上去
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
-git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
-git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
-git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
-git_sparse_clone main https://github.com/linkease/istore luci/taskd
+#luci-app-store #版本更新不及时，编译高版本openwrt23.05 内核6.6.52时报 pkg_hash_check_unresolved: cannot find dependency luci-lib-taskd (>= 1.0.19) for luci-app-store 改到iStore的源头上去
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd   
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+#git_sparse_clone main https://github.com/linkease/istore luci/taskd
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
@@ -74,13 +74,13 @@ sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasr
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
 
-#科学上网
+#科学上网 #编译的固件在这个版本开启后，tup udp均不运行 ，换回kiddin9版本
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
-#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall   #编译的固件在这个版本开启后，tup udp均不运行 ，换回kiddin9版本
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall   
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 #更换插件名称
-#sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
+sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
@@ -113,35 +113,35 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aut
 
 
 ########依赖包########  ubuntu-22.04 Leinol-openwrt23.05 kernel5.15.167编译条件下的依赖需要情况（含下面immortal的依赖中的四条），服务的插件有 autosamba；nps；ssr-plus；passwall；mwan3helper：
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages chinadns-ng
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2socks
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2tcp
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages gn
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages gn
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria                               #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall 和
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages ipt2socks
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages microsocks
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages microsocks
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy                             #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall 和
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt                              #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for mwan3helper 
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box                               #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan                                 #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for ssr-plus
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client                            #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall 和
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin                           #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for passwall 和
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl                             #for ssr-plus
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2                              #本级依赖是因编译报警级别的增加依赖，其他为编译报错级别的增加 for ssr-plus
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns                                 #for ssr-plus
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages upx                                    #for nps       增加又牵扯出更多的依赖，无视
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-samba4                        #for autosamba 增加又牵扯出更多的依赖，无视
@@ -161,11 +161,11 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns      
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
+###git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus       #编译中报passwall缺少该依赖 240920
+###git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus       #编译中报passwall缺少该依赖 240920
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
@@ -175,9 +175,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus 
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
+###git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
+###git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
 
 ##########################################其他设置##########################################
 
@@ -230,7 +230,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
 #添加项目地址
 #sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/lmxslpc\/OpenWrt-Build-System" target="_blank">云编译系统<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
 # sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/OpenWrt-Build-System" target="_blank">云编译系统<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
-##sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/Actions-OpenWrt-build" target="_blank">云编译固件项目<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
+sed -i '/<tr><td width="33%"><%:CPU usage (%)%><\/td><td id="cpuusage">-<\/td><\/tr>/a <tr><td width="33%"><%:Github项目%><\/td><td><a href="https:\/\/github.com\/YingziWo\/Actions-OpenWrt-build" target="_blank">云编译固件项目<\/a><\/td><\/tr>' ./package/lean/autocore/files/x86/index.htm
 
 # 修改本地时间格式
 ##sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
