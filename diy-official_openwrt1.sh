@@ -128,7 +128,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy  
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev     
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust        
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box                        #编译报警级别的提示后增加，其他是编译报错级别的增加
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
