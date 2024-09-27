@@ -84,15 +84,15 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddn
 
 #Netdata
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
-sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
-sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
-sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
+##git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/yingziwo/luci-app-netdata
+##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/controller/*.lua
+##sed -i 's/"status"/"system"/g' package/yingziwo/luci-app-netdata/luasrc/model/cgi/*.lua
+##sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasrc/view/netdata/*.htm
 
 #mosdns
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
+##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
+##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
 rm -rf feeds/packages/utils/v2dat
 rm -rf package/feeds/packages/v2dat
 git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
@@ -144,7 +144,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxmindd
 
 
 # 修改默认登录地址
-sed -i 's/192.168.1.1/10.1.1.254/g' ./package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.4.10/g' ./package/base-files/files/bin/config_generate
 
 #2. 修改默认登录密码
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
