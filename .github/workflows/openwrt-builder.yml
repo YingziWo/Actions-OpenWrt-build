@@ -166,6 +166,27 @@ jobs:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+        body: |
+          ===Firmware for x86_64===
+          ### 📒 固件信息
+          - 💻 平台架构: x86_64                        
+          - ⚽ 固件源码: ${{ env.REPO_URL }}
+          - 💝 源码分支: ${{ env.REPO_BRANCH }}
+          - 🚀 内核版本:  K6.6.52                              
+          - 🌐 默认地址: 192.168.4.10
+          - 🔑 默认密码: 空                
+           
+          ### 📒 插件列表:
+          ```
+          Docker
+          iStore
+          Openclash
+          Passwall
+          AdguardHome
+          Ssr-plus
+          SmartDNS
+          NAS
+          ...
 
     - name: list disk space
       run: |
