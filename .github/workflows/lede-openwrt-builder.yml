@@ -181,7 +181,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
         body: |
           ===Firmware for x86_64===
-          ### 📒 (精简化)固件信息
+          ### 📒 (精简会影响到插件功能，恢复原态)固件信息
           - 💻 平台架构: x86_64 ( 24K 360M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
@@ -200,6 +200,8 @@ jobs:
           SmartDNS
           NAS
           Wol
+          KVM
+          upnp
           ...
 
     - name: list disk space
