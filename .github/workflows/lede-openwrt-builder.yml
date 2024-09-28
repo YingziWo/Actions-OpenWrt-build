@@ -79,7 +79,7 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
-        rm -rf ./package/lean/wol                    #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/lean/wol                    #删除缺省的网络唤醒插件，精简固件体积
         rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
         cd ..
         
@@ -97,9 +97,9 @@ jobs:
       run: |
         cd openwrt 
         ./scripts/feeds install -a
-        rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
         rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
         rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
         rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
@@ -182,11 +182,11 @@ jobs:
         body: |
           ===Firmware for x86_64===
           ### 📒 (精简化)固件信息
-          - 💻 平台架构: x86_64                        
+          - 💻 平台架构: x86_64 ( 24K 360M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本:  K6.6.52                              
-          - 🌐 默认地址: 192.168.4.10
+          - 🌐 默认地址: 192.168.4.10 
           - 🔑 默认密码: 空                
            
           ### 📒 插件列表:
@@ -199,6 +199,7 @@ jobs:
           Ssr-plus
           SmartDNS
           NAS
+          Wol
           ...
 
     - name: list disk space
