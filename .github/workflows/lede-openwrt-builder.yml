@@ -78,10 +78,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        cd openwrt
-        #rm -rf ./package/lean/wol                    #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
-        cd ..
+        #cd openwrt
+        #rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
+        #cd ..
         
     - name: Load custom feeds
       run: |
@@ -100,10 +100,10 @@ jobs:
         #rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
         #rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
         #rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
-        rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
-        rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
-        rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
+        #rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
 
     - name: Load custom configuration
       run: |
