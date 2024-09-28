@@ -179,7 +179,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
         body: |
           ===Firmware for x86_64===
-          ### 📒 固件信息
+          ### 📒 (精简化)固件信息
           - 💻 平台架构: x86_64                        
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
