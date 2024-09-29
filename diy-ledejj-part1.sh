@@ -71,8 +71,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 
 #科学上网
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
@@ -106,38 +107,66 @@ git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
 
 
-########依赖包########
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages chinadns-ng
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2socks
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2tcp
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages gn
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages ipt2socks
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages microsocks
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
+########非原作者的依赖包########
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages chinadns-ng
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2socks
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages dns2tcp
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages gn
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages ipt2socks
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages microsocks
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages naiveproxy
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages pdnsd-alt
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages simple-obfs
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages sing-box
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages ssocks
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages tcping
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-go
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages trojan-plus
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages tuic-client
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-core
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-geodata
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 
 ##########################################其他设置##########################################
+####################### 改用原作者xiaorouji源头的依赖代码########################################
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages brook
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages chinadns-ng
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2socks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2tcp
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages gn
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages hysteria
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ipt2socks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages microsocks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages naiveproxy
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocks-rust
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocksr-libev
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages simple-obfs
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages sing-box
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ssocks
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tcping
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-go
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-plus
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tuic-client
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-core
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-geodata
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-plugin
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-core
+git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-plugin
+
+#############################################################################################
 
 # 更改 Argon 主题背景
 #cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg.jpg
