@@ -21,7 +21,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lede-jingjian.config
-  DIY_P1_SH: diy-part1.sh
+  DIY_P1_SH: diy-ledejj-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -78,10 +78,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        #cd openwrt
-        #rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
-        #rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
-        #cd ..
+        cd openwrt
+        rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
+        rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
+        cd ..
         
     - name: Load custom feeds
       run: |
@@ -97,13 +97,13 @@ jobs:
       run: |
         cd openwrt 
         ./scripts/feeds install -a
-        #rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
-        #rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
-        #rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
-        #rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
-        #rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
-        #rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
-        #rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
+        rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
+        rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
+        rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
+        rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
+        rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
+        rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
+        rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
 
     - name: Load custom configuration
       run: |
@@ -181,8 +181,8 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
         body: |
           ===Firmware for x86_64===
-          ### 📒 (精简会影响到插件功能，恢复原态)固件信息
-          - 💻 平台架构: x86_64 ( 24K 360M )                       
+          ### 📒 (精简插件)固件信息
+          - 💻 平台架构: x86_64 ( 32K 600M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本:  K6.6.52                              
@@ -199,9 +199,6 @@ jobs:
           Ssr-plus
           SmartDNS
           NAS
-          Wol
-          KVM
-          upnp
           ...
 
     - name: list disk space
