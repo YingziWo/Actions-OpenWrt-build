@@ -36,7 +36,7 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_BRANCH: $tagSL
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lede-jingjian.config
   DIY_P1_SH: diy-ledejj-part1.sh
