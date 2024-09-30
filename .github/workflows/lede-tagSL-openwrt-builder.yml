@@ -19,24 +19,24 @@ on:
           tagSL:
             description: "请选择lede版本:"
             required: true
-            default: "master"
+            default: 'master'
             type: choice
             options:
-              - "master"
-              - "20230609"
-              - "20221001"
-              - "20220716"
-              - "20220505"
-              - "20220401"
-              - "20211117"
-              - "20200915"
-              - "20200416"
-              - "20200408"
+              - 'master'
+              - '20230609'
+              - '20221001'
+              - '20220716'
+              - '20220505'
+              - '20220401'
+              - '20211117'
+              - '20200915'
+              - '20200416'
+              - '20200408'
               
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: $tagSL
+  REPO_BRANCH: ${{ github.event.client_payload.tagSL || github.event.inputs.tagSL }}
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lede-jingjian.config
   DIY_P1_SH: diy-ledejj-part1.sh
