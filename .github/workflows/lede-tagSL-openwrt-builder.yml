@@ -172,8 +172,9 @@ jobs:
             #echo "BD_COMPILE=success" >> $GITHUB_ENV
             #echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
             #echo "DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
-            KERNEL=$(cat *.manifest | awk '/^kernel/ {print $2}' | tr -d ' ')
-            echo "KERNEL=$KERNEL" >> $GITHUB_ENV
+            ##KERNEL=$(cat *.manifest | awk '/^kernel/ {print $2}' | tr -d ' ')
+            echo "KERNEL=$(cat *.manifest | grep kernel | grep = -m 1 | cut -d= -f2 | cut -d- -f1)" >> $GITHUB_ENV
+            #echo "KERNEL=$KERNEL" >> $GITHUB_ENV
             #Uppercase_String=$(echo "${{ env.BD_PROJECT }}" | tr '[:lower:]' '[:upper:]')
             #echo "Uppercase_String=$Uppercase_String" >> $GITHUB_ENV
             #tar -czvf packages.tar.gz packages
@@ -223,7 +224,7 @@ jobs:
           - 💻 平台架构: x86_64 ( 32K 600M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本: ${{ env.KERNEL }}                  #K6.6.52                              
+          - 🚀 内核版本: ${{ env.KERNEL }}                                              
           - 🌐 默认地址: 192.168.4.10 
           - 🔑 默认密码: 空                
            
