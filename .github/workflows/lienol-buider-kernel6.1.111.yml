@@ -153,6 +153,15 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
+        if [ -n "$(ls *.img.gz)" ]; then
+            echo "KERNEL=$(cat *.manifest | grep kernel | grep = -m 1 | cut -d= -f2 | cut -d- -f1)" >> $GITHUB_ENV
+            echo "===========编译成功,准备上传==========="
+            
+          else
+            echo "===========编译失败,继续暂停==========="
+            echo "KERNEL=failure" >> $GITHUB_ENV
+           
+          fi
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
@@ -192,7 +201,7 @@ jobs:
           - 💻 平台架构: x86_64                        
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K5.15.167                              
+          - 🚀 内核版本: ${{ env.KERNEL }}                             
           - 🌐 默认地址: 192.168.1.1
           - 🔑 默认密码: 空                
            
