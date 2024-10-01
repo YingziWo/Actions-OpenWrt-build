@@ -179,7 +179,7 @@ jobs:
             #tar -czvf packages.tar.gz packages
             #rm -rf packages
             echo "===========编译成功,准备上传==========="
-            send_message "编译成功,准备上传" "编译成功,准备上传"
+            #send_message "编译成功,准备上传" "编译成功,准备上传"
           else
             #rm -f /home/runner/stop_signal
             echo "===========编译失败,继续暂停==========="
