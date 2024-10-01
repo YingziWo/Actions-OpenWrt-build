@@ -76,8 +76,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 
 #科学上网 #编译的固件在这个版本开启后，tup udp均不运行 ，换回kiddin9版本
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
-#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall   
+###git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall 
+git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 #更换插件名称
 sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
