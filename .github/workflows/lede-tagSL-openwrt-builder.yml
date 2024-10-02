@@ -174,7 +174,7 @@ jobs:
             #echo "DATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
             ##KERNEL=$(cat *.manifest | awk '/^kernel/ {print $2}' | tr -d ' ')
             #echo "KERNEL=$(cat *.manifest | grep kernel | grep = -m 1 | cut -d= -f2 | cut -d- -f1)" >> $GITHUB_ENV   #ubuntu交互模式下能正确显示结果，这里是错误的，批命令下写法不同？
-            
+            echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV                    #这里，这样子写，能输出正确的结果
             #echo "KERNEL=$KERNEL" >> $GITHUB_ENV
             #Uppercase_String=$(echo "${{ env.BD_PROJECT }}" | tr '[:lower:]' '[:upper:]')
             #echo "Uppercase_String=$Uppercase_String" >> $GITHUB_ENV
