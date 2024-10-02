@@ -154,9 +154,9 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         if [ -n "$(ls *.img.gz)" ]; then
-            #echo "KERNEL=$(cat *.manifest | grep kernel | grep = -m 1 | cut -d= -f2 | cut -d- -f1)" >> $GITHUB_ENV
-            echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
-            KERNEL1=$(cat *.manifest | awk '/^kernel/ {print $2}' | tr -d ' ')
+            #echo "KERNEL=$(cat *.manifest | grep kernel | grep = -m 1 | cut -d= -f2 | cut -d- -f1)" >> $GITHUB_ENV    #ubuntu交互模式下可用获得的结果，在这里的平台上却不能获得正确结果，下面一句在交互模式下不能获得的结果，在这里是输出正确的结果。
+            echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV                    #能输出正确的结果
+            KERNEL1=$(cat *.manifest | awk '/^kernel/ {print $1}' | tr -d ' ')                                         #仅输出‘-’，不正确的结果
             echo "KERNEL1=$KERNEL1" >> $GITHUB_ENV
             echo "===========编译成功,准备上传==========="
             
