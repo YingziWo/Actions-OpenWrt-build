@@ -54,6 +54,11 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
+# 更新dockerd
+rm -rf package/feeds/packages/dockerd
+rm -rf feeds/packages/utils/dockerd
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages dockerd
+
 #luci-theme-argone     #固件出来运行该主题报错
 git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
