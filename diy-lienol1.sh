@@ -49,14 +49,14 @@ pwd
 rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
-#rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone     #固件出来运行该主题报错
-#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
-#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store #版本更新不及时，编译高版本openwrt23.05 内核6.6.52时报 pkg_hash_check_unresolved: cannot find dependency luci-lib-taskd (>= 1.0.19) for luci-app-store 改到iStore的源头上去
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
