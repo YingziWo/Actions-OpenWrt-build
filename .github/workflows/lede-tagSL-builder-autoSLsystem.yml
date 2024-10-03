@@ -44,11 +44,11 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  #SYS_VER: 'ubuntu-20.04'
+  SYS_VER: 'ubuntu-22.04'
   TZ: Asia/Shanghai
 
   if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
-   SYS_VER = 'ubuntu-22.04'
+   SYS_VER = ${{SYS_VER}}
      else
    SYS_VER = 'ubuntu-20.04'
      fi
