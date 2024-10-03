@@ -46,35 +46,42 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
-jobs:
-  build:
+
    
-   - name: select system version
-     run-ubuntu:
-      runs-on: ubuntu-22.04
-      if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
-      steps:
-       - name: Run Ubuntu Task
-         run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-22.04"
+  
+     #run-ubuntu:
+     # runs-on: ubuntu-22.04
+     # if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
+     # steps:
+     #  - name: Run Ubuntu Task
+     #    run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-22.04"
    
-     run-ubuntu1:
-      runs-on: ubuntu-20.04
-      if: inputs.tagSL == '20211117' || inputs.tagSL == '20200915' || inputs.tagSL == '20200416' || inputs.tagSL == '20200408' 
-      steps:
-       - name: Run Ubuntu1 Task
-         run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-20.04"
+     #run-ubuntu1:
+     # runs-on: ubuntu-20.04
+     # if: inputs.tagSL == '20211117' || inputs.tagSL == '20200915' || inputs.tagSL == '20200416' || inputs.tagSL == '20200408' 
+     # steps:
+     #  - name: Run Ubuntu1 Task
+     #    run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-20.04"
 
    
     #runs-on: ubuntu-22.04
 
-     steps:
-     - name: Checkout
-       uses: actions/checkout@main
+jobs:
+  build:
+     if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
+  runs-on: ubuntu-22.04
+     else
+runs-on: ubuntu-20.04
+     fi
 
-     - name: Initialization environment
-       env:
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Initialization environment
+      env:
         DEBIAN_FRONTEND: noninteractive
-       run: |
+      run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
@@ -85,13 +92,13 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
     
-     - name: list disk space
-       run: |
+    - name: list disk space
+      run: |
         df -hT $PWD
     
-     - name: 释放Ubuntu磁盘空间
-       uses: jlumbroso/free-disk-space@main
-       with:
+    - name: 释放Ubuntu磁盘空间
+      uses: jlumbroso/free-disk-space@main
+      with:
         # this might remove tools that are actually needed,
         # if set to "true" but frees about 6 GB
         tool-cache: true
@@ -103,13 +110,13 @@ jobs:
         large-packages: true
         swap-storage: true
    
-     - name: list disk space
-       run: |
+    - name: list disk space
+      run: |
         df -hT $PWD
   
-     - name: Clone source code
-       working-directory: /workdir
-       run: |
+    - name: Clone source code
+      working-directory: /workdir
+      run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
@@ -118,18 +125,18 @@ jobs:
         rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
         cd ..
         
-     - name: Load custom feeds
-       run: |
+    - name: Load custom feeds
+      run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-     - name: Update feeds
-       run: cd openwrt && ./scripts/feeds update -a
+    - name: Update feeds
+      run: cd openwrt && ./scripts/feeds update -a
 
-     - name: Install feeds
-       run: |
+    - name: Install feeds
+      run: |
         cd openwrt 
         ./scripts/feeds install -a
         rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
@@ -140,17 +147,17 @@ jobs:
         rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
         rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
 
-     - name: Load custom configuration
-       run: |
+    - name: Load custom configuration
+      run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-     - name: Download package
-       id: package
-       run: |
+    - name: Download package
+      id: package
+      run: |
         cd openwrt
         make defconfig
         make download -j8
@@ -158,9 +165,9 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-     - name: Compile the firmware
-       id: compile
-       run: |
+    - name: Compile the firmware
+      id: compile
+      run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
@@ -169,21 +176,21 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
-     - name: Check space usage
-       if: (!cancelled())
-       run: df -hT
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
 
-     - name: Upload bin directory
-       uses: actions/upload-artifact@main
-       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-       with:
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-     - name: Organize files
-       id: organize
-       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-       run: |
+    - name: Organize files
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
         cd openwrt/bin/targets/*/*
         if [ -n "$(ls *.img.gz)" ]; then
             #echo "BD_COMPILE=success" >> $GITHUB_ENV
@@ -211,28 +218,28 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
-     - name: Upload firmware directory
-       uses: actions/upload-artifact@main
-       if: steps.organize.outputs.status == 'success' && !cancelled()
-       with:
+    - name: Upload firmware directory
+      uses: actions/upload-artifact@main
+      if: steps.organize.outputs.status == 'success' && !cancelled()
+      with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-     - name: Generate release tag
-       id: tag
-       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-       run: |
+    - name: Generate release tag
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
-     - name: Upload firmware to release
-       uses: softprops/action-gh-release@master
-       if: steps.tag.outputs.status == 'success' && !cancelled()
-       env:
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@master
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-       with:
+      with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
@@ -258,29 +265,27 @@ jobs:
           NAS
           ...
 
-     - name: list disk space
-       run: |
+    - name: list disk space
+      run: |
         df -hT $PWD
 
-     - name: Delete workflow runs
-       uses: Mattraks/delete-workflow-runs@main
-       with:
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
         retain_days: 0
         keep_minimum_runs: 2
 
-     - name: list disk space
-       run: |
+    - name: list disk space
+      run: |
         df -hT $PWD
 
-     #- name: Remove old Releases
-     #  uses: dev-drprasad/delete-older-releases@master
-     #  if: env.UPLOAD_RELEASE == 'true' && !cancelled()
-     #  with:
-     #    keep_latest: 3
-     #    delete_tags: true
-     #  env:
-     #    GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-  
-   
+    #- name: Remove old Releases
+    #  uses: dev-drprasad/delete-older-releases@master
+    #  if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+    #  with:
+    #    keep_latest: 3
+    #    delete_tags: true
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}   
 
     
