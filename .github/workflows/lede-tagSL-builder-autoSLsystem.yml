@@ -47,13 +47,7 @@ env:
   SYS_VER: 'ubuntu-22.04'
   TZ: Asia/Shanghai
 
-  if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
-   SYS_VER = ${{SYS_VER}}
-     else
-   SYS_VER = 'ubuntu-20.04'
-     fi
-   
-  
+
      #run-ubuntu:
      # runs-on: ubuntu-22.04
      # if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
@@ -73,8 +67,22 @@ env:
 
 jobs:
   build:
-    runs-on: ${{SYS_VER}}
-
+  
+  run-ubuntu-22-04:
+    runs-on: ubuntu-22.4
+    if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401'
+    steps:
+      -name: Run Task on Ubuntu 22.04
+      run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-22.04"
+   
+  run-ubuntu-20-04:
+    runs-on: ubuntu-20.4
+    if: inputs.tagSL == '20211117' || inputs.tagSL == '20200915' || inputs.tagSL == '20200416' || inputs.tagSL == '20200408'
+    steps:
+      -name: Run Task on Ubuntu 20.04
+      run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-20.04"
+    
+    
     steps:
     - name: Checkout
       uses: actions/checkout@main
