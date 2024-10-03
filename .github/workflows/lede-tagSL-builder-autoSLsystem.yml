@@ -46,7 +46,11 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
-
+  if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
+   SYS_VER = 'ubuntu-22.04'
+     else
+   SYS-VER = 'ubuntu-20.04'
+     fi
    
   
      #run-ubuntu:
@@ -64,15 +68,11 @@ env:
      #    run: echo "你选择的版本是 ${{inputs.tagSL}},配合这个版本的编译系统版本是ubuntu-20.04"
 
    
-    #runs-on: ubuntu-22.04
+    #
 
 jobs:
   build:
-     if: inputs.tagSL == 'master' || inputs.tagSL == '20230609' || inputs.tagSL == '20221001' || inputs.tagSL == '20220716' || inputs.tagSL == '20220505' || inputs.tagSL == '20220401' 
-  runs-on: ubuntu-22.04
-     else
-runs-on: ubuntu-20.04
-     fi
+    runs-on: ${{SYS_VER}}
 
     steps:
     - name: Checkout
