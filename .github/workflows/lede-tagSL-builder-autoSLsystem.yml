@@ -52,14 +52,14 @@ jobs:
     if: tagSL == 'master' || tagSL == '20230609' || tagSL == '20221001' || tagSL == '20220716' || tagSL == '20220505' || tagSL == '20220401' 
     steps:
      - name: Run Ubuntu Task
-       run: echo "你选择的版本是: ${{tagSL}},配合这个版本的编译系统版本是ubuntu-22.04"
+       run: echo "你选择的版本是: ${{inputs.choice}},配合这个版本的编译系统版本是ubuntu-22.04"
    
    run-ubuntu1:
     runs-on: ubuntu-20.04
     if: tagSL == '20211117' || tagSL == '20200915' || tagSL == '20200416' || tagSL == '20200408' 
     steps:
      - name: Run Ubuntu1 Task
-       run: echo "你选择的版本是: ${{tagSL}},配合这个版本的编译系统版本是ubuntu-20.04"
+       run: echo "你选择的版本是: ${{inputs.choice}},配合这个版本的编译系统版本是ubuntu-20.04"
   
    
 
