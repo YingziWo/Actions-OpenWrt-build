@@ -71,10 +71,9 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adg
 
 #科学上网
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall     #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
-git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall #原始作者仓库源 4.78-2 稳定版
-###git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall      #原始作者仓库源 main 开发版
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus     #与第20句内容的功能一样，这里注释掉
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
+git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源
+#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
@@ -220,6 +219,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 # 替换go版本到1.22.x  --> default
-rm -rf feeds/packages/lang/golang   #在用lede的20230609版本时报：could not create leading directories of 'feeds/packages/lang/golang': Permission denied  ，因此注释掉
+rm -rf feeds/packages/lang/golang
 #git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang  
+git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
