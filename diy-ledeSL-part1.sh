@@ -58,10 +58,14 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
-git_sparse_clone master https://github.com/kenzok8/small-package luci-app-store       #kiddin9改用kenzok8的，或直接引用原始作者的
-git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-taskd
-git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-xterm
-git_sparse_clone master https://github.com/kenzok8/small-package taskd
+#git_sparse_clone master https://github.com/kenzok8/small-package luci-app-store       #改用原始作者的，或直接引用原始作者的
+#git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-taskd
+#git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-xterm
+#git_sparse_clone master https://github.com/kenzok8/small-package taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+git_sparse_clone main https://github.com/linkease/istore luci/taskd
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
