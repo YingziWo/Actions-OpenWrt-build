@@ -5,6 +5,9 @@
 [![immortalwrt_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/immortalwrt-builder.yml)
 [![Lede_x86_64](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml/badge.svg)](https://github.com/YingziWo/Actions-OpenWrt-build/actions/workflows/openwrt-builder.yml)
 
+# Attention:
+   On October 3 ,2024, the upstream plugin repository (kiddin9/openwrt-packages) referenced in this project was deleted, affecting diy-***-part1.sh . To adjust the upstream reference source, please refer to diy-ledeSL-part1.sh for configuration adjustments.
+
 
 Cloud Building OpenWrt with the GitHub Actions
 
