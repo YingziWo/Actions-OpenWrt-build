@@ -58,10 +58,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
-#git_sparse_clone master https://github.com/kenzok8/small-package luci-app-store       #改用原始作者的，或直接引用原始作者的
-#git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-taskd
-#git_sparse_clone master https://github.com/kenzok8/small-package luci-lib-xterm
-#git_sparse_clone master https://github.com/kenzok8/small-package taskd
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store       #改用原始作者的，或直接引用原始作者的
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
+#git_sparse_clone main https://github.com/kenzok8/small-package taskd
 git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
 git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
 git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
@@ -70,20 +70,20 @@ git_sparse_clone main https://github.com/linkease/istore luci/taskd
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
-git_sparse_clone master https://github.com/kenzok8/small-package luci-app-adguardhome
-#git_sparse_clone master https://github.com/kenzok8/small-package adguardhome
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
+#git_sparse_clone main https://github.com/kenzok8/small-package adguardhome
 
 #科学上网
-git_sparse_clone master https://github.com/kenzok8/small-package luci-app-openclash
-#git_sparse_clone master https://github.com/kenzok8/small luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
+#git_sparse_clone main https://github.com/kenzok8/small luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
 git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源
 #git_sparse_clone master https://github.com/kenzok8/small luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
-git_sparse_clone master https://github.com/kenzok8/small-package ddns-go
-git_sparse_clone master https://github.com/kenzok8/small-package luci-app-ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go
 # rm -rf feeds/small8/ddns-go feeds/small8/luci-app-ddns-go
 # git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
@@ -108,7 +108,7 @@ git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 #git_sparse_clone master https://github.com/kenzok8/openwrt-packages zerotier           # kenzok8无此插件
 
 #luci-app-autotimeset
-git_sparse_clone master https://github.com/kenzok8/small-package luci-app-autotimeset  
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset  
 
 ########非原作者的依赖包########
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
@@ -139,7 +139,7 @@ git_sparse_clone master https://github.com/kenzok8/small-package luci-app-autoti
 git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中
 git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中
 git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中
-git_sparse_clone master https://github.com/kenzok8/small-package lua-maxminddb
+git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
 
 ##########################################其他设置##########################################
 ####################### 改用原作者xiaorouji源头的依赖代码########################################
