@@ -66,8 +66,8 @@ git_sparse_clone master https://github.com/kenzok8/small-package taskd
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-adguardhome
-#git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome
+git_sparse_clone master https://github.com/kenzok8/small-packageluci-app-adguardhome
+#git_sparse_clone master https://github.com/kenzok8/small-package adguardhome
 
 #科学上网
 git_sparse_clone master https://github.com/kenzok8/small-package luci-app-openclash
