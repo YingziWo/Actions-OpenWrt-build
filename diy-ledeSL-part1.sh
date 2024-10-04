@@ -100,8 +100,8 @@ git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 
 
 #zerotier
-#git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-zerotier
-#git_sparse_clone master https://github.com/kenzok8/openwrt-packages zerotier
+#git_sparse_clone master https://github.com/kenzok8/openwrt-packages luci-app-zerotier  # kenzok8无此插件
+#git_sparse_clone master https://github.com/kenzok8/openwrt-packages zerotier           # kenzok8无此插件
 
 #luci-app-autotimeset
 git_sparse_clone master https://github.com/kenzok8/small-package luci-app-autotimeset  
@@ -132,9 +132,9 @@ git_sparse_clone master https://github.com/kenzok8/small-package luci-app-autoti
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
-git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的openwrt-packages中无此插件，在small中
-git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的openwrt-packages中无此插件，在small中
-git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的openwrt-packages中无此插件，在small中
+git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中
+git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中
+git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中
 git_sparse_clone master https://github.com/kenzok8/small-package lua-maxminddb
 
 ##########################################其他设置##########################################
