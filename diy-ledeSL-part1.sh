@@ -220,6 +220,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 # 替换go版本到1.22.x  --> default
-###rm -rf feeds/packages/lang/golang   #在用lede的20230609版本时报：could not create leading directories of 'feeds/packages/lang/golang': Permission denied  ，因此注释掉
+rm -rf feeds/packages/lang/golang   #在用lede的20230609版本时报：could not create leading directories of 'feeds/packages/lang/golang': Permission denied  ，因此注释掉
 #git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-##git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang  
+git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang  
