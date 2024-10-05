@@ -130,6 +130,7 @@ jobs:
         rm -rf ./feeds/luci/applications/luci-app-ipsec-server    ##删除缺省的vpn/ipsec-server插件，精简固件体积，针对20230609版本
         rm -rf ./feeds/luci/applications/luci-app-unblockmusic    ##删除缺省的服务/解锁网易云灰色歌曲插件，精简固件体积，针对20230609版本
         rm -rf ./feeds/luci/applications/luci-app-xlnetacc        ##删除缺省的服务/迅雷快鸟插件，精简固件体积，针对20230609版本
+        rm -rf package/feeds/luci/luci-app-adbyby-plus            ##删除缺省的服务/迅雷快鸟插件，精简固件体积，针对20230609版本
         
     - name: Load custom configuration
       run: |
