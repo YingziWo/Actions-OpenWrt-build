@@ -230,7 +230,7 @@ jobs:
         body: |
           ===Firmware for x86_64===
           ### 📒 (精简插件)固件信息
-          - 💻 平台架构: x86_64 ( 32K 600M )                       
+          - 💻 平台架构: x86_64 ( 32K 600M 精简--》460M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本: ${{ env.KERNEL }}                                              
@@ -240,7 +240,7 @@ jobs:
           ### 📒 插件列表:
           ```
           Docker
-          iStore
+          软件仓库（iStore）
           Openclash
           Passwall
           AdguardHome
