@@ -19,10 +19,10 @@ on:
           tagSL:
             description: "请选择lede低版本号:"
             required: true
-            default: "20211117"
+            default: "20211107"
             type: choice
             options:
-              - "20211117"
+              - "20211107"
               - "20200915"
               - "20200416"
               - "20200408"
