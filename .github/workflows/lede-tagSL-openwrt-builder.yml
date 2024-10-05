@@ -124,7 +124,13 @@ jobs:
         rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积，针对master版本
         rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积，针对master版本
         rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积，针对master版本
-
+        rm -rt ./package/feeds/packages/zerotier                  ##删除缺省的vpn/zerotier插件，精简固件体积，针对20230609版本
+        rm -rf ./feeds/packages/net/zerotier                      ##删除缺省的vpn/zerotier插件，精简固件体积，针对20230609版本
+        rm -rf ./feeds/luci/applications/luci-app-zerotier        ##删除缺省的vpn/zerotier插件，精简固件体积，针对20230609版本
+        rm -rf ./feeds/luci/applications/luci-app-ipsec-server    ##删除缺省的vpn/ipsec-server插件，精简固件体积，针对20230609版本
+        rm -rf ./feeds/luci/applications/luci-app-unblockmusic    ##删除缺省的服务/解锁网易云灰色歌曲插件，精简固件体积，针对20230609版本
+        rm -rf ./feeds/luci/applications/luci-app-xlnetacc        ##删除缺省的服务/迅雷快鸟插件，精简固件体积，针对20230609版本
+        
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
