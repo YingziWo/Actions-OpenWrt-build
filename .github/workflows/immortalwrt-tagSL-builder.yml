@@ -50,7 +50,7 @@ env:
   REPO_BRANCH: ${{ github.event.client_payload.tagSL || github.event.inputs.tagSL }}                               #23.05该版本截止2024.09.07 编译出的固件存在防火墙使用旧版的提示，故安全起见，建议使用21.02版本。目前测试关闭firewall4下会否有提示
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: immortalwrt_x86_64.config
-  DIY_P1_SH: diy-immortalwrt-tagSL_x86_64.sh
+  DIY_P1_SH: diy-immortalwrt-tagSL_x84_64.sh
   DIY_P2_SH: diy-immortalwrt-cs.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
