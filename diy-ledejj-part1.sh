@@ -53,8 +53,8 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
-#luci-theme-argone
-git_sparse_clone 23 https://github.com/kenzok8/small-package luci-theme-argone
+#luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
