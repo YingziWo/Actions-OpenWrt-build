@@ -9,6 +9,7 @@
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
 #
+# 2024年10月3日 作者kiddin9不知道什么原因，突然删除了自己的openwrt-packages的仓库，以下涉及他的仓库openwrt-packages的引用都必须更改。
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
