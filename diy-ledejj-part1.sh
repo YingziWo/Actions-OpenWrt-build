@@ -54,7 +54,7 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone
-git_sparse_clone -b 23 https://github.com/kenzok8/small-package luci-theme-argone
+git_sparse_clone 23 https://github.com/kenzok8/small-package luci-theme-argone
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 
 #luci-app-store
