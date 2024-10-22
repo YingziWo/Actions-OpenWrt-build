@@ -9,6 +9,7 @@
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
 # 2024年10月3日 作者kiddin9不知道什么原因，突然删除了自己的openwrt-packages的仓库，以下涉及他的仓库openwrt-packages的引用都必须更改。
+# On October 3, 2024, the author kiddin9 suddenly deleted his openwrt-packages repository for unknown reasons. The following references to his repository openwrt-packages must be changed.
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
@@ -54,8 +55,12 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+##git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                          # argone for 18.06    
+##git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 # argon 适应于23.05，这是原作者的链接
+git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+
+
 
 #luci-app-store
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store       #改用原始作者的，或直接引用原始作者的
@@ -70,7 +75,7 @@ git_sparse_clone main https://github.com/linkease/istore luci/taskd
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  
 #git_sparse_clone main https://github.com/kenzok8/small-package adguardhome
 
 #科学上网
