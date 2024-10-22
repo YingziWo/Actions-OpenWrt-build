@@ -8,6 +8,8 @@
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
+# 2024年10月3日 作者kiddin9不知道什么原因，突然删除了自己的openwrt-packages的仓库，以下涉及他的仓库openwrt-packages的引用都必须更改。
+# On October 3, 2024, the author kiddin9 suddenly deleted his openwrt-packages repository for unknown reasons. The following references to his repository openwrt-packages must be changed.
 #
 
 # Uncomment a feed source
@@ -54,8 +56,10 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone
-#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                      #official-openwrt23.05不支持这个主题界面
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                      #official-openwrt23.05不支持这个主题界面 argone for 18.06
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
+git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 # argon适应于23.05，这是原作者的链接
+git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
 
 #luci-app-store
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
@@ -71,11 +75,13 @@ ls -al package/yingziwo
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
 
 #科学上网
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
 ###git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
 git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall       #换源头到xiaorouji上，降低内核版本换回原来的源,目前23.10.01main有bug，“分流总节点”无法启用，用4.78-2版本则没有问题
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
@@ -85,8 +91,10 @@ git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-p
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go
 # rm -rf feeds/small8/ddns-go feeds/small8/luci-app-ddns-go
 # git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
@@ -111,8 +119,8 @@ sed -i 's/admin\/status/admin\/system/g' package/yingziwo/luci-app-netdata/luasr
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages zerotier
 
 #luci-app-autotimeset
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
-
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset  
 
 ########依赖包########
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
@@ -175,9 +183,11 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-aut
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
+git_sparse_clone master https://github.com/kenzok8/small shadow-tls      
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
+git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 
 ##########################################其他设置##########################################
 ####################### 改用xiaorouji源头的依赖代码########################################
