@@ -107,7 +107,7 @@ git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-p
 
 #luci-app-autotimeset
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimes
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset
 
 ########依赖包########
  #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
