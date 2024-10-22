@@ -68,7 +68,7 @@ sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasr
 #adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
 
 #科学上网
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
