@@ -57,9 +57,10 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #luci-theme-argone
 ##git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                     # argone for 18.06
 ##git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
-git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 # argon适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
-git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
-
+#git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                # argon适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 .原作者的原码是单层的目录结构，不适应调用功能
+#git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon                    
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config
 
 #luci-app-store
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store       #改用原始作者的，或直接引用原始作者的
