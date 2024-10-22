@@ -83,7 +83,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall       #换源头到xiaorouji上，降低内核版本换回原来的源
+git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall       #换源头到xiaorouji上，降低内核版本换回原来的源，4.78-2无bug ，4.78-3和main都有bug
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 ##git_sparse_clone master https://github.com/fw876/helloworld luci-app-ssr-plus               #换源头到fw876上 ，哈，源头的只支持For OpenWrt 21.02 or lower version 和 You have to manually upgrade Golang toolchain to 1.21 or higher to compile Xray-core. 这是要在openwrt23.05版本上，不能用
 
