@@ -58,8 +58,10 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #luci-theme-argone
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                  # argone for 18.06
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
-git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 # argon适应于23.05，这是原作者的链接。同时支持改master --》 18.06版本 
-git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+#git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 # argon适应于23.05，这是原作者的链接。同时支持改master --》 18.06版本 
+#git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config
 
 #luci-app-store
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
@@ -222,7 +224,7 @@ orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | 
 sed -i "s/${orig_version}/R${date_version} by Yingziwo/g" package/lean/default-settings/files/zzz-default-settings
 
 #删除无效opkg源
-sed -i '/exit 0/i sed -i "/kiddin9/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/i sed -i "/kenzok8/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit 0/i sed -i "/kenzo/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit 0/i sed -i "/small/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 
