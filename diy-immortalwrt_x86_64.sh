@@ -61,6 +61,7 @@ function git_sparse_clone() {
 git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
 git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
 git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+git_sparse_clone main https://github.com/linkease/istore luci/taskd
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
