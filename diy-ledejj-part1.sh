@@ -56,9 +56,11 @@ rm -rf feeds/luci/applications/luci-app-netdata
 
 #luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                       #仅适应于18.06
-git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
+#git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
-git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+#git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
@@ -144,10 +146,14 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotime
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2ray-plugin
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-core
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages xray-plugin
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
+git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中
+git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中
+git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中
+git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
 
 ##########################################其他设置##########################################
 ####################### 改用原作者xiaorouji源头的依赖代码########################################
@@ -214,7 +220,7 @@ orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | 
 sed -i "s/${orig_version}/R${date_version} by Yingziwo/g" package/lean/default-settings/files/zzz-default-settings
 
 #删除无效opkg源
-sed -i '/exit 0/i sed -i "/kiddin9/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
+sed -i '/exit 0/i sed -i "/kenzok8/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit 0/i sed -i "/kenzo/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 sed -i '/exit 0/i sed -i "/small/d" /etc/opkg/distfeeds.conf' ./package/lean/default-settings/files/zzz-default-settings
 
