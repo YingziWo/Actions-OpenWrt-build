@@ -81,7 +81,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源
+git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源，4.78-3和main都在总节点分流上有bug 截止到2024.10.22
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
