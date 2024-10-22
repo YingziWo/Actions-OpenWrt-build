@@ -55,25 +55,31 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
-#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone  #仅适应于18.06
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                       #仅适应于18.06
 git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
 
 #luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
+git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
+git_sparse_clone main https://github.com/linkease/istore luci/taskd
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
 
 #科学上网
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
@@ -81,8 +87,10 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-pas
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
 
 #ddns-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go
 # rm -rf feeds/small8/ddns-go feeds/small8/luci-app-ddns-go
 # git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
@@ -107,8 +115,8 @@ git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages zerotier
 
 #luci-app-autotimeset
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
-
+##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset
 
 ########非原作者的依赖包########
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
