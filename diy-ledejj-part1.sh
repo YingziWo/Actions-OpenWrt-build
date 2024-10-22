@@ -56,7 +56,7 @@ rm -rf feeds/luci/applications/luci-app-netdata
 
 #luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                       #仅适应于18.06
-git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接
+git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
 
