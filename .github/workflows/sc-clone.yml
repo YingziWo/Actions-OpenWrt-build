@@ -150,16 +150,16 @@ jobs:
         rm -rf openwrt-sr-sh.tar.gz
         ls
         cd openwrt
-        tar --warning=no-file-changed -czf ../openwrt/openwrt-sr.tar.gz .                            #报 tar: .: file changed as we read it 的错误
+        ##tar --warning=no-file-changed -czf ../openwrt/openwrt-sr.tar.gz .                            #报 tar: .: file changed as we read it 的错误
         #mkdir openwrt/bin                      #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets              #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets/x86          #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets/x86/64       #在 Download package 目录就已经存在，Clone source code步骤还没有
-        cd ..
-        cp -f openwrt-sr.tar.gz ./openwrt/bin/targets/x86/64/
-        rm -rf openwrt-sr.tar.gz
-        cd openwrt
-        ls -la
+        ##cd ..
+        ##cp -f openwrt-sr.tar.gz ./openwrt/bin/targets/x86/64/
+        ##rm -rf openwrt-sr.tar.gz
+        ##cd openwrt
+        ##ls -la
         #echo -e "$(nproc) thread compile"
         #make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
