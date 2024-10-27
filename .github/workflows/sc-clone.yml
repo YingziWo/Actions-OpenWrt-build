@@ -144,7 +144,7 @@ jobs:
       run: |
         pwd
         ls -la
-        tar -czvf openwrt-sr-sh.tar.gz .
+        tar -czf openwrt-sr-sh.tar.gz .
         cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
         rm -rf openwrt-sr-sh.tar.gz
         cd openwrt
