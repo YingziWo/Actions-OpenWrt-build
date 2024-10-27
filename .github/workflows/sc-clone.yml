@@ -130,9 +130,9 @@ jobs:
         ls -la
         tar -czvf openwrt-sr.tar.gz openwrt
         #mkdir openwrt/bin
-        mkdir openwrt/bin/targets
-        mkdir openwrt/bin/targets/x84
-        mkdir openwrt/bin/targets/x84/64
+        #mkdir openwrt/bin/targets
+        mkdir openwrt/bin/targets/x86
+        mkdir openwrt/bin/targets/x86/64
         cp -f openwrt-sr.tar.gz openwrt/bin/targets/x84/64
         #cd openwrt
         #echo -e "$(nproc) thread compile"
