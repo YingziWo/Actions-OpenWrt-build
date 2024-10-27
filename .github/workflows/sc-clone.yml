@@ -129,7 +129,7 @@ jobs:
         pwd
         ls -la
         tar -czvf openwrt-sr.tar.gz openwrt
-        mkdir openwrt/bin
+        #mkdir openwrt/bin
         mkdir openwrt/bin/targets
         mkdir openwrt/bin/targets/x84
         mkdir openwrt/bin/targets/x84/64
