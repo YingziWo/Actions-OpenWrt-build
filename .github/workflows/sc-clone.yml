@@ -148,7 +148,7 @@ jobs:
         #cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
         #rm -rf openwrt-sr-sh.tar.gz
         cd openwrt
-        tar -czvf ../openwrt/openwrt-sr.tar.gz --exclude=./.git .
+        tar -czf ../openwrt/openwrt-sr.tar.gz .
         #mkdir openwrt/bin                      #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets              #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets/x86          #在 Download package 目录就已经存在，Clone source code步骤还没有
