@@ -144,9 +144,9 @@ jobs:
       run: |
         pwd
         ls -la
-        tar --warning=no-file-changed -czvf openwrt-sr-sh.tar.gz .                                     #报 tar: .: file changed as we read it 的错误
-        cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
-        rm -rf openwrt-sr-sh.tar.gz
+        #tar --warning=no-file-changed -czvf openwrt-sr-sh.tar.gz .                                     #报 tar: .: file changed as we read it 的错误
+        #cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
+        #rm -rf openwrt-sr-sh.tar.gz
         cd openwrt
         tar --warning=no-file-changed -czvf ../openwrt/openwrt-sr.tar.gz .                            #报 tar: .: file changed as we read it 的错误
         #mkdir openwrt/bin                      #在 Download package 目录就已经存在，Clone source code步骤还没有
