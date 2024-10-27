@@ -135,6 +135,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         #TELEGRAM_BOT_TOKEN: ${{ secrets.REPO_TOKEN }}
 
+    - name: list disk space
+      run: |
+        df -hT $PWD
+
     - name: Compile the firmware
       id: compile
       run: |
