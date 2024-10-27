@@ -15,8 +15,8 @@ name: OpenWrt-SC Clone WF
 on:
   repository_dispatch:
   workflow_dispatch:
-      inputs:
-      ssh:
+    inputs:
+       ssh:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
