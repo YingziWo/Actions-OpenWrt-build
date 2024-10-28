@@ -14,7 +14,7 @@ set -x
 pwd
 ls
 
-# Modify default IP
+# Modify default IP   #新版lede master原码仅这条是更改不了缺省ip地址，需要更改缺省的flash.js共同作用来实现
 sed -i 's/192.168.1.1/192.168.4.100/g' package/base-files/files/bin/config_generate
 
 #修改openwrt.lan关联IP
