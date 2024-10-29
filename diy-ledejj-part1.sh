@@ -190,7 +190,10 @@ git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xra
 
 
 # 修改默认登录地址
-sed -i 's/192.168.1.1/192.168.4.10/g' ./package/base-files/files/bin/config_generate
+sed -i 's/192\.168\.[0-9]*\.[0-9]*/192.168.4.10/g' ./package/base-files/files/bin/config_generate
+
+#修改openwrt.lan关联IP
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.4.10/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 
 #2. 修改默认登录密码
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' ./package/lean/default-settings/files/zzz-default-settings
