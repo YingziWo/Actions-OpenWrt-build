@@ -128,12 +128,12 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-        #TELEGRAM_BOT_TOKEN: ${{ secrets.REPO_TOKEN }}
+   # - name: SSH connection to Actions
+   #   uses: P3TERX/ssh2actions@v1.0.0
+   #   if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+   #   env:
+   #     GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+   #     #TELEGRAM_BOT_TOKEN: ${{ secrets.REPO_TOKEN }}
 
     - name: list disk space
       run: |
@@ -144,12 +144,12 @@ jobs:
       run: |
         pwd
         ls -la
-        tar --warning=no-file-changed -czvf openwrt-sr-sh.tar.gz *.*                                     #报 tar: .: file changed as we read it 的错误
-        cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
-        ls
-        rm -rf openwrt-sr-sh.tar.gz
-        ls
-        cd openwrt
+        #tar --warning=no-file-changed -czvf openwrt-sr-sh.tar.gz *.*                                     #报 tar: .: file changed as we read it 的错误
+        #cp -f openwrt-sr-sh.tar.gz ./openwrt/bin/targets/x86/64/
+        #ls
+        #rm -rf openwrt-sr-sh.tar.gz
+        #ls
+        #cd openwrt
         ##tar --warning=no-file-changed -czf ../openwrt/openwrt-sr.tar.gz .                            #报 tar: .: file changed as we read it 的错误
         #mkdir openwrt/bin                      #在 Download package 目录就已经存在，Clone source code步骤还没有
         #mkdir openwrt/bin/targets              #在 Download package 目录就已经存在，Clone source code步骤还没有
@@ -158,14 +158,21 @@ jobs:
         ##cd ..
         ##cp -f openwrt-sr.tar.gz ./openwrt/bin/targets/x86/64/
         ##rm -rf openwrt-sr.tar.gz
-        ##cd openwrt
+        cd openwrt
         ##ls -la
-        #echo -e "$(nproc) thread compile"
-        #make -j$(nproc) || make -j1 || make -j1 V=s
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        #TELEGRAM_BOT_TOKEN: ${{ secrets.REPO_TOKEN }}  
 
     - name: Check space usage
       #if: (!cancelled())
