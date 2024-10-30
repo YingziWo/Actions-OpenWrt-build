@@ -55,23 +55,23 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
     
-    #- name: list disk space
+    #- name: list disk space    #要执行make V=s -j8编译时要开启释放磁盘空间的步骤，不然会报磁盘空间不够的错误
     #  run: |
     #    df -hT $PWD
     
-    #- name: 释放Ubuntu磁盘空间
-    #  uses: jlumbroso/free-disk-space@main
-    #  with:
-    #    # this might remove tools that are actually needed,
-    #    # if set to "true" but frees about 6 GB
-    #    tool-cache: true
-    #    # all of these default to true, but feel free to set to
-    #    # "false" if necessary for your workflow
-    #    android: true
-    #    dotnet: true
-    #    haskell: true
-    #    large-packages: true
-    #    swap-storage: true
+    - name: 释放Ubuntu磁盘空间
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
    
     - name: list disk space
       run: |
