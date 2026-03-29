@@ -10,6 +10,7 @@
 # See /LICENSE for more information.
 #
 # 2024年10月3日 作者kiddin9不知道什么原因，突然删除了自己的openwrt-packages的仓库，以下涉及他的仓库openwrt-packages的引用都必须更改。
+# 近期xiaorouji的仓库移步到openwrt-passwall上了，本项目下涉及语句全需要更改。同时kenzok8仓库的目录也有变化，也需要进行更改。2026.3.29，嗯，发现引用到的源头都需要核对过，才能继续使用。
 
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
