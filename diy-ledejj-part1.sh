@@ -19,7 +19,9 @@ set -x
 pwd
 ls
 # Add a feed source
-echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default   #2024年只需要这一句，2026根据上游版本介绍用下面两句代替
+sed -i "/helloworld/d" "feeds.conf.default"
+echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 #=================================================
@@ -60,31 +62,36 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 #git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
-git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config
+git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
-git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store
-git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd
-git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm
-git_sparse_clone main https://github.com/linkease/istore luci/taskd
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store  #2024版的用法
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd  #2024版的用法
+#git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm  #2024版的用法
+#git_sparse_clone main https://github.com/linkease/istore luci/taskd           #2024版的用法
+git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-app-store  # 核查有260909改目录下了
+git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-taskd  # 核查有260909改目录下了
+git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-xterm  # 核查有260909改目录下了
+git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/taskd           # 核查有260909改目录下了
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
 #adguardhome
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash         # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
-git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源，4.78-3和main都在总节点分流上有bug 截止到2024.10.22
+#git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源，4.78-3和main都在总节点分流上有bug 截止到2024.10.22 #原作者仓库不见了，改到kenzok8上
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall          # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
@@ -92,8 +99,8 @@ git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-p
 #ddns-go
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
-git_sparse_clone main https://github.com/kenzok8/small-package ddns-go
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go
+git_sparse_clone main https://github.com/kenzok8/small-package ddns-go                     # 核查有260909
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go            # 核查有260909
 # rm -rf feeds/small8/ddns-go feeds/small8/luci-app-ddns-go
 # git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
@@ -110,8 +117,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go
 ##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
 rm -rf feeds/packages/utils/v2dat
 rm -rf package/feeds/packages/v2dat
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
-
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
+git_sparse_clone main https://github.com/kenzok8/small-package v2dat                      # 核查有260909
 
 #zerotier
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
@@ -119,7 +126,8 @@ git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
 
 #luci-app-autotimeset
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset       # 核查有260909
+
 
 ########非原作者的依赖包########
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages brook
@@ -151,43 +159,69 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotime
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中
-git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中
-git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中
-git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
+git_sparse_clone master https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+git_sparse_clone master https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+git_sparse_clone master https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
 
 ##########################################其他设置##########################################
-####################### 改用原作者xiaorouji源头的依赖代码########################################
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages brook
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages chinadns-ng
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2socks
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2tcp
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages gn
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages hysteria
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ipt2socks
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages microsocks
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages naiveproxy
-#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocks-rust
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocksr-libev
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages simple-obfs
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages sing-box
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ssocks
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tcping
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-go
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-plus
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tuic-client
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-core
-#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-geodata
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-plugin
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-core
-git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-plugin
+####################### 改用原作者xiaorouji源头的依赖代码######################################## #核查已经删库了，得改源头到kenzok8上
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages brook
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages chinadns-ng
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2socks
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages dns2tcp
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages gn
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages hysteria
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ipt2socks
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages microsocks
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages naiveproxy
+##git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages pdnsd-alt
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocks-rust
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages shadowsocksr-libev
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages simple-obfs
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages sing-box
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages ssocks
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tcping
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-go
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan-plus
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages trojan
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages tuic-client
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-core
+##git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-geodata
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages v2ray-plugin
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-core
+#git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall-packages xray-plugin
 
 #############################################################################################
 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  # 这段核查有260909
+git_sparse_clone main https://github.com/kenzok8/small-package brook
+git_sparse_clone main https://github.com/kenzok8/small-package chinadns-ng
+git_sparse_clone main https://github.com/kenzok8/small-package dns2socks
+git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
+git_sparse_clone main https://github.com/kenzok8/small-package gn
+git_sparse_clone main https://github.com/kenzok8/small-package hysteria
+git_sparse_clone main https://github.com/kenzok8/small-package ipt2socks
+git_sparse_clone main https://github.com/kenzok8/small-package microsocks
+git_sparse_clone main https://github.com/kenzok8/small-package naiveproxy
+git_sparse_clone main https://github.com/kenzok8/small-package shadowsocks-rust
+git_sparse_clone main https://github.com/kenzok8/small-package shadowsocksr-libev
+git_sparse_clone main https://github.com/kenzok8/small-package simple-obfs
+git_sparse_clone main https://github.com/kenzok8/small-package sing-box
+git_sparse_clone main https://github.com/kenzok8/small-package ssocks
+git_sparse_clone main https://github.com/kenzok8/small-package tcping
+git_sparse_clone main https://github.com/kenzok8/small-package trojan-go
+git_sparse_clone main https://github.com/kenzok8/small-package trojan-plus
+git_sparse_clone main https://github.com/kenzok8/small-package trojan
+git_sparse_clone main https://github.com/kenzok8/small-package tuic-client
+git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
+git_sparse_clone main https://github.com/kenzok8/small-package v2ray-plugin
+git_sparse_clone main https://github.com/kenzok8/small-package xray-core
+git_sparse_clone main https://github.com/kenzok8/small-package xray-plugin
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 # 更改 Argon 主题背景
-#cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg.jpg
+#cp -f $GITHUB_WORKSPACE/images/bg.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg  #原来是bg.jpg   在kenzok8的背景叫bg1.jpg 20260909
 
 
 # 修改默认登录地址
