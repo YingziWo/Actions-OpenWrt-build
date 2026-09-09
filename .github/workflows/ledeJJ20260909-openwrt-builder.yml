@@ -171,7 +171,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@master
+      uses: softprops/action-gh-release@v3 #上游作者提示在对外发布时用v3版本，不要用master版本，用master版本会不显示，之前用master确实未显现下面要求显示的内容。
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
