@@ -18,7 +18,7 @@ on:
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: 2024.10.29-1452 # master  #看恢复之前成功编译能否编译过
+  REPO_BRANCH: 20230609 # master  #看恢复之前成功编译能否编译过
   FEEDS_CONF: feeds.conf.default
   #CONFIG_FILE: lede-jingjian.config
   CONFIG_FILE: sc-clone-lede.config
