@@ -92,13 +92,11 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
-      run: cd openwrt 
-           ./scripts/feeds update -a
+      run: cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
       run: |
-        cd openwrt 
-        ./scripts/feeds install -a
+        cd openwrt && ./scripts/feeds install -a
         rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
         rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
         rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
