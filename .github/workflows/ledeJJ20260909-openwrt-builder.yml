@@ -20,8 +20,8 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master  #2026.09.09前端当前的主程序
   FEEDS_CONF: feeds.conf.default
-  #CONFIG_FILE: lede-jingjian.config
-  CONFIG_FILE: sc-clone-lede.config
+  CONFIG_FILE: lede-jingjian.config   #这个有docker
+  #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
   DIY_P1_SH: diy-ledejj-part1.sh
   DIY_P2_SH: diy-ledejj-part2.sh
   UPLOAD_BIN_DIR: false
