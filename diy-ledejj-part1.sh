@@ -78,9 +78,9 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 #git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-taskd  # 核查有260909改目录下了
 #git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-xterm  # 核查有260909改目录下了
 #git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/taskd           # 核查有260909改目录下了
-git_sparse_clone main https://github.com/linkease/istore istore                               # 上面四句用这一句
+##git_sparse_clone main https://github.com/linkease/istore istore                               # 上面四句和用这一句，编译不进去260910，看参考上游指示在编译成功的组件上用.run文件后期上传文件安装成功
 #更换插件名称
-sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
+##sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua # 上面四句和用这一句，编译不进去260910
 
 #adguardhome
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
