@@ -1,0 +1,403 @@
+name: Build x86_64-Wrt
+
+permissions:
+  contents: write
+  actions: write
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+      target:
+        description: 'Select which distro to build'
+        required: true
+        type: choice
+        options:
+          - openwrt
+          - immortalwrt
+        default: immortalwrt
+
+env:
+  ARCHITECTURE: x86_64
+
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: true
+
+  WRT_NAME: ${{ github.event.inputs.target == 'openwrt' && 'OpenWrt' || 'ImmortalWrt' }}
+
+  TARGET: ${{ github.event.inputs.target || 'immortalwrt' }}
+
+  TZ: Asia/Shanghai
+
+  DIY_P2_DIR: diy-part2.d
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+
+      - name: 🖥️ 系统信息
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "        Build Environment"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          echo "📌 Architecture : ${{ env.ARCHITECTURE }}"
+          echo "📌 Distribution : ${{ env.WRT_NAME }}"
+          echo "📌 Target       : ${{ env.TARGET }}"
+          echo "📌 Runner       : $(hostname)"
+          echo "📌 CPU Threads  : $(nproc)"
+          echo "📌 Kernel       : $(uname -r)"
+
+          echo
+          echo "──── CPU ────"
+          lscpu | grep -E "Model name|CPU\\(s\\)" || true
+
+          echo
+          echo "──── Memory ────"
+          free -h
+
+          echo
+          echo "──── Disk ────"
+          df -hT
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+
+      - name: 🔧 初始化编译环境
+        env:
+          DEBIAN_FRONTEND: noninteractive
+          TZ: Asia/Shanghai
+        run: |
+          sudo rm -rf \
+            /usr/share/dotnet \
+            /etc/mysql \
+            /etc/php \
+            /usr/local/lib/android \
+            /opt/ghc \
+            /usr/local/share/powershell
+
+          sudo -E apt-get -qq update
+
+          cat $GITHUB_WORKSPACE/depends/ubuntu-24.04 \
+            | grep -v '^#' \
+            | xargs sudo -E apt-get -y --no-install-recommends install
+
+          sudo timedatectl set-timezone "$TZ"
+
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+
+
+      - name: 📦 克隆源码 — ImmortalWrt
+        if: ${{ env.TARGET == 'immortalwrt' }}
+        env:
+          REPO_URL: https://github.com/immortalwrt/immortalwrt
+          REPO_BRANCH: master
+        run: |
+          git clone "$REPO_URL" -b "$REPO_BRANCH" openwrt
+
+          chmod -R +x openwrt/
+
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+
+      - name: 📦 克隆源码 — OpenWrt
+        if: ${{ env.TARGET == 'openwrt' }}
+        env:
+          REPO_URL: https://github.com/Lienol/openwrt
+          REPO_BRANCH: 25.12
+        run: |
+          git clone "$REPO_URL" -b "$REPO_BRANCH" openwrt
+
+          chmod -R +x openwrt/
+
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+
+      - name: 💾 缓存构建环境
+        uses: klever1988/cachewrtbuild@main
+        with:
+          ccache: true
+          mixkey: ubuntu-24.04-${{ env.ARCHITECTURE }}-${{ env.TARGET }}-v4
+          prefix: ${{ github.workspace }}/openwrt
+
+
+      - name: 📡 加载 feeds 配置 — OpenWrt
+        if: ${{ env.TARGET == 'openwrt' }}
+        run: |
+          cp feeds.d/openwrt openwrt/feeds.conf
+
+
+      - name: 📡 加载 feeds 配置 — ImmortalWrt
+        if: ${{ env.TARGET == 'immortalwrt' }}
+        run: |
+          cp feeds.d/immortalwrt openwrt/feeds.conf
+
+
+      - name: 🔄 更新 feeds
+        run: |
+          cd openwrt
+          ./scripts/feeds update -a
+
+
+      - name: 🛠️ DIY part1
+        run: |
+          chmod +x scripts/*.sh
+
+          cd openwrt
+
+          "$GITHUB_WORKSPACE/scripts/diy-part1.sh"
+
+
+      - name: 📥 安装 feeds
+        run: |
+          cd openwrt
+          ./scripts/feeds install -a
+
+
+      - name: ⚙️ 加载配置 — OpenWrt
+        if: ${{ env.TARGET == 'openwrt' }}
+        run: |
+          cp configs/openwrt_x86.config openwrt/.config
+
+
+      - name: ⚙️ 加载配置 — ImmortalWrt
+        if: ${{ env.TARGET == 'immortalwrt' }}
+        run: |
+          cp configs/immortalwrt_x86.config openwrt/.config
+
+      - name: 🛠️ DIY part2 — OpenWrt
+        if: ${{ env.TARGET == 'openwrt' }}
+        run: |
+          chmod +x "$DIY_P2_DIR/openwrt.sh"
+
+          cd openwrt
+
+          "$GITHUB_WORKSPACE/$DIY_P2_DIR/openwrt.sh"
+
+
+      - name: 🛠️ DIY part2 — ImmortalWrt
+        if: ${{ env.TARGET == 'immortalwrt' }}
+        run: |
+          chmod +x "$DIY_P2_DIR/immortalwrt.sh"
+
+          cd openwrt
+
+          "$GITHUB_WORKSPACE/$DIY_P2_DIR/immortalwrt.sh"
+
+
+      - name: 🐞 SSH 调试
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: ${{ github.event.inputs.ssh == 'true' }}
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+
+      - name: 📦 下载软件包
+        run: |
+          cd openwrt
+
+          make defconfig
+
+          cat .config
+
+          make download -j8
+
+          find dl -size -1024c -exec ls -lh {} \;
+          find dl -size -1024c -exec rm -f {} \;
+
+
+      - name: 🚀 编译固件
+        id: compile
+        run: |
+          cd openwrt
+
+          echo "🧵 Compile threads: $(nproc)"
+
+          make defconfig
+
+          if ! make olddefconfig; then
+            yes "" | make oldconfig
+          fi
+
+          make -j$(nproc) || \
+          make -j1 || \
+          make -j1 V=s
+
+          echo "FILE_DATE=_$(date +'%Y.%m.%d_%H%M%S')" >> $GITHUB_ENV
+          echo "COMPILED=true" >> $GITHUB_ENV
+
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: 💽 磁盘空间
+        if: (!cancelled())
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "             Disk Usage"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          df -hT
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+
+      - name: 📤 上传 bin 目录
+        uses: actions/upload-artifact@v4
+        if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+        with:
+          name: ${{ env.WRT_NAME }}_${{ env.ARCHITECTURE }}_bin${{ env.FILE_DATE }}
+          path: openwrt/bin
+
+
+      - name: 📦 整理固件
+        id: organize
+        if: steps.compile.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+        run: |
+          cd openwrt/bin/targets/*/*
+
+          rm -rf \
+            *.bin \
+            *.buildinfo \
+            *.json \
+            *.manifest \
+            packages
+
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+
+          echo "status=success" >> $GITHUB_OUTPUT
+
+
+      - name: ✅ 编译结果
+        if: steps.compile.outputs.status == 'success'
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "          Build Success"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          echo "📦 Firmware Directory:"
+          echo "$FIRMWARE"
+
+          echo
+
+          ls -lh "$FIRMWARE"
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+
+      - name: 🏷️ 生成 Release 信息
+        id: tag
+        if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
+        run: |
+        
+          RELEASE_TAG=$(date +'%Y.%m.%d_%H%M%S')
+
+          echo "release_tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+
+
+          if [ "${{ env.TARGET }}" = "openwrt" ]; then
+            PASSWORD="password"
+          else
+            PASSWORD="首次登录直接回车"
+          fi
+
+          KERNEL=$(grep '^CONFIG_LINUX_' openwrt/.config \
+            | head -1 \
+            | cut -d= -f2 \
+            | tr -d '"')
+
+          printf '%s\n' \
+          "# 🚀 ${{ env.WRT_NAME }} ${{ env.ARCHITECTURE }}" \
+          "" \
+          "## 📌 Firmware Information" \
+          "" \
+          "| 项目 | 信息 |" \
+          "| --- | --- |" \
+          "| 架构 | ${{ env.ARCHITECTURE }} |" \
+          "| 发行版 | ${{ env.WRT_NAME }} |" \
+          "| Kernel | ${KERNEL:-Unknown} |" \
+          "| 编译时间 | $(date '+%Y-%m-%d %H:%M:%S') |" \
+          "| Runner | Ubuntu 24.04 |" \
+          "" \
+          "## 🔐 登录信息" \
+          "" \
+          '```' \
+          "用户名: root" \
+          "密码: ${PASSWORD}" \
+          '```' \
+          "" \
+          "## 🛠 编译环境" \
+          "" \
+          "- Target: ${{ env.TARGET }}" \
+          "- CPU Threads: $(nproc)" \
+          "- GitHub Actions Runner" \
+          "" \
+          "## 📦 固件内容" \
+          "" \
+          "- EFI Image" \
+          "- Kernel Image" \
+          "- SquashFS RootFS" \
+          > release.txt
+
+          echo "status=success" >> "$GITHUB_OUTPUT"
+
+
+      - name: 🚀 发布 Release
+        uses: softprops/action-gh-release@v2
+        if: steps.tag.outputs.status == 'success' && !cancelled()
+        with:
+
+          tag_name: |
+            ${{ env.TARGET }}-${{ env.ARCHITECTURE }}-${{ steps.tag.outputs.release_tag }}
+
+          name: |
+            🚀 ${{ env.WRT_NAME }} ${{ env.ARCHITECTURE }}
+            ${{ steps.tag.outputs.release_tag }}
+
+          body_path: release.txt
+
+          files: |
+            ${{ env.FIRMWARE }}/*
+
+
+      - name: 🧹 清理旧 Actions 记录
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+
+          gh run list \
+            --workflow="Build x86_64-Wrt" \
+            --limit 30 \
+            --json databaseId \
+            --jq '.[].databaseId' \
+          | tail -n +2 \
+          | xargs -I {} gh run delete {} --yes || true
+
+
+      - name: 🧹 清理旧 Release
+        if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+        env:
+          GH_TOKEN: $persecrets.GITHUB_TOKEN
+        run: |
+
+          gh release list \
+            --limit 100 \
+            --json tagName,publishedAt \
+            --jq '.[] | "\(.tagName)"' \
+          | grep "^${{ env.TARGET }}-" \
+          | tail -n +30 \
+          | xargs -I {} gh release delete {} --yes --cleanup-tag || true
