@@ -80,8 +80,8 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
-        rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
         cd ..
         
     - name: Load custom feeds
@@ -97,13 +97,13 @@ jobs:
     - name: Install feeds
       run: |
         cd openwrt && ./scripts/feeds install -a
-        rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
-        rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
-        rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
-        rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
-        rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
+        #rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
 
     - name: Load custom configuration
       run: |
@@ -171,7 +171,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v3 #上游作者提示在对外发布时用v3版本，不要用master版本，用master版本会不显示，之前用master确实未显现下面要求显示的内容。
+      uses: softprops/action-gh-release@v2    #上游作者提示在对外发布时用v3版本，不要用master版本，用master版本会不显示，之前用master确实未显现下面要求显示的内容。
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
