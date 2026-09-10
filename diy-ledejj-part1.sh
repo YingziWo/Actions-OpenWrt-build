@@ -74,10 +74,11 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 #git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd  #2024版的用法
 #git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm  #2024版的用法
 #git_sparse_clone main https://github.com/linkease/istore luci/taskd           #2024版的用法
-git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-app-store  # 核查有260909改目录下了
-git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-taskd  # 核查有260909改目录下了
-git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-xterm  # 核查有260909改目录下了
-git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/taskd           # 核查有260909改目录下了
+#git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-app-store  # 核查有260909改目录下了
+#git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-taskd  # 核查有260909改目录下了
+#git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/luci-lib-xterm  # 核查有260909改目录下了
+#git_sparse_clone main https://github.com/linkease/istore/tree/main/luci luci/taskd           # 核查有260909改目录下了
+git_sparse_clone main https://github.com/linkease/istore istore                               # 上面四句用这一句
 #更换插件名称
 sed -i 's/("iStore"),/("软件仓库"),/g' package/yingziwo/luci-app-store/luasrc/controller/store.lua
 
