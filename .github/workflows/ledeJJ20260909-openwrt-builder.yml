@@ -8,9 +8,13 @@
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
-#
 
-name: LedeJJ-V20260909 OpenWrt Builder
+#ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: True
+#上面这语句继续支持NODE20使用到2026年9月23日止，23号开始只能使用node24，然后用下面这句。
+#FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+#FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+#ubunt版本改24.04版本
+name: LedeJJ-V20260912 OpenWrt Builder
 
 on:
   repository_dispatch:
@@ -27,17 +31,14 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: True
   TZ: Asia/Shanghai
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true  
-  #上面这语句继续支持NODE20使用到2026年9月23日止，23号开始只能使用node24，然后用下面这句。
-  #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  
-     
+    
+    
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
        
     steps:
     - name: Checkout
