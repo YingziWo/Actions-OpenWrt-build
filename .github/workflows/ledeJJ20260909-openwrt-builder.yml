@@ -28,7 +28,12 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true  
+  #上面这语句继续支持NODE20使用到2026年9月23日止，23号开始只能使用node24，然后用下面这句。
+  #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  
+     
 
 jobs:
   build:
