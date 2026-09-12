@@ -156,12 +156,15 @@ jobs:
       id: package
       run: |
         cd openwrt
-        rm -rf package/feeds/small/dae     #缺少依赖，删260912六条
+        rm -rf package/feeds/small/dae     #缺少依赖的8个项，不影响选中项目删这260912八条
         rm -rf package/feeds/small/daed
         rm -rf package/feeds/small/honk
         rm -rf package/feeds/luci/luci-app-dae
         rm -rf package/feeds/luci/luci-app-daed
         rm -rf package/feeds/kenzo/luci-app-dockerman
+        rm -rf package/feeds/small/luci-app-daede
+        rm -rf package/feeds/small/luci-app-honk
+        
                
         make defconfig
         make download -j8
