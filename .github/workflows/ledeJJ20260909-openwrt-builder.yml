@@ -156,6 +156,13 @@ jobs:
       id: package
       run: |
         cd openwrt
+        rm -rf package/feeds/small/dae     #缺少依赖，删260912六条
+        rm -rf package/feeds/small/daed
+        rm -rf package/feeds/small/honk
+        rm -rf package/feeds/luci/luci-app-dae
+        rm -rf package/feeds/luci/luci-app-daed
+        rm -rf package/feeds/kenzo/luci-app-dockerman
+               
         make defconfig
         make download -j8
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
