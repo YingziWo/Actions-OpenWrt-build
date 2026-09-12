@@ -195,30 +195,36 @@ git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb    
 
 #############################################################################################
 
-#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  # 这段核查有260909
-git_sparse_clone main https://github.com/kenzok8/small-package brook
-git_sparse_clone main https://github.com/kenzok8/small-package chinadns-ng
-git_sparse_clone main https://github.com/kenzok8/small-package dns2socks
-git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
-git_sparse_clone main https://github.com/kenzok8/small-package gn
-git_sparse_clone main https://github.com/kenzok8/small-package hysteria
-git_sparse_clone main https://github.com/kenzok8/small-package ipt2socks
-git_sparse_clone main https://github.com/kenzok8/small-package microsocks
-git_sparse_clone main https://github.com/kenzok8/small-package naiveproxy
-git_sparse_clone main https://github.com/kenzok8/small-package shadowsocks-rust
-git_sparse_clone main https://github.com/kenzok8/small-package shadowsocksr-libev
-git_sparse_clone main https://github.com/kenzok8/small-package simple-obfs
-git_sparse_clone main https://github.com/kenzok8/small-package sing-box
-git_sparse_clone main https://github.com/kenzok8/small-package ssocks
-git_sparse_clone main https://github.com/kenzok8/small-package tcping
-git_sparse_clone main https://github.com/kenzok8/small-package trojan-go
-git_sparse_clone main https://github.com/kenzok8/small-package trojan-plus
-git_sparse_clone main https://github.com/kenzok8/small-package trojan
-git_sparse_clone main https://github.com/kenzok8/small-package tuic-client
-git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
-git_sparse_clone main https://github.com/kenzok8/small-package v2ray-plugin
-git_sparse_clone main https://github.com/kenzok8/small-package xray-core
-git_sparse_clone main https://github.com/kenzok8/small-package xray-plugin
+#passwall
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  # 这段核查有260909 ，经编译发现缺少许多的依赖而告警，换源头：https://github.com/Openwrt-Passwall/openwrt-passwall 2026.09.12
+#src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main  #官方语句
+#src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main               #官方语句
+git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall_packages
+git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall passwall_luci
+#-------------------------------------------------------------------------
+#git_sparse_clone main https://github.com/kenzok8/small-package brook
+#git_sparse_clone main https://github.com/kenzok8/small-package chinadns-ng
+#git_sparse_clone main https://github.com/kenzok8/small-package dns2socks
+#git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
+#git_sparse_clone main https://github.com/kenzok8/small-package gn
+#git_sparse_clone main https://github.com/kenzok8/small-package hysteria
+#git_sparse_clone main https://github.com/kenzok8/small-package ipt2socks
+#git_sparse_clone main https://github.com/kenzok8/small-package microsocks
+#git_sparse_clone main https://github.com/kenzok8/small-package naiveproxy
+#git_sparse_clone main https://github.com/kenzok8/small-package shadowsocks-rust
+#git_sparse_clone main https://github.com/kenzok8/small-package shadowsocksr-libev
+#git_sparse_clone main https://github.com/kenzok8/small-package simple-obfs
+#git_sparse_clone main https://github.com/kenzok8/small-package sing-box
+#git_sparse_clone main https://github.com/kenzok8/small-package ssocks
+#git_sparse_clone main https://github.com/kenzok8/small-package tcping
+#git_sparse_clone main https://github.com/kenzok8/small-package trojan-go
+#git_sparse_clone main https://github.com/kenzok8/small-package trojan-plus
+#git_sparse_clone main https://github.com/kenzok8/small-package trojan
+#git_sparse_clone main https://github.com/kenzok8/small-package tuic-client
+#git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
+#git_sparse_clone main https://github.com/kenzok8/small-package v2ray-plugin
+#git_sparse_clone main https://github.com/kenzok8/small-package xray-core
+#git_sparse_clone main https://github.com/kenzok8/small-package xray-plugin
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # 更改 Argon 主题背景
