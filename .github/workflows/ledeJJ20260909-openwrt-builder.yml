@@ -245,7 +245,7 @@ jobs:
           - 🚀 内核版本:  K6.18.49                              
           - 🌐 默认地址: 192.168.4.10 
           - 🔑 默认密码: 无 （缺省） 
-          - 🔗 配置文件：${{GITHUB_OUTPUT}}     
+          - 🔗 配置文件：${{ steps.gofile.outputs.url }}    
           - 📅 构建日期：${{ steps.buildtime.outputs.time }}（Asia/Shanghai）
            
           ### 📒 插件列表:
