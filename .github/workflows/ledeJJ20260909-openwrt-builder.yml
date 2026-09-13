@@ -239,7 +239,7 @@ jobs:
           ${{ steps.read_text.outputs.CONTENT }}
           ===Firmware for x86_64===
           ### 📒 (精简插件)固件信息
-          - 💻 平台架构: x86_64 ( 32K 600M )                       
+          - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本:  K6.18.49                              
