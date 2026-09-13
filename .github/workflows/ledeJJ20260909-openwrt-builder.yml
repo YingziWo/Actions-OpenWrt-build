@@ -236,24 +236,28 @@ jobs:
         #body_path: release.txt    #body_path优先于body ，body的内容会不输出，因此屏蔽body_path
         files: ${{ env.FIRMWARE }}/*
         body: |
-          ${{ steps.read_text.outputs.CONTENT }}
           ===Firmware for x86_64===
-          ### 📒 (精简插件)固件信息
+           
+          ### 📒 固件信息
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本:  K6.18.49                              
           - 🌐 默认地址: 192.168.4.10 
-          - 🔑 默认密码: 空                
+          - 🔑 默认密码: 空 
+          - 🔗 配置文件：${{ steps.read_text.outputs.CONTENT }}
+          - 📅 构建日期：${{ steps.buildtime.outputs.time }}（Asia/Shanghai）
            
           ### 📒 插件列表:
           ```
-          Docker
+          Docker (在固件系统软件包内安装)
           Openclash
           Passwall
+          SSR+
           AdguardHome
           iStore
           SmartDNS
+          KMS Server
           NAS
           ...
 
