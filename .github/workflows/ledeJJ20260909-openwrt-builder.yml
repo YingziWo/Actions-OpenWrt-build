@@ -42,7 +42,7 @@ jobs:
        
     steps:
     - name: Checkout
-      uses: actions/checkout@v7  #actions/checkout@main
+      uses: actions/checkout@v6  #actions/checkout@main
 
     - name: Initialization environment
       env:
@@ -219,6 +219,13 @@ jobs:
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
+    - name: Read release notes    #因softprops/action-gh-release的body_path与body冲突，body_path优先于body，有body_path就不输出body,在这增加Read release notes
+      id: read_text
+      run: |
+        echo "CONTENT<<EOF" >> $GITHUB_OUTPUT
+        cat release.txt >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+    
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v3   #上游作者提示在对外发布时用v3版本，不要用master版本，用master版本会不显示，之前用master确实未显现下面要求显示的内容。
       if: steps.tag.outputs.status == 'success' && !cancelled()
@@ -226,9 +233,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
+        #body_path: release.txt    #body_path优先于body ，body的内容会不输出，因此屏蔽body_path
         files: ${{ env.FIRMWARE }}/*
         body: |
+          ${{ steps.read_text.outputs.CONTENT }}
           ===Firmware for x86_64===
           ### 📒 (精简插件)固件信息
           - 💻 平台架构: x86_64 ( 32K 600M )                       
@@ -244,6 +252,7 @@ jobs:
           Openclash
           Passwall
           AdguardHome
+          iStore
           SmartDNS
           NAS
           ...
@@ -255,8 +264,8 @@ jobs:
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2    #Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 0
-        keep_minimum_runs: 2
+        retain_days: 6
+        keep_minimum_runs: 8
 
     - name: list disk space
       run: |
