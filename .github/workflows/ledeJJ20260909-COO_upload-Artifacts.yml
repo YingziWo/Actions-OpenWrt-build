@@ -1,0 +1,299 @@
+#
+# https://github.com/P3TERX/Actions-OpenWrt
+#
+# File: .github/workflows/openwrt-bulder.yml
+# Description: Build OpenWrt using GitHub Actions
+#
+# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+
+#ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: True
+#上面这语句继续支持NODE20使用到2026年9月23日止，23号开始只能使用node24，然后用下面这句。
+#FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+#FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+#ubunt版本改24.04版本
+name: LedeJJ-V20260912 OpenWrt Builder
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+
+env:
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master  #2026.09.09前端当前的主程序
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: lede-jingjian.config   #这个有docker
+  #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
+  DIY_P1_SH: diy-ledejj-part1.sh
+  DIY_P2_SH: diy-ledejj-part2.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: true
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  TZ: Asia/Shanghai
+    
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+       
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6  #actions/checkout@main
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        #sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+        #sudo docker image prune --all --force
+        #sudo -E apt-get -qq update 
+        #sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib g++-multilib gettext genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev 
+        #sudo -E apt-get -qq autoremove --purge
+        #sudo -E apt-get -qq clean
+        #sudo timedatectl set-timezone "$TZ"
+        #sudo mkdir -p /workdir
+        #sudo chown $USER:$GROUPS /workdir
+
+        # 1. 清理大型预装工具释放空间（针对 GitHub Actions 优化，安全删除旧配置和新版 .sources 配置）
+        #sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+        # 1. 释放空间：只删除除 ubuntu.sources 以外的第三方源，并清理大文件
+        sudo find /etc/apt/sources.list.d/ -type f ! -name "ubuntu.sources" -delete
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+
+
+        # 2. 清除未使用的 Docker 镜像
+        sudo docker image prune --all --force
+
+        # 3. 更新软件源列表
+        sudo -E apt-get -qq update
+
+        # 4. 修复可能中断的安装并清理系统垃圾（修复了原句中 install 缺参数的问题）
+        sudo -E apt-get -qq install -y --fix-missing ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib g++-multilib gettext genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
+             ruby bc pciutils lm-sensors pciutils gcc git perl golang 
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+
+        # 5. 设置时区（新增容错：若 $TZ 为空则自动默认为 UTC，防止 24.04 报错）
+        sudo timedatectl set-timezone "${TZ:-UTC}"
+
+        # 6. 创建工作目录并修正权限（修复了 $GROUPS 在非交互式 Shell 中失效的问题）
+        sudo mkdir -p /workdir
+        sudo chown "$USER:$(id -gn)" /workdir
+
+        
+    
+    - name: list disk space
+      run: |
+        df -hT $PWD
+    
+    - name: 释放Ubuntu磁盘空间
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: true
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+   
+    - name: list disk space
+      run: |
+        df -hT $PWD
+  
+    - name: Clone source code
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        cd openwrt
+        #rm -rf ./package/lean/wol                     #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd        #删除缺省的KVM服务器插件，精简固件体积
+        cd ..
+        
+    - name: Load custom feeds
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
+
+    - name: Update feeds
+      run: cd openwrt && ./scripts/feeds update -a
+           rm -rf feeds/luci/applications/luci-app-mosdns
+           rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,sing*,smartdns} feeds/packages/utils/v2dat feeds/packages/lang/golang
+           git clone https://github.com/kenzok8/golang -b 1.26 feeds/packages/lang/golang
+      
+
+    - name: Install feeds
+      run: |
+        cd openwrt && ./scripts/feeds install -a
+        #rm -rf ./package/lean/wol                              #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-app-wol                 #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf package/feeds/luci/luci-i18n-wol-zh-cn          #删除缺省的网络唤醒插件，精简固件体积
+        #rm -rf ./package/feeds/packages/vlmcsd                 #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-upnp         #删除缺省的upnp插件，精简固件体积
+        #rm -rf ./feeds/packages/net/vlmcsd                     #删除缺省的KVM服务器插件，精简固件体积
+        #rm -rf ./feeds/luci/applications/luci-app-vlmcsd       #删除缺省的KVM服务器插件，精简固件体积
+
+    - name: Load custom configuration
+      run: |
+        [ -e files ] && mv files openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_P2_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P2_SH
+
+    - name: Download package
+      id: package
+      run: |
+        cd openwrt
+        rm -rf package/feeds/small/dae     #缺少依赖的8个项，不影响选中项目删这260912八条
+        rm -rf package/feeds/small/daed
+        rm -rf package/feeds/small/honk
+        rm -rf package/feeds/luci/luci-app-dae
+        rm -rf package/feeds/luci/luci-app-daed
+        rm -rf package/feeds/kenzo/luci-app-dockerman
+        rm -rf package/feeds/small/luci-app-daede
+        rm -rf package/feeds/small/luci-app-honk
+        rm -rf package/feeds/wall/docker   #2026.09.13去除编译错误的插件
+        rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件        
+               
+        make defconfig
+        make download -j8
+        #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
+
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+
+    - name: Compress openwrt directory including hidden files
+      run: |
+        # 使用 tar 打包整个目录，保留所有隐藏文件和权限
+        tar -czf openwrt_source.tar.gz openwrt/
+
+    - name: Upload openwrt directory to Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ledeJJ260914-openwrt-source-code          # 附件下载时的文件名
+        path: openwrt_source.tar.gz       # 要上传的打包文件路径
+        retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
+
+   # - name: Compile the firmware
+   #   id: compile
+   #   run: |
+   #     cd openwrt
+   #     echo -e "$(nproc) thread compile"
+   #     make -j$(nproc) || make -j1 || make -j1 V=s
+   #     echo "status=success" >> $GITHUB_OUTPUT
+   #     grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+   #     [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+   #     echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
+
+   # - name: Upload bin directory
+   #   uses: actions/upload-artifact@v7  #actions/upload-artifact@main
+   #   if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+   #   with:
+   #     name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+   #     path: openwrt/bin
+
+   # - name: Organize files
+   #   id: organize
+   #   if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+   #   run: |
+   #     cd openwrt/bin/targets/*/*
+   #     rm -rf packages
+   #     echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+   #     echo "status=success" >> $GITHUB_OUTPUT
+
+   # - name: Upload firmware directory
+   #   uses: actions/upload-artifact@v7    #actions/upload-artifact@main
+   #   if: steps.organize.outputs.status == 'success' && !cancelled()
+   #   with:
+   #     name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+   #     path: ${{ env.FIRMWARE }}
+
+   # - name: Generate release tag
+   #   id: tag
+   #   if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+   #   run: |
+   #     echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+   #     touch release.txt
+   #     [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+   #     echo "status=success" >> $GITHUB_OUTPUT
+
+    #- name: Read release notes    #因softprops/action-gh-release的body_path与body冲突，body_path优先于body，有body_path就不输出body,在这增加Read release notes
+    #  id: read_text
+    #  run: |
+    #    echo "CONTENT<<EOF" >> $GITHUB_OUTPUT
+    #    cat release.txt >> $GITHUB_OUTPUT
+    #    echo "EOF" >> $GITHUB_OUTPUT
+    
+  #  - name: Upload firmware to release
+  #    uses: softprops/action-gh-release@v3   #上游作者提示在对外发布时用v3版本，不要用master版本，用master版本会不显示，之前用master确实未显现下面要求显示的内容。
+  #    if: steps.tag.outputs.status == 'success' && !cancelled()
+  #    env:
+  #      GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+  #    with:
+  #      tag_name: ${{ steps.tag.outputs.release_tag }}
+  #      #body_path: release.txt    #body_path优先于body ，body的内容会不输出，因此屏蔽body_path
+  #      files: ${{ env.FIRMWARE }}/*
+  #      body: |
+  #        ===Firmware for x86_64===
+           
+  #        ### 📒 固件信息
+  #        - 💻 平台架构: x86_64 ( 128K 1536M )                       
+  #        - ⚽ 固件源码: ${{ env.REPO_URL }}
+  #        - 💝 源码分支: ${{ env.REPO_BRANCH }}
+  #        - 🚀 内核版本:  K6.18.49                              
+  #        - 🌐 默认地址: 192.168.4.10 
+  #        - 🔑 默认密码: 无 （缺省） 
+  #        - 🔗 配置文件：${{ env.CONFIG_FILE }}    
+       
+           
+  #        ### 📒 插件列表:
+  #        ```
+  #        Docker (在固件系统软件包内安装)
+  #        Openclash
+  #        Passwall
+  #        SSR+
+  #        AdguardHome
+  #        iStore
+  #        SmartDNS
+  #        KMS Server
+  #        NAS
+  #        ...
+
+  #  - name: list disk space
+  #    run: |
+  #      df -hT $PWD
+
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@v2    #Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 7
+        keep_minimum_runs: 8
+
+    - name: list disk space
+      run: |
+        df -hT $PWD
+
+    #- name: Remove old Releases
+    #  uses: dev-drprasad/delete-older-releases@v0.3.4   #dev-drprasad/delete-older-releases@master
+    #  if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+    #  with:
+    #    keep_latest: 3
+    #    delete_tags: true
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
