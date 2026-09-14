@@ -182,14 +182,16 @@ jobs:
         ls -la
         df -hT $PWD
         #make clean
-        #mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
-        #pwd
-        #ls -la
-        #cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
-        #df -hT $PWD
-        #pwd
-        cd ..
-        tar -czf opewrt.tar.gz -C ./openwrt/.
+        mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        cd ../source-temp
+        pwd
+        ls -la
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        df -hT $PWD
+        pwd
+        tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        #tar -czf opewrt.tar.gz -C ./openwrt/.
         #cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         # 【修正核心】使用 -C 显式切换相对路径，彻底解决路径报错问题
         #tar -czf openwrt_ready_to_build.tar.gz -C . openwrt
@@ -202,8 +204,8 @@ jobs:
     - name: Upload openwrt directory to Artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: openwrt-reproducible-env         # 附件下载时的文件名
-        path: openwrt.tar.gz       # 要上传的打包文件路径
+        name: openwrt-source-ledeJJ         # 附件上下载目录显示的文件名
+        path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
         retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
    # - name: Compile the firmware
