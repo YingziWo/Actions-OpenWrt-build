@@ -14,7 +14,7 @@
 #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 #ubunt版本改24.04版本
-name: LedeJJ-V20260912 OpenWrt Builder
+name: LedeJJ-V20260914.04 source upload-Artifacts
 
 on:
   repository_dispatch:
