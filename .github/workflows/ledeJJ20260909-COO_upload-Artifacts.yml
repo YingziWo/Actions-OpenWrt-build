@@ -185,18 +185,20 @@ jobs:
         ls -la
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         df -hT $PWD
-        tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp/opewrt.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
+        tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp/opewrt.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt.
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         df -hT $PWD
         pwd
         ls -la
+        cd openwrt
+        pwd
 
         
     - name: Upload openwrt directory to Artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: LedeJJ260914.04openwrt-source-code          # 附件下载时的文件名
-        path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-tmep       # 要上传的打包文件路径
+        name: openwrt          # 附件下载时的文件名
+        path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-tmep/       # 要上传的打包文件路径
         retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
    # - name: Compile the firmware
