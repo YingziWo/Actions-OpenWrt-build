@@ -188,16 +188,10 @@ jobs:
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
         df -hT $PWD
         pwd
-        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.  #这句只能是打包了openwrt目录下包含带.的和不带.目录和目录下所有文件内容，openwrt目录下.文件没有打包进来
-        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt. /这样句子直接报“该目录包含隐藏文件”
-        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
-        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build
-        tar --exclude='sorce-temp' -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.
+        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.  #这句能打包下openwrt目录下包含带.的和不带.目录和目录下所有文件内容，实际压缩包中含.的隐藏文件，但因为隐藏，在-v显示日志中不显示这些带.文件，但是这样写全目录路径也会一同把这么多的路径名称打进包里，解压时也会建立这么多的路径。
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
+        tar --exclude='sorce-temp' -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz ./.
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
-        #tar -czf opewrt.tar.gz -C ./openwrt/.
-        #cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
-        # 【修正核心】使用 -C 显式切换相对路径，彻底解决路径报错问题
-        #tar -czf openwrt_ready_to_build.tar.gz -C . openwrt
         df -hT $PWD
         pwd
         ls -la
@@ -207,7 +201,7 @@ jobs:
     - name: Upload openwrt directory to Artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: openwrt-source-ledeJJ         # 附件上下载目录显示的文件名
+        name: openwrt-source-ledeJJ20260914.04         # 附件上下载目录显示的文件名
         path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
         retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
