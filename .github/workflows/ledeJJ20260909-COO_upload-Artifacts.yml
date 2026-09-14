@@ -180,9 +180,9 @@ jobs:
         tar -czf openwrt_source.tar.gz openwrt/
 
     - name: Upload openwrt directory to Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
-        name: ledeJJ260914-openwrt-source-code          # 附件下载时的文件名
+        name: openwrt-source-code          # 附件下载时的文件名
         path: openwrt_source.tar.gz       # 要上传的打包文件路径
         retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
