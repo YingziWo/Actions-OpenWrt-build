@@ -191,8 +191,8 @@ jobs:
         #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.  #这句只能是打包了openwrt目录下包含带.的和不带.目录和目录下所有文件内容，openwrt目录下.文件没有打包进来
         #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt. /这样句子直接报“该目录包含隐藏文件”
         #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
-        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
-        tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz .        
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build
+        tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz . --exclude=sorce-temp      
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
         #tar -czf opewrt.tar.gz -C ./openwrt/.
         #cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
