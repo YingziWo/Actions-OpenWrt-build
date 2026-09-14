@@ -183,7 +183,6 @@ jobs:
         df -hT $PWD
         #make clean
         mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
-        cd ../source-temp
         pwd
         ls -la
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
