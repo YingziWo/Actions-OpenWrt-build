@@ -183,8 +183,11 @@ jobs:
         mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         pwd
         ls -la
-        tar -czvf openwrt_source.tar.gz. /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
+        df -hT $PWD
+        tar -czvf openwrt_source.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/.
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
+        df -hT $PWD
         pwd
         ls -la
 
