@@ -188,7 +188,7 @@ jobs:
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         df -hT $PWD
         pwd
-        tar --warning=no-file-changed -czf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp/opewrt.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.
+        tar --warning=no-file-changed -czf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp/opewrt.tar.gz -C /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.
         cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/sorce-temp
         df -hT $PWD
         pwd
