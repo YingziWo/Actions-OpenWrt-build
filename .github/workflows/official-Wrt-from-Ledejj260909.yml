@@ -24,7 +24,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: main  
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: lede-jingjian.config   #这个有docker
+  CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
   DIY_P1_SH: diy-ledejj-part1.sh
   DIY_P2_SH: diy-ledejj-part2.sh
