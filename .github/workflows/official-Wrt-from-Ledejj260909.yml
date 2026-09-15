@@ -165,8 +165,21 @@ jobs:
         #rm -rf package/feeds/small/luci-app-daede
         #rm -rf package/feeds/small/luci-app-honk
         #rm -rf package/feeds/wall/docker   #2026.09.13去除编译错误的插件
-        #rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件        
-               
+        #rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件   
+        #下面这几句为在与LedeJJ同样外部配置参数下，在编译中出现的告警信息，删除这些发出告警包，以便编译能够完成
+        rm -rf package/feeds/packages/bmx7-dnsupdate
+        rm -rf package/feeds/small/dae
+        rm -rf package/feeds/small/daed
+        rm -rf package/feeds/small/honk
+        rm -rf package/feeds/luci/luci-app-babeld
+        rm -rf package/feeds/luci/luci-app-bmx7
+        rm -rf package/feeds/kenzo/luci-app-dockerman
+        rm -rf package/feeds/small/luci-app-ssr-plus
+        rm -rf package/feeds/packages/prometheus-node-exporter-lua
+        rm -rf package/feeds/kenzo/smartdns
+        rm -rf package/feeds/small/trojan
+        rm -rf package/feeds/small/trojan-plus
+                
         make defconfig
         make download -j8
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
