@@ -22,7 +22,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: main  
+  REPO_BRANCH: v25.12.5  
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
@@ -265,26 +265,24 @@ jobs:
           ===Firmware for x86_64===
            
           ### 📒 固件信息
-          - 💻 平台架构: x86_64 ( 128K 1536M )                       
+          - 💻 平台架构: x86_64                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.18.49                              
-          - 🌐 默认地址: 192.168.4.10 
+          - 🚀 内核版本:  K6.18.44                              
+          - 🌐 默认地址: 192.168.1.1
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
        
            
           ### 📒 插件列表:
           ```
-          Docker (在固件系统软件包内安装)
-          Openclash
           Passwall
-          SSR+
-          AdguardHome
-          iStore
-          SmartDNS
-          KMS Server
-          NAS
+          MosDNS
+          ACME证书
+          动态DNS
+          网络唤醒
+          Momo
+          Nikki
           ...
 
     - name: list disk space
