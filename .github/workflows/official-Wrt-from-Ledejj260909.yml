@@ -198,6 +198,38 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: Compress openwrt directory including hidden files
+      run: |
+        # 使用 tar 打包整个目录，保留所有隐藏文件和权限
+        cd openwrt
+        pwd
+        ls -la
+        df -hT $PWD
+        #make clean
+        mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        pwd
+        ls -la
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        df -hT $PWD
+        pwd
+        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.  #这句能打包下openwrt目录下包含带.的和不带.目录和目录下所有文件内容，实际压缩包中含.的隐藏文件，但因为隐藏，在-v显示日志中不显示这些带.文件，但是这样写全目录路径也会一同把这么多的路径名称打进包里，解压时也会建立这么多的路径。
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
+        tar --exclude='sorce-temp' -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz ./.
+        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
+        df -hT $PWD
+        pwd
+        ls -la
+        
+
+        
+    - name: Upload openwrt directory to Artifacts
+      uses: actions/upload-artifact@v7
+      with:
+        name: openwrt-source-ledeJJ20260914.04         # 附件上下载目录显示的文件名
+        path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
+        retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
+
+
     - name: Compile the firmware
       id: compile
       run: |
@@ -276,13 +308,16 @@ jobs:
            
           ### 📒 插件列表:
           ```
+          AdGuardHome
           Passwall
           MosDNS
+          Openclash
           ACME证书
           动态DNS
           网络唤醒
           Momo
           Nikki
+          终端
           ...
 
     - name: list disk space
