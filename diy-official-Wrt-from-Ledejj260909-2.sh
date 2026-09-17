@@ -8,23 +8,20 @@ CONFIG_FILE2=packagebase-filesfilesbinconfig_generate
 
 # -------- 修改基础参数 --------
 
-sed -i 's192.168.1.1192.168.50.1g' $CONFIG_FILE2
-sed -i shostname='OpenWrt'hostname='OfficialWrt'g $CONFIG_FILE2
-sed -i stimezone='UTC'timezone='CST-8'g $CONFIG_FILE2
+sed -i 's/{ipaddr:-"192\.168\..*"}/{ipaddr:-"192.168.4.10"}/g' "$CONFIG_FILE"
+sed -i "s/hostname='OpenWrt'/hostname='OfficialWrt'/g" "$CONFIG_FILE"
+sed -i "s/timezone='UTC'/timezone='CST-8'/g" "$CONFIG_FILE"
 
-if grep -Eq '^[[space]]set system.@system[-1].zonename=' $CONFIG_FILE2; then
-    sed -i 
-        s^([[space]]set system.@system[-1].zonename=).1'AsiaShanghai' 
-        $CONFIG_FILE2
+if grep -Eq '^[[:space:]]*set system\.@system\[-1\]\.zonename=' "$CONFIG_FILE"; then
+    sed -i \
+        "s|^\([[:space:]]*set system\.@system\[-1\]\.zonename=\).*|\1'Asia/Shanghai'|" \
+        "$CONFIG_FILE"
 else
-    sed -i 
-        set system.@system[-1].timezone='CST-8'a
-        set system.@system[-1].zonename='AsiaShanghai' 
-        $CONFIG_FILE2
+    sed -i \
+        "/set system\.@system\[-1\]\.timezone='CST-8'/a\\
+        set system.@system[-1].zonename='Asia/Shanghai'" \
+        "$CONFIG_FILE"
 fi
 
-if [ -f $LUCIMK ]; then
-    sed -i 'sluci-theme-bootstrapluci-theme-argong' $LUCIMK
-fi
 
 echo ✅ 基础参数修改完成
