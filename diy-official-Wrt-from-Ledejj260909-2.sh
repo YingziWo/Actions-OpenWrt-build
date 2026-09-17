@@ -42,7 +42,7 @@ cat <<'EOT' > banner
  -----------------------------------------------------
  %D %V, %C Dave's Guitar
  -----------------------------------------------------
-      Official OpenWrt Complied By YzW
+ Official OpenWrt Firmware Complied By YzW
  ...... Building Date: BUILD_DATE ...... 
 
 EOT
