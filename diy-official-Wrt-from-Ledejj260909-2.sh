@@ -26,7 +26,7 @@ fi
 
 echo ✅ 基础参数修改完成
 
-# -------- 修改登录 banner --------
+# -------- 更改登入界面 --------
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/base-files/files/etc
 rm -rf banner
@@ -43,7 +43,7 @@ cat <<'EOT' > banner
  %D %V, %C Dave's Guitar
  -----------------------------------------------------
       Official OpenWrt Complied By YzW
-    ...... Build Date: BUILD_DATE ...... 
+ ...... Building Date: BUILD_DATE ...... 
 
 EOT
 
