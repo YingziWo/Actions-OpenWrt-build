@@ -4,7 +4,7 @@
 set -e
 
 
-CONFIG_FILE2=packagebase-filesfilesbinconfig_generate
+CONFIG_FILE2="package/base-files/files/bin/config_generate"
 
 # -------- 修改基础参数 --------
 
