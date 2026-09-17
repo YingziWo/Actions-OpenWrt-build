@@ -26,8 +26,10 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
-  DIY_P1_SH: diy-ledejj-part1.sh
+  #DIY_P1_SH: diy-ledejj-part1.sh     #用于lede的源码上
+  DIY_P1_SH: diy-official-Wrt-from-Ledejj260909-1.sh
   DIY_P2_SH: diy-ledejj-part2.sh
+  DIY_P3_SH: diy-official-Wrt-from-Ledejj260909-2.sh 
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -198,6 +200,17 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    
+    - name: 修改基础参数
+      run: |
+        [ -e files ] && mv files openwrt/files
+        chmod +x $DIY_P3_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P3_SH  
+    
+    
+    
+    
     - name: Compress openwrt directory including hidden files
       run: |
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
@@ -205,7 +218,7 @@ jobs:
         pwd
         # 修改默认登录地址
         #sed -i 's/192.168.1.1/192.168.4.10/g' ./package/base-files/files/bin/config_generate   #在lede源码下有效，官方openwrt改下面这句测试
-        sed -i 's/{ipaddr:-"192\.168\..*"}/{ipaddr:-"192.168.4.10"}/g' ./package/base-files/files/bin/config_generate
+        sed -i 's/{ipaddr:-"192\.168\..*"}/{ipaddr:-"192.168.4.10"}/g' ./package/base-files/files/bin/config_generate 
         ls -la
         df -hT $PWD
         #make clean
