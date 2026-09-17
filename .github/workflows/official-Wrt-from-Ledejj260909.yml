@@ -203,6 +203,9 @@ jobs:
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
         cd openwrt
         pwd
+        # 修改默认登录地址
+        #sed -i 's/192.168.1.1/192.168.4.10/g' ./package/base-files/files/bin/config_generate   #在lede源码下有效，官方openwrt改下面这句测试
+        sed -i 's/{ipaddr:-"192\.168\..*"}/{ipaddr:-"192.168.4.10"}/g' ./package/base-files/files/bin/config_generate
         ls -la
         df -hT $PWD
         #make clean
@@ -225,7 +228,7 @@ jobs:
     - name: Upload openwrt directory to Artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: openwrt-source-ledeJJ20260914.04         # 附件上下载目录显示的文件名
+        name: Officailwrt-source-in_ledejjHJ         # 附件上下载目录显示的文件名
         path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
         retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
