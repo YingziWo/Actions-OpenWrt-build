@@ -25,3 +25,29 @@ fi
 
 
 echo ✅ 基础参数修改完成
+
+# -------- 修改登录 banner --------
+
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/base-files/files/etc
+rm -rf banner
+BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+cat <<'EOT' > banner
+        Welcome to X86_X64 SoftRouter!
+ ----------------------------------------------------- 
+  ______                     ________        __
+ |       |.-----.-----.-----.|  |  |  |.----.|  |_
+ |   -   ||  _  |  -__|     ||  |  |  ||   _||   _|
+ |_______||   __|_____|__|__||________||__|  |____|
+          |__| W I R E L E S S   F R E E D O M
+ -----------------------------------------------------
+ %D %V, %C Dave's Guitar
+ -----------------------------------------------------
+      Official OpenWrt Complied By YzW
+    ...... Build Date: BUILD_DATE ...... 
+
+EOT
+
+sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
+
+echo "✅ Custom banner has been set."
+
