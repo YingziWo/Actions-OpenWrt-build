@@ -29,6 +29,7 @@ echo ✅ 基础参数修改完成
 # -------- 更改登入界面 --------
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/base-files/files/etc
+cp --backup=numbered banner banner.bak
 rm -rf banner
 BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
 cat <<'EOT' > banner
@@ -40,14 +41,17 @@ cat <<'EOT' > banner
  |_______||   __|_____|__|__||________||__|  |____|
           |__| W I R E L E S S   F R E E D O M
  -----------------------------------------------------
- %D %V, %C Dave's Guitar
+ Version: %D %V,  %C 
  -----------------------------------------------------
- Official OpenWrt Firmware Complied By YzW
+ Official OpenWrt Firmware Is Built By YzW
  ...... Building Date: BUILD_DATE ...... 
 
 EOT
 
 sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
+cp --backup=numbered openwrt_release openwrt_release.bak
+sed -i "s|%D %V %C|%D %V %C Firmware Is Built By YzW|g" openwrt_release
+
 
 echo "✅ Custom banner has been set."
 
