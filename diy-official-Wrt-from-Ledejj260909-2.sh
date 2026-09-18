@@ -49,8 +49,9 @@ cat <<'EOT' > banner
 EOT
 
 sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
-cp --backup=numbered openwrt_release openwrt_release.bak
-sed -i "s|%D %V %C|%D %V %C Firmware Is Built By YzW|g" openwrt_release
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
+cp --backup=numbered version version.bak
+sed -i "s|-.*|-Firmware Is Built By YzW|g" version
 
 
 echo "✅ Custom banner has been set."
