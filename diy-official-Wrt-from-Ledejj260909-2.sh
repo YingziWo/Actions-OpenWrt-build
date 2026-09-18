@@ -51,8 +51,10 @@ EOT
 sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
 cp --backup=numbered version version.bak33
-#sed -i "1s|-.*|-Firmware Is Built By YzW|g" version
-sed -i "s|-.*|-BuiltByYZW|g" version
+#sed -i "1s|-.*|-Firmware Is Built By YzW|g" version #替换-后内容
+#sed -i "s|-.*|-BuiltByYZW|g" version #替换-后长度
+sed -i "s|$ |-BuiltByYZW|g" version #原数据后添加
+#sed -i "2i|*|-FirmwareIsBuiltByYZW|g" version #不动第一行，第二行添加
 
 
 echo "✅ Custom banner has been set."
