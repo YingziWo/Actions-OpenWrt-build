@@ -216,9 +216,6 @@ jobs:
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
         cd openwrt
         pwd
-        # 修改默认登录地址
-        #sed -i 's/192.168.1.1/192.168.4.10/g' ./package/base-files/files/bin/config_generate   #在lede源码下有效，官方openwrt改下面这句测试
-        #sed -i 's/{ipaddr:-"192\.168\..*"}/{ipaddr:-"192.168.4.10"}/g' ./package/base-files/files/bin/config_generate  #用于官方openwrt修改基础ip参数，改用前面批命令修改
         ls -la
         df -hT $PWD
         #make clean
@@ -326,6 +323,7 @@ jobs:
           ```
           AdGuardHome
           Passwall
+          Passwall2
           MosDNS
           Openclash
           ACME证书
@@ -333,6 +331,7 @@ jobs:
           网络唤醒
           Momo
           Nikki
+          Wireguard
           终端
           ...
 
