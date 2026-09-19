@@ -75,6 +75,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager
+git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
