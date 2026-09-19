@@ -69,6 +69,13 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
+#再指定几个app到yingziwo目录下，测试.config启用后能否生效260919
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager
+
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
