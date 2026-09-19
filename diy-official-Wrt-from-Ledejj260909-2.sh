@@ -54,7 +54,7 @@ cp --backup=numbered version version.bak33
 #sed -i "1s|-.*|-Firmware Is Built By YzW|g" version #替换-后内容
 #sed -i "s|-.*|-BuiltByYZW|g" version #替换-后长度
 #sed -i "s|$ |-BuiltByYZW|g" version #原数据后添加，这句实际运行结果查看是什么也没有加
-#sed -i "1s|$|+BuiltByYZW|g" version   #第一行原数据尾部后添加 检查错误日志，编译时取-后的字符建了一个1700~加上添加的字符要生成一个ipk文件，这显然不易动这个文件中的内容！
+#sed -i "1s|$|+BuiltByYZW|g" version   #第一行原数据尾部后添加 检查错误日志，编译时取-后的字符建了一个1700~加上添加的字符要生成一个ipk文件，这显然不易动这个文件中的内容！ERROR: package/base-files failed to build.
 #sed -i "1s|$|  BuiltByYZW|g" version   #第一行原数据空两格添加
 #sed -i "2i|*|-FirmwareIsBuiltByYZW|g" version #不动第一行，第二行添加
 
