@@ -22,7 +22,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: v25.12.5  
+  REPO_BRANCH: openwrt-25.12                      #<---左边的官方openwrt版本分支表述正确，不会报错..''..这个表述版本分支表述是错误的，会报错-->  v25.12.5  
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
