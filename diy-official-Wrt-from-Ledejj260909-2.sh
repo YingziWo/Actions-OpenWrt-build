@@ -1,7 +1,7 @@
 #
 # 修改官方openwrt的基础参数，有修改lan的ip地址、定义时区
 #!/bin/bash
-set -e
+set -x
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
 CONFIG_FILE2="package/base-files/files/bin/config_generate"
