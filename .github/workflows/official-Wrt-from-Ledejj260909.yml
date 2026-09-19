@@ -22,8 +22,8 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  #REPO_BRANCH: openwrt-25.12            # 写成openwrt-25.12并未定义具体最后的12版内的小版本号，缺省则是用β版本，既SNAPSHOT最新测试用版本，若要稳定版，必须再在12后添加具体的小版本号
-  REPO_BRANCH: openwrt-25.12.5                      #<---左边的官方openwrt版本分支表述正确，不会报错..''..这个表述版本分支表述是错误的，会报错-->  v25.12.5  
+  #REPO_BRANCH: openwrt-25.12            # 写成openwrt-25.12并未定义具体最后的12版内的小版本号，缺省则是用β版本，既SNAPSHOT最新测试用版本，若要稳定版，必须再在12后添加具体的小版本号，测试下来，这个说法是错误的，编译报错：说没有找到这个分支
+  REPO_BRANCH: openwrt-25.12                      #<---左边的官方openwrt版本分支表述正确，不会报错..''..这个表述版本分支表述是错误的，会报错-->  v25.12.5  
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
