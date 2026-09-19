@@ -70,12 +70,12 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon 
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
 #再指定几个app到yingziwo目录下，测试.config启用后能否生效260919
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager
-git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
+#git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker        #编译测试报错不能用 20260919
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
