@@ -208,6 +208,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P3_SH  
     
     - name: 获得liunx内核版本
+      id: get-kernel
       run: |
         cd openwrt
         mkdir tmptmp
