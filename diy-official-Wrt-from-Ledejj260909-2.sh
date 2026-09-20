@@ -52,7 +52,7 @@ sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
 
 # 固件显示面板中增加版本编译地址url
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-bootstrap/ucode/template/themes/bootstrap
-sed -i 's|{{{ entityencode(version.disturl ?? '#', true) }}}/{https://github.com/YingziWo/Actions-OpenWrt-build/releases}/g' footer.ut
+sed -i 's|{{{ entityencode(version.disturl ?? '#', true) }}}|{https://github.com/YingziWo/Actions-OpenWrt-build/releases}/g' footer.ut
 sed -i 's|{{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }})}/{{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }}) Firmware Is Built By YzW}/g' footer.ut
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/yingziwo/luci-theme-argon/ucode/template/themes/argon
