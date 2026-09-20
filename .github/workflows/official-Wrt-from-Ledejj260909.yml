@@ -207,7 +207,14 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P3_SH  
     
-    
+    - name: 获得liunx内核版本
+      run: |
+        cd openwrt
+        mkdir tmptmp
+        cd tmptmp
+        ls /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/dl/linux-6.* > tmp2
+        echo KernelVersion=$(head -1 tmp2 | grep -oP '(?<=linux-)\b([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\b')
+        
     
     
     - name: Compress openwrt directory including hidden files
@@ -312,7 +319,7 @@ jobs:
           - 💻 平台架构: x86_64                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.12.108                              
+          - 🚀 内核版本:  K${{ KernelVersion}}                              
           - 🌐 默认地址: 192.168.4.10
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
