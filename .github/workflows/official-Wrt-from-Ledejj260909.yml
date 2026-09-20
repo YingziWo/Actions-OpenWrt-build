@@ -22,11 +22,11 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-25.12                      #<---左边的版本写法在官方openwrt版本分支版本相当于是β版，和写main、master效果一样，版本编译出来显示OpenWrt 25.12-SNAPSHOT，而v25.12.5的写法，编译过程虽然有告警，但最终生成的固件显示版本号是OpenWrt 25.12.5，与预期一样>  v25.12.5  
+  REPO_BRANCH: openwrt-25.12                           #<openwrt-25.12 ---左边的版本写法在官方openwrt版本分支版本相当于是β版，和写main、master效果一样，版本编译出来显示OpenWrt 25.12-SNAPSHOT，而v25.12.5的写法，编译过程虽然有告警，但最终生成的固件显示版本号是OpenWrt 25.12.5，与预期一样>  v25.12.5  
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
-  #CONFIG_FILE: sc-clone-lede.config  #原来的精简配置似乎没有docker
-  #DIY_P1_SH: diy-ledejj-part1.sh     #用于lede的源码上
+  #CONFIG_FILE: sc-clone-lede.config                   #原来的精简配置似乎没有docker
+  #DIY_P1_SH: diy-ledejj-part1.sh                      #用于lede的源码上
   DIY_P1_SH: diy-official-Wrt-from-Ledejj260909-1.sh
   DIY_P2_SH: diy-ledejj-part2.sh
   DIY_P3_SH: diy-official-Wrt-from-Ledejj260909-2.sh 
@@ -86,7 +86,6 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown "$USER:$(id -gn)" /workdir
 
-        
     
     - name: list disk space
       run: |
