@@ -49,8 +49,17 @@ cat <<'EOT' > banner
 EOT
 
 sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
-cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
-cp --backup=numbered version version.bak33
+
+# 固件显示面板中增加版本编译地址url
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-bootstrap/ucode/template/themes/bootstrap
+sed -i 's|{{{ entityencode(version.disturl ?? '#', true) }}}/{https://github.com/YingziWo/Actions-OpenWrt-build/releases}/g' footer.ut
+sed -i 's|{{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }})}/{{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }}) Firmware Is Built By YzW}/g' footer.ut
+
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/yingziwo/luci-theme-argon/ucode/template/themes/argon
+sed -i 's|{{{ version.distname }} {{ version.distversion }}-{{ version.distrevision }}}/{Version {{ version.distname }} {{ version.distversion }}-{{ version.distrevision }} Frimware Is Built By YzW}/g' footer_login.ut
+sed -i 's|{{{ version.disturl }}}/{https://github.com/YingziWo/Actions-OpenWrt-build/releases}/g'  footer_login.ut
+
+#cp --backup=numbered version version.bak33
 #sed -i "1s|-.*|-Firmware Is Built By YzW|g" version #替换-后内容
 #sed -i "s|-.*|-BuiltByYZW|g" version #替换-后长度
 #sed -i "s|$ |-BuiltByYZW|g" version #原数据后添加，这句实际运行结果查看是什么也没有加
