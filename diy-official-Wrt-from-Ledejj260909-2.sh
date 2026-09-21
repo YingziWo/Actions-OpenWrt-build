@@ -79,7 +79,7 @@ cat <<'EOT' > footer.ut
 
 EOT
 
-cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-footstrap\ucode\template\themes\footstrap\partials
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-footstrap/ucode/template/themes/footstrap/partials
 rm -rf footer.ut
 cat <<'EOT' > footer.ut
 {#
@@ -121,6 +121,31 @@ cat <<'EOT' > footer.ut
 </html>
 
 EOT
+
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/feeds/luci/themes/luci-theme-openwrt/ucode/template/themes/openwrt.org
+rm -rf footer.ut
+cat <<'EOT' > footer.ut
+{#
+ Copyright 2008 Steven Barth <steven@midlink.org>
+ Copyright 2008 Jo-Philipp Wich <jow@openwrt.org>
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+<div class="clear"></div>
+</div>
+</div>
+
+<p class="luci">
+	Powered by {{ version.luciname }} ({{ version.luciversion }}) Frimware Is Built By YzW
+</p>
+
+<script>L.require('menu-openwrt')</script>
+
+</body>
+</html>
+
+EOT
+
 
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/yingziwo/luci-theme-argon/ucode/template/themes/argon
