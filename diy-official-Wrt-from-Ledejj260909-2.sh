@@ -50,7 +50,7 @@ EOT
 
 sed -i "s|BUILD_DATE|$BUILD_DATE|g" banner
 
-# 固件显示面板中增加版本编译地址url,这段代码小心调整，不知到用途勿随意调整，易造成编译失败
+# 以下是固件显示面板中增加版本编译地址url, 这段代码要小心调整，不知到用途勿随意调整，易造成编译失败
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-bootstrap/ucode/template/themes/bootstrap
 #sed -i 's|{"{{ entityencode(version.disturl ?? ''#'', true) }}"}/{"https://github.com/YingziWo/Actions-OpenWrt-build/releases"}/g' footer.ut
 #sed -i 's|{"{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }})"}/{"{{ version.distname }} {{ version.distversion }} ({{ version.distrevision }}) Firmware Is Built By YzW"}/g' footer.ut
@@ -136,7 +136,7 @@ cat <<'EOT' > footer.ut
 </div>
 
 <p class="luci">
-	Powered by {{ version.luciname }} ({{ version.luciversion }}) Frimware Is Built By YzW
+	Powered by {{ version.luciname }} ({{ version.luciversion }})  Frimware Is Built By YzW
 </p>
 
 <script>L.require('menu-openwrt')</script>
@@ -147,6 +147,28 @@ cat <<'EOT' > footer.ut
 EOT
 
 
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/feeds/luci/themes/luci-theme-openwrt-2020/ucode/template/themes/openwrt2020
+rm -rf footer.ut
+cat <<'EOT' > footer.ut
+{#
+ Copyright 2020 Jo-Philipp Wich <jo@mein.io>
+ Licensed to the public under the Apache License 2.0.
+-#}
+
+</div>
+</div>
+
+<p class="luci">
+	Powered by {{ version.luciname }} ({{ version.luciversion }})  Frimware Is Built By YzW
+</p>
+
+<script>L.require('menu-openwrt2020')</script>
+
+</body>
+</html>
+
+
+EOT
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/yingziwo/luci-theme-argon/ucode/template/themes/argon
 #sed -i 's|{"{{ version.distname }} {{ version.distversion }}-{{ version.distrevision }}"}/{"Version {{ version.distname }} {{ version.distversion }}-{{ version.distrevision }} Frimware Is Built By YzW"}/g' footer_login.ut
