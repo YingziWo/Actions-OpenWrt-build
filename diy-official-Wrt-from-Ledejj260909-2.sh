@@ -79,6 +79,48 @@ cat <<'EOT' > footer.ut
 
 EOT
 
+cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/feeds/luci/luci-theme-footstrap\ucode\template\themes\footstrap\partials
+rm -rf footer.ut
+cat <<'EOT' > footer.ut
+{#
+ Footer body. ONE layout template and ONE client menu renderer — sidebar and top bar are
+ the same markup, morphed by :root[data-layout] — so the old `menu_module` parameter that
+ picked between two renderers is gone with the second one.
+ Licensed to the public under the Apache License 2.0.
+-#}
+		{% if (!blank_page): %}
+				</div>{# /.fs-content #}
+
+				{#
+					role="contentinfo" is explicit because a <footer> only gets it IMPLICITLY
+					when its nearest ancestor is <body>, and this one lives inside <main> —
+					where it must stay: both layouts lay .fs-main out as a flex column and order
+					the footer within it. The explicit role escapes that scoping rule.
+					The version strings are entityencode()d: /etc/openwrt_release is root-owned,
+					but an unescaped `&` in a distname would still break the markup.
+				#}
+				<footer class="fs-footer" role="contentinfo">
+					<span>
+						Powered by
+						<a href="https://github.com/openwrt/luci" target="_blank" rel="noreferrer">
+							{{ entityencode(version.luciname, true) }} ({{ entityencode(version.luciversion, true) }})</a>
+						/
+						<a href="https://github.com/YingziWo/Actions-OpenWrt-build/releases" target="_blank" rel="noreferrer">
+							{{ entityencode(version.distname, true) }} {{ entityencode(version.distversion, true) }} ({{ entityencode(version.distrevision, true) }}) Frimware Is Built By YzW</a>
+						{% if (lua_active): %}
+							/ {{ _('Lua compatibility mode active') }}
+						{% endif %}
+					</span>
+				</footer>
+			</main>{# /.fs-main #}
+		</div>{# /.fs-shell #}
+		<script>L.require('menu-footstrap')</script>
+		<script>L.require('fs-select')</script>
+		{% endif %}
+	</body>
+</html>
+
+EOT
 
 
 cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/package/yingziwo/luci-theme-argon/ucode/template/themes/argon
