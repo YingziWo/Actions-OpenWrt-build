@@ -135,6 +135,59 @@ cat <<'EOT' > footer_login.ut
 </html>
 EOT
 
+rm -rf footer.ut
+cat <<'EOT' > footer.ut
+{#
+	Argon is a clean HTML5 theme for LuCI. It is based on luci-theme-material Argon Template
+
+	luci-theme-argon
+	Copyright 2020 Jerrykuku <jerrykuku@qq.com>
+
+	Have a bug? Please create an issue here on GitHub!
+	https://github.com/jerrykuku/luci-theme-argon/issues
+
+	luci-theme-material:
+	Copyright 2015 Lutty Yang <lutty@wcan.in>
+
+	Agron Theme
+	https://demos.creative-tim.com/argon-dashboard/index.html
+
+	Licensed to the public under the Apache License 2.0
+-#}
+
+		</div>
+		<footer class="mobile-hide" style="text-wrap: auto">
+			<div class="footer-content" style="display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: end;">
+
+				<a class="luci-link" href="https://github.com/YingziWo/Actions-OpenWrt-build/releases" target="_blank">{{ version.distname }} {{ version.distversion }}-{{ version.distrevision }} Frimware Is Built By YzW</a>
+
+				<ul class="breadcrumb pull-right" id="modemenu" style="display:none"></ul>
+			</div>
+		</footer>
+	</div>
+</div>
+<script>
+	// thanks for Jo-Philipp Wich <jow@openwrt.org>
+	var luciLocation = {{ ctx.path }};
+	var winHeight = window.innerHeight;
+	window.addEventListener('resize', function () {
+		var winWidth = window.innerWidth;
+		if(winWidth < 600){
+			var newHeight = window.innerHeight;
+			var keyboradHeight = newHeight - winHeight;
+			var ftcElement = document.querySelector(".ftc");
+			if (ftcElement) {
+				ftcElement.style.bottom = (keyboradHeight + 30) + "px";
+			}
+		}
+	});
+</script>
+<script type="text/javascript">L.require('menu-argon')</script>
+</body>
+</html>
+
+EOT
+
 #cp --backup=numbered version version.bak33
 #sed -i "1s|-.*|-Firmware Is Built By YzW|g" version #替换-后内容
 #sed -i "s|-.*|-BuiltByYZW|g" version #替换-后长度
