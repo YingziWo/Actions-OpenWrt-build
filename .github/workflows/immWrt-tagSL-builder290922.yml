@@ -148,6 +148,10 @@ jobs:
       id: package
       run: |
         cd openwrt
+        rm -rf package/feeds/wall/dockerd    #编译中发生错误，去除docker，后续去安装20260922
+        rm -rf package/feeds/wall/docker
+        rm -rf package/feeds/packages/containerd
+        rm -rf package/feeds/packages/docker-compose
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
