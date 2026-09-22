@@ -154,6 +154,9 @@ jobs:
         rm -rf package/feeds/packages/docker-compose
         rm -rf package/feeds/small/trojan
         rm -rf package/feeds/small/trojan-plus
+        rm -rf package/feeds/kenzo/luci-app-dockerman
+        rm -rf package/feeds/luci/luci-app-docker
+        
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
