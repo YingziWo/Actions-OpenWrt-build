@@ -165,6 +165,7 @@ jobs:
         rm -rf package/feeds/luci/luci-app-daed
         rm -rf package/feeds/packages/runc
         rm -rf package/feeds/packages/tini
+        rm -rf package/feeds/packages/open-app-filter
       
         make defconfig
         make download -j8
