@@ -158,7 +158,14 @@ jobs:
         rm -rf package/feeds/small/trojan-plus
         rm -rf package/feeds/kenzo/luci-app-dockerman
         rm -rf package/feeds/luci/luci-app-docker
-        
+        rm -rf package/feeds/small/dae
+        rm -rf package/feeds/small/daed
+        rm -rf package/feeds/small/honk
+        rm -rf package/feeds/luci/luci-app-dae
+        rm -rf package/feeds/luci/luci-app-daed
+        rm -rf package/feeds/packages/runc
+        rm -rf package/feeds/packages/tini
+      
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
