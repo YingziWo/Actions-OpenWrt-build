@@ -72,6 +72,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
+git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
+git_sparse_clone main https://github.com/kenzok8/small-package taskd
+
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker        #编译测试报错不能用 20260919
