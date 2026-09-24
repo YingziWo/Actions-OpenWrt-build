@@ -166,7 +166,11 @@ jobs:
         rm -rf package/feeds/packages/runc
         rm -rf package/feeds/packages/tini
         rm -rf package/feeds/packages/open-app-filter
-      
+        rm -rf package/feeds/packages/dockerd
+        rm -rf package/feeds/luci/luci-app-appfilter
+        rm -rf package/feeds/luci/luci-app-dockerman
+        rm -rf package/feeds/small/luci-app-honk
+        
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
