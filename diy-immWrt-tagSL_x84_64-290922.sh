@@ -76,6 +76,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 git_sparse_clone main https://github.com/kenzok8/small-package honk
+git_sparse_clone main https://github.com/kenzok8/small-package vmlinux-btf
 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
