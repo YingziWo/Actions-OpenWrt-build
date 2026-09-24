@@ -21,9 +21,9 @@ ls
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default   #2024年只需要这一句，2026根据上游版本介绍用下面两句代替
 sed -i "/helloworld/d" "feeds.conf.default"
-sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
+#sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
-sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
+#sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
 echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
