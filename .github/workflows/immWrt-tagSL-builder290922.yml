@@ -178,6 +178,7 @@ jobs:
         rm -rf package/feeds/luci/luci-app-appfilter
         rm -rf package/feeds/luci/luci-app-dockerman
         rm -rf package/feeds/small/luci-app-honk
+        rm -rf package/feeds/small/luci-app-mosdns
         
         make defconfig
         make download -j8
