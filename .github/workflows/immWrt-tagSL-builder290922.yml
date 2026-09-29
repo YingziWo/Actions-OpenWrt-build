@@ -279,21 +279,35 @@ jobs:
         body: |
           ===Firmware for x86_64===
           ### 📒 编译的固件信息
-          - 💻 平台架构: x86_64 ( 32K 600M )                       
+          - 💻 平台架构: x86_64 ( 64K 1500M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本: ${{ env.KERNEL }}                                              
-          - 🌐 默认地址: 192.168.4.198 
+          - 🚀 内核版本: K${{ env.KERNEL }}                                              
+          - 🌐 默认地址: 10.1.1 
           - 🔑 默认密码: 空                
            
           ### 📒 插件列表:
           ```
-          Docker
+          AdGuardHome
+          Passwall2
           软件仓库（iStore）
           Openclash
           Passwall
           AdguardHome
           Ssr-plus
+          MosSNS
+          HomeProxy
+          FileBrowser
+          Nikki
+          KMS服务器
+          frp客户端
+          网络唤醒
+          ACME证书
+          NetData
+          挂载点
+          磁盘管理
+          定时重启
+          。。。。。。
           ...
 
 
