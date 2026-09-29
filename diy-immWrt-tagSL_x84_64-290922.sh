@@ -51,6 +51,13 @@ pwd
 #lucky
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
+#MosDNS 根据sbwml的编译提示
+# remove v2ray-geodata package from feeds
+rm -rf feeds/packages/net/v2ray-geodata
+
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
