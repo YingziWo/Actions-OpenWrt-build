@@ -309,7 +309,7 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 ##########################################其他设置##########################################
 
 # 修改默认登录地址
-sed -i 's/192.168.1.1/192.168.4.198/g' ./package/base-files/files/bin/config_generate
+sed -i 's/10.1.1.254/192.168.4.10/g' ./package/base-files/files/bin/config_generate
 
 # 修改默认登录密码
 #sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' ./package/base-files/files/etc/shadow
