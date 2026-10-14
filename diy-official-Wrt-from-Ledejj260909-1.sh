@@ -69,10 +69,11 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
-#再指定几个app到yingziwo目录下，测试.config启用后能否生效260919
+#再指定几个app到yingziwo目录下，测试.config启用后能否生效260919，261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+git_sparse_clone main https://github.com/lisaac/luci-app-diskman luci-app-diskman       #增加磁盘管理app diskman 20261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker        #编译测试报错不能用 20260919
