@@ -57,6 +57,7 @@ rm -rf feeds/packages/net/v2ray-geodata
 
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+git clone https://github.com/QiuSimons/vmlinux-btf.git package/vmlinux-btf            #for dae
 
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
@@ -83,7 +84,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 git_sparse_clone main https://github.com/kenzok8/small-package honk
-git_sparse_clone main https://github.com/kenzok8/small-package vmlinux-btf
+#git_sparse_clone main https://github.com/kenzok8/small-package vmlinux-btf                #用60句代替
 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
