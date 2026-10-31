@@ -87,6 +87,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package honk
 #git_sparse_clone main https://github.com/kenzok8/small-package vmlinux-btf                #用60句代替失败
 git_sparse_clone main https://github.com/QiuSimons/luci-app-daed luci-app-daed
 git_sparse_clone main https://github.com/QiuSimons/luci-app-dae luci-app-dae
+git_sparse_clone main https://github.com/QiuSimons/luci-app-honk luci-app-honk
 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
