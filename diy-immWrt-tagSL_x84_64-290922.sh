@@ -61,6 +61,7 @@ git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf          
 git clone kix https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
 git clone kix https://github.com/QiuSimons/luci-app-dae package/luci-app-dae
 git clone master https://github.com/QiuSimons/luci-app-honk package/luci-app-honk
+git clone main https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
