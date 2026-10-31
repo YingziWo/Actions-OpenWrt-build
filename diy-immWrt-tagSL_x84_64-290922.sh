@@ -83,7 +83,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
-git_sparse_clone main https://github.com/kenzok8/small-package honk
+#git_sparse_clone main https://github.com/kenzok8/small-package honk
 #git_sparse_clone main https://github.com/kenzok8/small-package vmlinux-btf                #用60句代替失败
 git_sparse_clone main https://github.com/QiuSimons/luci-app-daed luci-app-daed
 git_sparse_clone main https://github.com/QiuSimons/luci-app-dae luci-app-dae
