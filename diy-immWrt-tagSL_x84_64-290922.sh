@@ -61,7 +61,7 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf            #for dae 编译通不过
 git clone kix https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
 git clone kix https://github.com/QiuSimons/luci-app-dae package/luci-app-dae
-#git clone master https://github.com/QiuSimons/luci-app-honk package/honk          #使用下面kenzok8/small-package内的，用这个一句，因这个仓库含honk和luci-app-honk两个，下面两句就可用不用。
+git clone master https://github.com/QiuSimons/luci-app-honk package/honk          #使用下面kenzok8/small-package内的，用这个一句，因这个仓库含honk和luci-app-honk两个，下面两句就可用不用。
 git clone main https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 
 # 移除冲突包
@@ -88,8 +88,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
-git_sparse_clone main https://github.com/kenzok8/small-package honk              #最新版有编译错误20261101
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-honk     #20261102与上面的同时使用才不报错
+#git_sparse_clone main https://github.com/kenzok8/small-package honk              #最新版有编译错误20261101
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-honk     #20261102与上面的同时使用才不报错
 #git_sparse_clone master https://github.com/kenzok8/small-package vmlinux-btf                #用60句代替失败
 
 
