@@ -25,7 +25,7 @@ sed -i "/helloworld/d" "feeds.conf.default"
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
 echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
-echo 'src-git istore https://github.com/linkease/istore' >> feeds.conf.default
+#echo 'src-git istore https://github.com/linkease/istore' >> feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 #=================================================
@@ -61,7 +61,7 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf            #for dae 编译通不过
 git clone kix https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
 git clone kix https://github.com/QiuSimons/luci-app-dae package/luci-app-dae
-git clone master https://github.com/QiuSimons/luci-app-honk package/honk          #使用下面kenzok8/small-package内的，用这个一句，因这个仓库含honk和luci-app-honk两个，下面两句就可用不用。
+#git clone master https://github.com/QiuSimons/luci-app-honk package/honk          #使用下面kenzok8/small-package内的，用这个一句，因这个仓库含honk和luci-app-honk两个，下面两句就可用不用。
 git clone main https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 
 # 移除冲突包
@@ -84,7 +84,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 #再指定几个app到yingziwo目录下，测试.config启用后能否生效260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
-#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
