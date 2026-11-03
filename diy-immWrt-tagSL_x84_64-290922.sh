@@ -59,8 +59,8 @@ rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf            #for dae 编译通不过
-git clone kix https://github.com/QiuSimons/luci-app-daed package/luci-app-daed
-git clone kix https://github.com/QiuSimons/luci-app-dae package/luci-app-dae
+#git clone kix https://github.com/QiuSimons/luci-app-daed package/luci-app-daed   #20261103，用git_sparse_clone()功能拆成daed和luci-app-daed两部分
+#git clone kix https://github.com/QiuSimons/luci-app-dae package/luci-app-dae     #20261103，用git_sparse_clone()功能拆成dae和luci-app-dae两部分
 #git clone master https://github.com/QiuSimons/luci-app-honk package/honk          #使用下面kenzok8/small-package内的，用这个一句，因这个仓库含honk和luci-app-honk两个，下面两句就可用不用。
 git clone main https://github.com/nikkinikki-org/OpenWrt-nikki package/OpenWrt-nikki
 
@@ -72,6 +72,14 @@ rm -rf feeds/packages/net/mosdns
 rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
+
+# dae & daed & honk #20261103分拆两部分--核心和luci界面
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-daed luci-app-daed
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-daed daed
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae dae
+git_sparse_clone master https://github.com/QiuSimons/luci-app-honk luci-app-honk
+git_sparse_clone master https://github.com/QiuSimons/luci-app-honk honk
 
 #luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argone                       #仅适应于18.06
