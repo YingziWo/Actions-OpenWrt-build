@@ -273,6 +273,7 @@ jobs:
         rm -rf package/feeds/small/luci-app-mosdns         #与官方版本v5冲突
         
         make defconfig
+        cat .config
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
