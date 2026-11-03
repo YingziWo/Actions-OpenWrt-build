@@ -384,13 +384,10 @@ jobs:
           ```
           AdGuardHome
           Passwall2
-          软件仓库（iStore）
           Openclash
           Passwall
-          AdguardHome
           Ssr-plus
-          MosSNS
-          HomeProxy
+          MosDNS
           FileBrowser
           Nikki
           KMS服务器
@@ -401,6 +398,9 @@ jobs:
           挂载点
           磁盘管理
           定时重启
+          定时唤醒
+          网络共享
+          FTP服务器
           。。。。。。
           ...
 
