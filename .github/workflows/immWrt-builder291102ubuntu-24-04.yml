@@ -133,6 +133,9 @@ jobs:
         docker system prune -af --volumes
         # 删除 GitHub Actions 工具缓存
         sudo rm -rf /opt/hostedtoolcache
+
+        sudo apt update -qq
+        sudo apt full-upgrade -qq -y
         sudo apt install -qq -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
                 bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \
                 git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \
@@ -141,14 +144,16 @@ jobs:
                 python3-pyelftools python3-setuptools qemu-utils rsync scons \
                 squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev \
                 make gcc lld clang llvm pahole dwarves libbpf-dev
-
-        
-        sudo -E systemctl daemon-reload
-        sudo -E apt -y autoremove --purge
-        sudo -E apt clean
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        
+        ##sudo -E systemctl daemon-reload
+        ##sudo -E apt -y autoremove --purge
+        ##sudo -E apt clean
+        ##sudo timedatectl set-timezone "$TZ"
+        ##sudo mkdir -p /workdir
+        ##sudo chown $USER:$GROUPS /workdir
     
     - name: list disk space
       run: |
