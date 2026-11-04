@@ -162,7 +162,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-# 本步骤仅仅对immortalwrt版本25.12.X版本，版本太低时，内核不支持dae、honk插件调用底层功能，这两个插件要启用下列的immortalwrt内核后，开启.config中的vmlinux-btf=y后才能将两个插件编译到固件中。    
+# 本步骤仅仅对openwrt版本25.12.X版本，版本太低时，内核不支持dae、honk插件调用底层功能，这两个插件要启用下列的immortalwrt内核后，开启.config中的vmlinux-btf=y后才能将两个插件编译到固件中。    
     - name: Inject Kernel Configs
       run: |
         cd openwrt
