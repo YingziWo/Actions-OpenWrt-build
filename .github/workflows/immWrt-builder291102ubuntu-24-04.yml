@@ -258,18 +258,18 @@ jobs:
         rm -rf package/feeds/small/trojan-plus
         rm -rf package/feeds/kenzo/luci-app-dockerman
         rm -rf package/feeds/luci/luci-app-docker
-        rm -rf package/feeds/small/dae
-        rm -rf package/feeds/small/daed
-        rm -rf package/feeds/small/honk
-        rm -rf package/feeds/luci/luci-app-dae
-        rm -rf package/feeds/luci/luci-app-daed
+        #rm -rf package/feeds/small/dae
+        #rm -rf package/feeds/small/daed
+        #rm -rf package/feeds/small/honk
+        #rm -rf package/feeds/luci/luci-app-dae
+        #rm -rf package/feeds/luci/luci-app-daed
         rm -rf package/feeds/packages/runc
         rm -rf package/feeds/packages/tini
         rm -rf package/feeds/packages/open-app-filter
         rm -rf package/feeds/packages/dockerd
         rm -rf package/feeds/luci/luci-app-appfilter
         rm -rf package/feeds/luci/luci-app-dockerman
-        rm -rf package/feeds/small/luci-app-honk
+        #rm -rf package/feeds/small/luci-app-honk
         rm -rf package/feeds/small/luci-app-mosdns         #与官方版本v5冲突
 
         
