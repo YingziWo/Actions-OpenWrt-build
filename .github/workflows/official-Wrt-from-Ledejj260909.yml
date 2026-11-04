@@ -74,8 +74,15 @@ jobs:
         sudo -E apt-get -qq update
 
         # 4. 修复可能中断的安装并清理系统垃圾（修复了原句中 install 缺参数的问题）  依赖到golang 为Ledejj用到的，之后加入的依赖是官方openwrt除了与ledejj用的相同外，再需要额外的依赖，之前ledejj用的非openwrt官方全部必须
-        sudo -E apt-get -qq install -y --fix-missing ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib g++-multilib gettext genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
-             ruby bc pciutils lm-sensors pciutils gcc git perl golang g++ file
+        sudo -E apt-get -qq install -y --fix-missing ack antlr3 asciidoc autoconf automake autopoint binutils \
+              bison build-essential bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib \
+              g++-multilib gettext genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev \
+              libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev \
+              libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build \
+              p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools qemu-utils rsync scons \
+              squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
+              ruby bc pciutils lm-sensors pciutils gcc git perl golang g++ file \
+              make gcc pahole dwarves libbpf-dev
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
 
@@ -155,6 +162,47 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
+# 本步骤仅仅对immortalwrt版本25.12.X版本，版本太低时，内核不支持dae、honk插件调用底层功能，这两个插件要启用下列的immortalwrt内核后，开启.config中的vmlinux-btf=y后才能将两个插件编译到固件中。    
+    - name: Inject Kernel Configs
+      run: |
+        cd openwrt
+        sed -i '/CONFIG_XDP_SOCKETS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_XDP_SOCKETS_DIAG/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_BPF/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_BPF_SYSCALL/d' target/linux/x86/config-6.12        
+        sed -i '/CONFIG_BPF_JIT/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_CGROUPS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.12
+        sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.12
+
+        echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_BPF=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_BPF_SYSCALL=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12
+  
+
     - name: Download package
       id: package
       run: |
@@ -169,11 +217,11 @@ jobs:
         #rm -rf package/feeds/small/luci-app-honk
         #rm -rf package/feeds/wall/docker   #2026.09.13去除编译错误的插件
         #rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件   
-        #下面这几句为在与LedeJJ同样外部配置参数下，在编译中出现的告警信息，删除这些发出告警包，以便编译能够完成
+        #下面这几句为在与LedeJJ同样外部配置参数下，在编译中出现的告警信息，删除这些发出告警包，以便编译能够完成。20261104固件拟编译进dae、daed和honk，在.config中加入这些插件的开关
         rm -rf package/feeds/packages/bmx7-dnsupdate
-        rm -rf package/feeds/small/dae
-        rm -rf package/feeds/small/daed
-        rm -rf package/feeds/small/honk
+        #rm -rf package/feeds/small/dae
+        #rm -rf package/feeds/small/daed
+        #rm -rf package/feeds/small/honk
         rm -rf package/feeds/luci/luci-app-babeld
         rm -rf package/feeds/luci/luci-app-bmx7
         rm -rf package/feeds/kenzo/luci-app-dockerman
@@ -182,8 +230,8 @@ jobs:
         rm -rf package/feeds/kenzo/smartdns
         rm -rf package/feeds/small/trojan
         rm -rf package/feeds/small/trojan-plus
-        rm -rf package/feeds/small/luci-app-daede
-        rm -rf package/feeds/small/luci-app-honk
+        #rm -rf package/feeds/small/luci-app-daede
+        #rm -rf package/feeds/small/luci-app-honk
         rm -rf package/feeds/kenzo/luci-app-smartdns
         rm -rf package/feeds/wall/dockerd
         rm -rf package/feeds/wall/docker
