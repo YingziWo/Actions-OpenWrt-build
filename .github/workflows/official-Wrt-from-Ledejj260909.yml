@@ -202,13 +202,15 @@ jobs:
         echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
         echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12
 
-    - name: Fix OpenWrt BPF tools path
+    - name: Fix Ubuntu 24.04 Clang Path for OpenWrt
       run: |
-        # 强制将 bpf.mk 中的错误回滚路径 /invalid 直接替换为系统真实的 /usr
-        sed -i 's|LLVM_PATH:=/invalid|LLVM_PATH:=/usr|g' include/bpf.mk
-          
-        # 强制让 CLANG 变量直接指向系统的 clang 可执行文件
-        sed -i 's|CLANG:=$(LLVM_PATH)/clang|CLANG:=/usr/bin/clang|g' include/bpf.mk
+        # 1. 强制为系统默认的 clang/llvm 建立不带版本号的全局软链接
+        sudo ln -sf /usr/bin/clang-18 /usr/bin/clang
+        sudo ln -sf /usr/bin/llvm-strip-18 /usr/bin/llvm-strip
+        
+        # 2. 注入全局变量，让 OpenWrt 构建系统显式得知 Clang 的位置
+        echo "CLANG=/usr/bin/clang" >> $GITHUB_ENV
+        echo "LLVM_STRIP=/usr/bin/llvm-strip" >> $GITHUB_ENV
   
 
     - name: Download package
