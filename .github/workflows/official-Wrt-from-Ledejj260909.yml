@@ -202,15 +202,15 @@ jobs:
         echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
         echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12
 
-    - name: Fix Ubuntu 24.04 Clang Path for OpenWrt
-      run: |
-        # 1. 强制为系统默认的 clang/llvm 建立不带版本号的全局软链接
-        sudo ln -sf /usr/bin/clang-18 /usr/bin/clang
-        sudo ln -sf /usr/bin/llvm-strip-18 /usr/bin/llvm-strip
+    #- name: Fix Ubuntu 24.04 Clang Path for OpenWrt
+    #  run: |
+    #    # 1. 强制为系统默认的 clang/llvm 建立不带版本号的全局软链接
+    #    sudo ln -sf /usr/bin/clang-18 /usr/bin/clang
+    #    sudo ln -sf /usr/bin/llvm-strip-18 /usr/bin/llvm-strip
         
-        # 2. 注入全局变量，让 OpenWrt 构建系统显式得知 Clang 的位置
-        echo "CLANG=/usr/bin/clang" >> $GITHUB_ENV
-        echo "LLVM_STRIP=/usr/bin/llvm-strip" >> $GITHUB_ENV
+    #    # 2. 注入全局变量，让 OpenWrt 构建系统显式得知 Clang 的位置
+    #    echo "CLANG=/usr/bin/clang" >> $GITHUB_ENV
+    #    echo "LLVM_STRIP=/usr/bin/llvm-strip" >> $GITHUB_ENV
   
 
     - name: Download package
