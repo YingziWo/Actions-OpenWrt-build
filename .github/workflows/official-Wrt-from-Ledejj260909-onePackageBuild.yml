@@ -313,9 +313,10 @@ jobs:
     - name: Force Build Host Sed
       run: |
         cd /workdir/openwrt
+        echo -e "$(nproc) thread compile"
         mkdir -p staging_dir/host/bin
         make tools/sed/clean
-        make tools/sed/compile -j1 V=s
+        make tools/sed/compile -j1$(nproc) #     V=s
         if [ ! -f staging_dir/host/bin/sed ]; then
           ln -sf /usr/bin/sed staging_dir/host/bin/sed
         fi
@@ -323,15 +324,16 @@ jobs:
     - name: Build Remaining Tools & Toolchain
       run: |
         cd /workdir/openwrt
-        make tools/compile -j1 V=s
-        make toolchain/compile -j1 V=s
+        echo -e "$(nproc) thread compile"
+        make tools/compile -j1$(nproc)       # V=s
+        make toolchain/compile -j1$(nproc)   # V=s
       
     
     - name: Compile the firmware
       id: compile
       run: |
           cd openwrt
-          make -j1 package/kernel/bpf-headers/compile V=s
+          make -j1 package/kernel/bpf-headers/compile V=s CLANG=/usr/bin/clang LLVM_ROOT=/usr LLVM_PREFIX=/usr
          # echo -e "$(nproc) thread compile"
          # make -j$(nproc) || make -j1 || make -j1 V=s
          # echo "status=success" >> $GITHUB_OUTPUT
