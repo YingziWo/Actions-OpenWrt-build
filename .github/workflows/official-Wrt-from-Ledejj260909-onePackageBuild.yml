@@ -310,8 +310,23 @@ jobs:
     #    path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
     #    retention-days: 7                 # 附件保存天数（可自行修改，1-90天）
 
-
+    - name: Force Build Host Sed
+      run: |
+        cd /workdir/openwrt
+        mkdir -p staging_dir/host/bin
+        make tools/sed/clean
+        make tools/sed/compile -j1 V=s
+        if [ ! -f staging_dir/host/bin/sed ]; then
+          ln -sf /usr/bin/sed staging_dir/host/bin/sed
+        fi
+    
+    - name: Build Remaining Tools & Toolchain
+      run: |
+        cd /workdir/openwrt
+        make tools/compile -j1 V=s
+        make toolchain/compile -j1 V=s
       
+    
     - name: Compile the firmware
       id: compile
       run: |
