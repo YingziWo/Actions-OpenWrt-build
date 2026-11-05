@@ -23,9 +23,9 @@ ls
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default   #2024年只需要这一句，2026根据上游版本介绍用下面两句代替
 sed -i "/helloworld/d" "feeds.conf.default"
 #sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
-sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
+sed -i "1i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+#echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 #=================================================
@@ -74,7 +74,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 
 #再指定几个app到yingziwo目录下，测试.config启用后能否生效260919，261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
+######git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-diskman       #增加磁盘管理app diskman 20261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
@@ -105,10 +105,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash         # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash         # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
 #git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源，4.78-3和main都在总节点分流上有bug 截止到2024.10.22 #原作者仓库不见了，改到kenzok8上
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall          # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall          # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
@@ -132,10 +132,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go 
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 ##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
 ##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
-rm -rf feeds/packages/utils/v2dat
-rm -rf package/feeds/packages/v2dat
+######rm -rf feeds/packages/utils/v2dat
+######rm -rf package/feeds/packages/v2dat
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
-git_sparse_clone main https://github.com/kenzok8/small-package v2dat                      # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small-package v2dat                      # 核查有260909
 
 #zerotier
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
@@ -176,10 +176,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotime
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone main https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+######git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
 
 ##########################################其他设置##########################################
 ####################### 改用原作者xiaorouji源头的依赖代码######################################## #核查已经删库了，得改源头到kenzok8上
@@ -215,10 +215,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb    
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  # 这段核查有260909 ，经编译发现缺少许多的依赖而告警，换源头：https://github.com/Openwrt-Passwall/openwrt-passwall 2026.09.12
 #src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main  #官方语句
 #src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main               #官方语句
-git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall_packages
+######git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall_packages
 #git_sparse_clone main https://github.com/kenzok8/openwrt-packages kenzo
 #git_sparse_clone main https://github.com/kenzok8/small small
-git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall passwall_luci
+######git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall passwall_luci
 #-------------------------------------------------------------------------
 #git_sparse_clone main https://github.com/kenzok8/small-package brook
 #git_sparse_clone main https://github.com/kenzok8/small-package chinadns-ng
