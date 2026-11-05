@@ -328,6 +328,17 @@ jobs:
         make tools/compile -j1$(nproc)       # V=s
         make toolchain/compile -j1$(nproc)   # V=s
       
+    - name: Fix OpenWrt Host Clang Link
+      run: |
+        cd /workdir/openwrt
+        # 创建宿主机工具链的 bin 目录（如果不存在）
+        mkdir -p staging_dir/host/bin
+        
+        # 将系统 100% 存在的 clang 和 llvm 工具软链接过去，直接堵住它的报错出口
+        ln -sf /usr/bin/clang staging_dir/host/bin/clang
+        ln -sf /usr/bin/llvm-strip staging_dir/host/bin/llvm-strip
+        ln -sf /usr/bin/llvm-objcopy staging_dir/host/bin/llvm-objcopy
+        ln -sf /usr/bin/llvm-readelf staging_dir/host/bin/llvm-readelf
     
     - name: Compile the firmware
       id: compile
