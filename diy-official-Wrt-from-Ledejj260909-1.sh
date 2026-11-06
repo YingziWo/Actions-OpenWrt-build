@@ -75,10 +75,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 #再指定几个app到yingziwo目录下，测试.config启用后能否生效260919，261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
 ######git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
-git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
-git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
-git_sparse_clone main https://github.com/kenzok8/small-package taskd
+########git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+########git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
+########git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
+########git_sparse_clone main https://github.com/kenzok8/small-package taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-diskman       #增加磁盘管理app diskman 20261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockerman      #编译测试报错不能用 20260919
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-dockermanager  #编译测试报错不能用 20260919
@@ -104,7 +104,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-diskman 
 #adguardhome
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
+########git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
@@ -119,8 +119,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
 #ddns-go
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages ddns-go
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
-git_sparse_clone main https://github.com/kenzok8/small-package ddns-go                     # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go            # 核查有260909
+########git_sparse_clone main https://github.com/kenzok8/small-package ddns-go                     # 核查有260909
+########git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go            # 核查有260909
 # rm -rf feeds/small8/ddns-go feeds/small8/luci-app-ddns-go
 # git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go package/ddnsgo
 
