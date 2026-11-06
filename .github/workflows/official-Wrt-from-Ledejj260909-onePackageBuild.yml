@@ -22,7 +22,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: v25.12.5                               #v25.12.3 过不畅，换非argon的界面菜单不见了#v24.10.5不过，需要在当下的配置下调整屏蔽部分编译过程出现的告警包，没有再试 #v25.12.5过 #openwrt-25.12过 #<openwrt-25.12 ---左边的版本写法在官方openwrt版本分支版本相当于是β版，和写main、master效果一样，版本编译出来显示OpenWrt 25.12-SNAPSHOT，而v25.12.5的写法，编译过程虽然有告警，但最终生成的固件显示版本号是OpenWrt 25.12.5，与预期一样>  v25.12.5  
+  REPO_BRANCH: v25.12.6                               #v25.12.3 过不畅，换非argon的界面菜单不见了#v24.10.5不过，需要在当下的配置下调整屏蔽部分编译过程出现的告警包，没有再试 #v25.12.5过 #openwrt-25.12过 #<openwrt-25.12 ---左边的版本写法在官方openwrt版本分支版本相当于是β版，和写main、master效果一样，版本编译出来显示OpenWrt 25.12-SNAPSHOT，而v25.12.5的写法，编译过程虽然有告警，但最终生成的固件显示版本号是OpenWrt 25.12.5，与预期一样>  v25.12.5  
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: official-Wrt-from-Ledejj260909.config   #这个有docker
   #CONFIG_FILE: sc-clone-lede.config                   #原来的精简配置似乎没有docker
@@ -83,7 +83,7 @@ jobs:
               squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
               ruby bc pciutils lm-sensors pciutils gcc git perl golang g++ file \
               make gcc pahole dwarves libbpf-dev \
-              file grep sed apk-tools
+              file grep sed
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
 
@@ -256,8 +256,8 @@ jobs:
         make download -j8
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
 
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+        #find dl -size -1024c -exec ls -l {} \;
+        #find dl -size -1024c -exec rm -f {} \;
 
     
     - name: 修改基础参数
@@ -328,23 +328,23 @@ jobs:
         make tools/compile -j1$(nproc)       # V=s
         make toolchain/compile -j1$(nproc)   # V=s
       
-    - name: Fix OpenWrt Host Clang Link
-      run: |
-        cd /workdir/openwrt
-        # 创建宿主机工具链的 bin 目录（如果不存在）
-        mkdir -p staging_dir/host/bin
+    #- name: Fix OpenWrt Host Clang Link
+    #  run: |
+    #    cd /workdir/openwrt
+    #    # 创建宿主机工具链的 bin 目录（如果不存在）
+    #    mkdir -p staging_dir/host/bin
         
-        # 将系统 100% 存在的 clang 和 llvm 工具软链接过去，直接堵住它的报错出口
-        ln -sf /usr/bin/clang staging_dir/host/bin/clang
-        ln -sf /usr/bin/llvm-strip staging_dir/host/bin/llvm-strip
-        ln -sf /usr/bin/llvm-objcopy staging_dir/host/bin/llvm-objcopy
-        ln -sf /usr/bin/llvm-readelf staging_dir/host/bin/llvm-readelf
+    #    # 将系统 100% 存在的 clang 和 llvm 工具软链接过去，直接堵住它的报错出口
+    #    ln -sf /usr/bin/clang staging_dir/host/bin/clang
+    #    ln -sf /usr/bin/llvm-strip staging_dir/host/bin/llvm-strip
+    #    ln -sf /usr/bin/llvm-objcopy staging_dir/host/bin/llvm-objcopy
+    #    ln -sf /usr/bin/llvm-readelf staging_dir/host/bin/llvm-readelf
     
     - name: Compile the firmware
       id: compile
       run: |
           cd openwrt
-          make -j1 package/kernel/bpf-headers/compile V=s CLANG=/usr/bin/clang LLVM_ROOT=/usr LLVM_PREFIX=/usr
+          make -j1 package/kernel/bpf-headers/compile V=s     #CLANG=/usr/bin/clang LLVM_ROOT=/usr LLVM_PREFIX=/usr
          # echo -e "$(nproc) thread compile"
          # make -j$(nproc) || make -j1 || make -j1 V=s
          # echo "status=success" >> $GITHUB_OUTPUT
