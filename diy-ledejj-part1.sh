@@ -68,6 +68,11 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
+# for dae 20261107
+git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
+git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
+git_sparse_clone main https://github.com/kenzok8/openwrt-daede daed
+
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
