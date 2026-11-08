@@ -68,6 +68,13 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
+# 2026.11.08为能编程出dae、daed而禁用了24、26句后，软件仓库istore的包没了，这里补上
+git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
+git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
+git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
+git_sparse_clone main https://github.com/kenzok8/small-package taskd
+
+
 # for dae 20261107
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
