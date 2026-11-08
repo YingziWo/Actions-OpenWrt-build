@@ -53,7 +53,7 @@ pwd
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 #for dae daed honk 20261104依赖增加
-git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf 
+#git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf 
 
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
