@@ -291,18 +291,21 @@ jobs:
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.18.49                              
-          - 🌐 默认地址: 192.168.4.10 
+          - 🚀 内核版本:  K6.18.62
+          - ⚠️ openwrt版本：24.10.5 
+          - 🌐 默认地址: 192.168.1.1 
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
        
            
           ### 📒 插件列表:
           ```
-          Docker (在固件系统软件包内安装)
+          Docker (需手动禁用fw3、开放fw4的访问)
           Openclash
           Passwall
           SSR+
+          Dae
+          Daed
           AdguardHome
           iStore
           SmartDNS
