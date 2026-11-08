@@ -210,8 +210,8 @@ jobs:
         rm -rf package/feeds/small/luci-app-honk
         rm -rf package/feeds/wall/docker   #2026.09.13去除编译错误的插件
         rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件
-        #rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
-        #rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
+        rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
+        rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
         
                
         make defconfig
