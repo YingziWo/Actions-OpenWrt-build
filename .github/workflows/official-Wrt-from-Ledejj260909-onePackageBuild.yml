@@ -251,7 +251,7 @@ jobs:
         rm -rf package/feeds/packages/runc
         rm -rf package/feeds/packages/tini
 
-        rm -rf /workdir/openwrt/package/kernel/bpf-headers
+        #rm -rf /workdir/openwrt/package/kernel/bpf-headers
         
                 
         make defconfig
