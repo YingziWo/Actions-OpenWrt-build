@@ -21,9 +21,9 @@ ls
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default   #2024年只需要这一句，2026根据上游版本介绍用下面两句代替
 sed -i "/helloworld/d" "feeds.conf.default"
-sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
+#sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
-sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
+#sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
 echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
@@ -69,9 +69,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon 
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
 # for dae 20261107
-git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
-git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
-git_sparse_clone main https://github.com/kenzok8/openwrt-daede daed
+#git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
+#git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
+#git_sparse_clone main https://github.com/kenzok8/openwrt-daede daed
+git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf 
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
