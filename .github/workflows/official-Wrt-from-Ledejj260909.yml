@@ -247,8 +247,9 @@ jobs:
         rm -rf package/feeds/wall/docker
         #rm -rf package/feeds/packages/containerd
         #rm -rf package/feeds/packages/docker-compose
-        rm -rf package/feeds/packages/runc   
+        #rm -rf package/feeds/packages/runc   
         #rm -rf package/feeds/packages/tini
+        # helloworld和small的仓库里都有xray-core,而且版本不一样，small更新，删除它20261109
         rm -rf feeds/small/xray-core
         
                 
