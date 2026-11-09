@@ -249,6 +249,7 @@ jobs:
         rm -rf package/feeds/packages/docker-compose
         rm -rf package/feeds/packages/runc   
         rm -rf package/feeds/packages/tini
+        rm -rf feeds/small/xray-core
         
                 
         make defconfig
