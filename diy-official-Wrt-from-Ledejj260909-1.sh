@@ -74,7 +74,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-co
 
 #再指定几个app到yingziwo目录下，测试.config启用后能否生效260919，261014
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-smartdns       #编译测试报错不能用 20260919
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
+#git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
