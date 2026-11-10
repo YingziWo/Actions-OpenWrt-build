@@ -179,10 +179,10 @@ jobs:
         echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.12
         echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.12
         echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12   #编译到linux内核的net部分报错，先全禁止看看还有其他错误没有 20261110上午
         echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
+        #echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
+        #echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
         echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.12
         echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.12
         echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.12
