@@ -151,7 +151,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        $GITHUB_WORKSPACE/$DIY_P3_SH
+        chmod +x $DIY_P3_SH && $DIY_P3_SH
 
     - name: Inject Kernel Configs
       run: |
