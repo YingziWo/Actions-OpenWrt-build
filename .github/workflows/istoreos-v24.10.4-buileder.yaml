@@ -14,6 +14,7 @@
 #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 #FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 #ubunt版本改24.04版本
+
 name: istoreos-v24.10.4 OpenWrt Builder
 
 on:
@@ -153,39 +154,39 @@ jobs:
     - name: Inject Kernel Configs
       run: |
         cd openwrt
-        sed -i '/CONFIG_XDP_SOCKETS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_XDP_SOCKETS_DIAG/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF_SYSCALL/d' target/linux/x86/config-6.12        
-        sed -i '/CONFIG_BPF_JIT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_CGROUPS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.12
-        sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_XDP_SOCKETS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_XDP_SOCKETS_DIAG/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF_SYSCALL/d' target/linux/x86/config-6.6       
+        sed -i '/CONFIG_BPF_JIT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_CGROUPS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.6
+        sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.6
 
-        echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_SYSCALL=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12        
+        echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_SYSCALL=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.6        
 
     - name: Download package
       id: package
