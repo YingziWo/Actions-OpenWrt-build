@@ -136,7 +136,13 @@ jobs:
            rm -rf feeds/luci/applications/luci-app-mosdns
            rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,sing*,smartdns} feeds/packages/utils/v2dat feeds/packages/lang/golang
            git clone https://github.com/kenzok8/golang -b 1.26 feeds/packages/lang/golang
-      
+           echo "开始替换 feeds中的rust ..."
+           echo "========================================"
+           rm -rf openwrt/feeds/packages/lang/rust
+           cp -r patches/rust openwrt/feeds/packages/lang/
+           echo "===== 查看rust文件是否存在 ====="
+           ls -l openwrt/feeds/packages/lang/ | grep rust
+           # 额外验证Makefile是否存在（核心文件）
 
     - name: Install feeds
       run: |
@@ -213,15 +219,15 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Fix Rust 1.90.0 Cargo.toml.orig missing error
-      run: |
-        cd openwrt
-        # 1. 移除全局构建脚本中自动删除 .orig 文件的命令
-        sed -i "s/-name '\*\.orig' -delete//g" include/package.mk
-        sed -i "s/-name '\*\.orig' -delete//g" include/host-build.mk
+    #- name: Fix Rust 1.90.0 Cargo.toml.orig missing error
+    #  run: |
+    #    cd openwrt
+    #    # 1. 移除全局构建脚本中自动删除 .orig 文件的命令
+    #    sed -i "s/-name '\*\.orig' -delete//g" include/package.mk
+    #    sed -i "s/-name '\*\.orig' -delete//g" include/host-build.mk
         
-        # 2. 清理之前可能残留的损坏 Rust 编译目录（防止缓存影响）
-        rm -rf build_dir/target-*/host/rustc-*-src
+    #    # 2. 清理之前可能残留的损坏 Rust 编译目录（防止缓存影响）
+    #    rm -rf build_dir/target-*/host/rustc-*-src
         
 
     - name: Compile the firmware
