@@ -28,6 +28,7 @@ env:
   CONFIG_FILE: istoreos-24.10.4.config  
   DIY_P1_SH: diy-istoreos-24.10.4-1.sh
   DIY_P2_SH: diy-istoreos-24.10.4-2.sh
+  DIY_P3_SH: rust.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -136,13 +137,7 @@ jobs:
            rm -rf feeds/luci/applications/luci-app-mosdns
            rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,sing*,smartdns} feeds/packages/utils/v2dat feeds/packages/lang/golang
            git clone https://github.com/kenzok8/golang -b 1.26 feeds/packages/lang/golang
-           echo "开始替换 feeds中的rust ..."
-           echo "========================================"
-           rm -rf openwrt/feeds/packages/lang/rust
-           cp -r patches/rust openwrt/feeds/packages/lang/
-           echo "===== 查看rust文件是否存在 ====="
-           ls -l openwrt/feeds/packages/lang/ | grep rust
-           # 额外验证Makefile是否存在（核心文件）
+
 
     - name: Install feeds
       run: |
@@ -156,6 +151,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$DIY_P3_SH
 
     - name: Inject Kernel Configs
       run: |
