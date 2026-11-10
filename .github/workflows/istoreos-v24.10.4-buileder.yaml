@@ -213,6 +213,17 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: Fix Rust 1.90.0 Cargo.toml.orig missing error
+      run: |
+        cd openwrt
+        # 1. 移除全局构建脚本中自动删除 .orig 文件的命令
+        sed -i "s/-name '\*\.orig' -delete//g" include/package.mk
+        sed -i "s/-name '\*\.orig' -delete//g" include/host-build.mk
+        
+        # 2. 清理之前可能残留的损坏 Rust 编译目录（防止缓存影响）
+        rm -rf build_dir/target-*/host/rustc-*-src
+        
+
     - name: Compile the firmware
       id: compile
       run: |
