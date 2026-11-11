@@ -76,10 +76,10 @@ jobs:
         sudo -E apt-get -qq update
 
         # 4. 修复可能中断的安装并清理系统垃圾（修复了原句中 install 缺参数的问题） # make gcc lld pahole dwarves libbpf-dev 20261107新增for dae honk准备的依赖
-        sudo -E apt-get -qq install -y --fix-missing ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang cmake cpio curl \
+        sudo -E apt-get -qq install -y --fix-missing ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache clang-12 cmake cpio curl \
                         device-tree-compiler flex gawk gcc-multilib g++-multilib gettext genisoimage git gperf haveged help2man intltool \
                         libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev \
-                        libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools \
+                        libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm-12 lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools \
                         qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
                         ruby bc pciutils lm-sensors pciutils gcc git perl golang \
                         make gcc lld pahole dwarves libbpf-dev
@@ -218,7 +218,7 @@ jobs:
         make defconfig
         make download -j8
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
-        #rm -rf package/kernel/bpf-headers        #在24.10.4版本和25.12版本中都报错，删了看看结果如何
+        #rm -rf package/kernel/bpf-headers        #在24.10.4版本和25.12版本中都报错，删了看看结果如何，只要其他的部件用到LLVM/clang工具的都会报错。主要是涉及用到eBPF的插件类。
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
@@ -232,37 +232,6 @@ jobs:
     #    # 2. 清理之前可能残留的损坏 Rust 编译目录（防止缓存影响）
     #    rm -rf build_dir/target-*/host/rustc-*-src
 
-    - name: Compress openwrt directory including hidden files
-      run: |
-        # 使用 tar 打包整个目录，保留所有隐藏文件和权限
-        cd openwrt
-        pwd
-        ls -la
-        df -hT $PWD
-        #make clean
-        mkdir -p /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
-        pwd
-        ls -la
-        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
-        df -hT $PWD
-        pwd
-        #tar -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/.  #这句能打包下openwrt目录下包含带.的和不带.目录和目录下所有文件内容，实际压缩包中含.的隐藏文件，但因为隐藏，在-v显示日志中不显示这些带.文件，但是这样写全目录路径也会一同把这么多的路径名称打进包里，解压时也会建立这么多的路径。
-        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt
-        tar --exclude='sorce-temp' -czvf /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp/opewrtsrc.tar.gz ./.
-        cd /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp
-        df -hT $PWD
-        pwd
-        ls -la
-        
-
-        
-    - name: Upload openwrt directory to Artifacts
-      uses: actions/upload-artifact@v7
-      with:
-        name: iStoreOSwrt-Source-before-Build         # 附件上下载目录显示的文件名
-        path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
-        retention-days: 7           
-    
     - name: Compile the firmware
       id: compile
       run: |
