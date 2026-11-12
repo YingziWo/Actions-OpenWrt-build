@@ -82,7 +82,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package taskd
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede daed
-git clone https://github.com/QiuSimons/vmlinux-btf package/yingziwo/vmlinux-btf 
+git clone https://github.com/QiuSimons/vmlinux-btf package/yingziwo/vmlinux-btf
+git clone https://github.com/llvm/llvm-project.git package/llvm-project
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
