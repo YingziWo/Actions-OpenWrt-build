@@ -23,11 +23,11 @@ ls
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default   #2024年只需要这一句，2026根据上游版本介绍用下面两句代替
 sed -i "/helloworld/d" "feeds.conf.default"
 #sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
-#sed -i "1i src-git vmlinux-btf https://github.com/kenzok8/vmlinux-btf" "feeds.conf.default"
+#sed -i "1i src-git vmlinux-btf https://github.com/kenzok8/vmlinux-btf" "feeds.conf.default" #报错
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
 echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
-echo "src-git vmlinux-btf https://github.com/QiuSimons/vmlinux-btf.git" >> "feeds.conf.default"
+#echo "src-git vmlinux-btf https://github.com/QiuSimons/vmlinux-btf.git" >> "feeds.conf.default" #报错
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 #=================================================
@@ -78,11 +78,11 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 
 
-# for dae 20261107
+# for dae 20261112
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede dae
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede daed
-git clone https://github.com/QiuSimons/vmlinux-btf package/vmlinux-btf 
+git clone https://github.com/QiuSimons/vmlinux-btf package/yingziwo/vmlinux-btf 
 
 #luci-app-store
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
