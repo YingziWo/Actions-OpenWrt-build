@@ -240,18 +240,20 @@ jobs:
         # helloworld和small的仓库里都有xray-core,而且版本不一样，small更新，删除它20261109
         rm -rf feeds/small/xray-core
         rm -rf package/yingziwo/luci-app-ssr-plus
-        ls -lah dl
+        
                        
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
 
     
     - name: 获得liunx内核版本
       id: get-kernel
       run: |
         cd openwrt
+        ls -lah dl
         mkdir tmptmp
         cd tmptmp
         ls /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/openwrt/dl/linux-6.* > tmp2
