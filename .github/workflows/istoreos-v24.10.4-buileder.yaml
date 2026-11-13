@@ -331,8 +331,8 @@ jobs:
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.18.62
-          - ⚠️ openwrt版本：24.10.5 
+          - 🚀 内核版本:  K6.12.112
+          - ⚠️ openwrt版本：25.12.6
           - 🌐 默认地址: 192.168.1.1 
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
@@ -340,17 +340,15 @@ jobs:
            
           ### 📒 插件列表:
           ```
-          Docker (需手动禁用fw3、开放fw4的访问)
+          Docker (需手动安装，然后禁用fw3、开放fw4的访问)
           Openclash
-          Passwall
+          Passwall & 2
           SSR+
-          Dae
-          Daed
           AdguardHome
           iStore
-          SmartDNS
-          KMS Server
-          NAS
+          mosDNS
+          动态DNS
+          ACME证书
           ...
 
     - name: list disk space
