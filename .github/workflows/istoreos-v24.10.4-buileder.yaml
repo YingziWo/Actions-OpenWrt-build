@@ -221,6 +221,7 @@ jobs:
         #rm -rf package/kernel/bpf-headers        #在24.10.4版本和25.12版本中都报错，删了看看结果如何，只要其他的部件用到LLVM/clang工具的都会报错。主要是涉及用到eBPF的插件类。
         #find dl -size -1024c -exec ls -l {} \;
         #find dl -size -1024c -exec rm -f {} \;
+        ls -lah dl
 
     #- name: Fix Rust 1.90.0 Cargo.toml.orig missing error
     #  run: |
