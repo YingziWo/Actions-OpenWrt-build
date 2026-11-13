@@ -184,6 +184,7 @@ jobs:
         sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.12
         sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_LTO_CLANG_THIN/d' target/linux/x86/config-6.12
 
         echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.12
         echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.12
@@ -202,6 +203,7 @@ jobs:
         echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.12
         echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
         echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12
+        echo "CONFIG_LTO_CLANG_THIN=y" >> target/linux/x86/config-6.12
 
     #- name: Fix Ubuntu 24.04 Clang Path for OpenWrt
     #  run: |
