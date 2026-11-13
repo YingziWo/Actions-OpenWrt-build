@@ -163,8 +163,8 @@ jobs:
         sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.12
-        #sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.12
-        #sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.12
         sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.12
@@ -181,8 +181,8 @@ jobs:
         echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.12
         echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12   #编译到linux内核的net部分报错，先全禁止看看还有其他错误没有 20261110上午
         echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.12
-        #echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
-        #echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
+        echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
         echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.12
         echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.12
         echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.12
