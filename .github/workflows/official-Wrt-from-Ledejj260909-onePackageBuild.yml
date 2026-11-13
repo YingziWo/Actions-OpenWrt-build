@@ -327,12 +327,12 @@ jobs:
           ln -sf /usr/bin/sed staging_dir/host/bin/sed
         fi
     
-    - name: Build Remaining Tools & Toolchain
-      run: |
-        cd /workdir/openwrt
-        echo -e "$(nproc) thread compile"
-        make tools/compile -j1$(nproc)       # V=s
-        make toolchain/compile -j1$(nproc)   # V=s
+    #- name: Build Remaining Tools & Toolchain
+    #  run: |
+    #    cd /workdir/openwrt
+    #    echo -e "$(nproc) thread compile"
+    #    make tools/compile -j1$(nproc)       # V=s
+    #    make toolchain/compile -j1$(nproc)   # V=s
       
     #- name: Fix OpenWrt Host Clang Link
     #  run: |
