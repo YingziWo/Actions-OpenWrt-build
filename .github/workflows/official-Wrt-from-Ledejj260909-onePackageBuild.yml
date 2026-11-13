@@ -262,6 +262,7 @@ jobs:
 
         #find dl -size -1024c -exec ls -l {} \;
         #find dl -size -1024c -exec rm -f {} \;
+        ls -lah dl
 
     
     - name: 修改基础参数
@@ -269,6 +270,7 @@ jobs:
         [ -e files ] && mv files openwrt/files
         chmod +x $DIY_P3_SH
         cd openwrt
+        cat .config
         $GITHUB_WORKSPACE/$DIY_P3_SH  
     
     - name: 获得liunx内核版本
