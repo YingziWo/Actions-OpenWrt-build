@@ -248,10 +248,10 @@ jobs:
         rm -rf package/feeds/kenzo/luci-app-smartdns
         rm -rf package/feeds/wall/dockerd
         rm -rf package/feeds/wall/docker
-        rm -rf package/feeds/packages/containerd
-        rm -rf package/feeds/packages/docker-compose
-        rm -rf package/feeds/packages/runc
-        rm -rf package/feeds/packages/tini
+        #rm -rf package/feeds/packages/containerd
+        #rm -rf package/feeds/packages/docker-compose
+        #rm -rf package/feeds/packages/runc
+        #rm -rf package/feeds/packages/tini
 
         #rm -rf /workdir/openwrt/package/kernel/bpf-headers
         
