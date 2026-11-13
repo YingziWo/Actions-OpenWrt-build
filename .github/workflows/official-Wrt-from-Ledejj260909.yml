@@ -260,6 +260,7 @@ jobs:
 
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        ls -lah dl
 
     
     - name: 修改基础参数
