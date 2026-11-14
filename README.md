@@ -34,6 +34,7 @@ Cloud Building OpenWrt with the GitHub Actions
 - [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede)
 - [immortalwrt/immortalwrt](https://github.com/immortalwrt/immortalwrt)
 - [Lienol/openwrt](https://github.com/Lienol/openwrt)
+- [istoreos/istoreos](https://github.com/istoreos/istoreos)
 - [jlumbroso/free-disk-space](https://github.com/jlumbroso/free-disk-space)
 - [Mikubill/transfer](https://github.com/Mikubill/transfer)
 - [P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)
