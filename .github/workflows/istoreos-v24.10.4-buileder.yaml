@@ -137,9 +137,12 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
+           rm -rf feeds/packages/lang/golang
+           git clone https://github.com/kenzok8/golang -b 1.27 feeds/packages/lang/golang
+           #上面两句需要是编译到dae、honk时报go版本只有本地的版本1.26.9,不够，它们需要1.27以上版本
            #rm -rf feeds/luci/applications/luci-app-mosdns
            #rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,sing*,smartdns} feeds/packages/utils/v2dat feeds/packages/lang/golang
-           #git clone https://github.com/kenzok8/golang -b 1.26 feeds/packages/lang/golang
+           
 
 
     - name: Install feeds
