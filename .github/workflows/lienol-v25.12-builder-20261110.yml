@@ -380,7 +380,7 @@ jobs:
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本: K${{ steps.get-kernel.outputs.ker }}                             
-          - 🌐 默认地址: 192.168.4.10
+          - 🌐 默认地址: 192.168.100.1
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
        
@@ -393,6 +393,8 @@ jobs:
           Openclash
           iStore  
           Wireguard
+          honk
+          dae
           终端
           ...
 
