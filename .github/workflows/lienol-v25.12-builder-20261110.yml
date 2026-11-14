@@ -247,8 +247,21 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         cat .config
-        
 
+        
+    #  插入简单缓存机制
+    - name: Cache OpenWrt dl and toolchain
+      uses: actions/cache@v4
+      with:
+        path: |
+          openwrt/dl
+          openwrt/staging_dir/host
+          openwrt/staging_dir/toolchain-*
+        # 使用架构配置（TARGET_BOARD）和默认配置哈希作为 Key
+        key: openwrt-cache-${{ hashFiles('openwrt/.config') }}
+        # 如果 .config 有微调（如增减了几个插件），允许回退使用最近的缓存
+        restore-keys: |
+          openwrt-cache-
     
     - name: 获得liunx内核版本
       id: get-kernel
