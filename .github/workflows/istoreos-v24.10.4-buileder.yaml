@@ -228,6 +228,9 @@ jobs:
                
         make defconfig
         make download -j8
+        rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本
+        ls -lah feeds/packages/lang/golang
+        pwd
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
         #rm -rf package/kernel/bpf-headers        #在24.10.4版本和25.12版本中都报错，删了看看结果如何，只要其他的部件用到LLVM/clang工具的都会报错。主要是涉及用到eBPF的插件类。
         #find dl -size -1024c -exec ls -l {} \;
