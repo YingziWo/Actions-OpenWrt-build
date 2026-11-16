@@ -281,6 +281,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Compress openwrt directory including hidden files
+      if: (!cancelled())
       run: |
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
         cd openwrt
@@ -304,6 +305,7 @@ jobs:
         
     - name: Upload openwrt directory to Artifacts
       uses: actions/upload-artifact@v7
+      if: (!cancelled())
       with:
         name: iStoreOS-openwrt-before-compile         # 附件上下载目录显示的文件名
         path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
