@@ -247,6 +247,18 @@ jobs:
     #    # 2. 清理之前可能残留的损坏 Rust 编译目录（防止缓存影响）
     #    rm -rf build_dir/target-*/host/rustc-*-src
 
+
+    - name: Compile the firmware
+      id: compile
+      run: |
+        cd openwrt
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j1 || make -j1 V=s
+        echo "status=success" >> $GITHUB_OUTPUT
+        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
     - name: Compress openwrt directory including hidden files
       run: |
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
@@ -276,16 +288,6 @@ jobs:
         path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
         retention-days: 7       
 
-    - name: Compile the firmware
-      id: compile
-      run: |
-        cd openwrt
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
-        echo "status=success" >> $GITHUB_OUTPUT
-        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
-        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
     - name: Check space usage
       if: (!cancelled())
