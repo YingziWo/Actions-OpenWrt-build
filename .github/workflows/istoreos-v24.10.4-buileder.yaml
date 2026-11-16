@@ -36,7 +36,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  GOTOOLCHAIN: auto
+  #GOTOOLCHAIN: auto    #并不能改变编译固件内部的go工具选择，这条件仅仅对宿主机工具环境有影响，内部的环境并不取决于此参数，故，注释掉。20261116
   TZ: Asia/Shanghai
     
     
@@ -223,7 +223,7 @@ jobs:
         rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
 
-        rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本
+        #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，即使删除，编译工具就使用更早的版本，而无视1.27版本的存在，没有起做，故，注释掉。20261116
         
                
         make defconfig
@@ -259,6 +259,27 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
 
+
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@v7  #actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin
+
+    - name: Organize files
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+
     - name: Compress openwrt directory including hidden files
       run: |
         # 使用 tar 打包整个目录，保留所有隐藏文件和权限
@@ -286,28 +307,7 @@ jobs:
       with:
         name: iStoreOS-openwrt-before-compile         # 附件上下载目录显示的文件名
         path: /home/runner/work/Actions-OpenWrt-build/Actions-OpenWrt-build/sorce-temp       # 要上传的所有文件所在路径，该路径下的所有文件会压缩成一个文件zip文件传到附件区
-        retention-days: 7       
-
-
-    - name: Check space usage
-      if: (!cancelled())
-      run: df -hT
-
-    - name: Upload bin directory
-      uses: actions/upload-artifact@v7  #actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/bin
-
-    - name: Organize files
-      id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
-      run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
+        retention-days: 7               
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@v7    #actions/upload-artifact@main
