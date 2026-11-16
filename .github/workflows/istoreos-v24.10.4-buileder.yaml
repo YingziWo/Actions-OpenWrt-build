@@ -140,7 +140,8 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
         rm -rf feeds/packages/lang/golang
-        git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang   
+        git clone https://github.com/sbwml/packages_lang_golang -b main feeds/packages/lang/golang
+        #git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang   
         
            #rm -rf feeds/packages/lang/golang
            #git clone https://github.com/kenzok8/golang -b 1.27 feeds/packages/lang/golang
