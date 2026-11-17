@@ -267,7 +267,8 @@ jobs:
         cat feeds/packages.tmp/info/.packageinfo-lang_golang_golang
         echo "✅ 四、对上面两个文件中涉及golang版本的内容进行替换✅"
         sed -i 's/GO_DEFAULT_VERSION:=1.26/GO_DEFAULT_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
-        sed -i 's/1.26/1.27/g' feeds/packages.tmp/info/.packageinfo-lang_golang_golang 
+        sed -i 's/1.26/1.27/g' feeds/packages.tmp/info/.packageinfo-lang_golang_golang
+        sed -i 's/GO_HOST_VERSION:=$(patsubst golang%\/host,%\,$(filter golang%\/host,$(PKG_BUILD_DEPENDS)))/GO_HOST_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
         echo "✅ 五、显示最终golang-values.mk文件内容✅"
         cat feeds/packages/lang/golang/golang-values.mk
         echo "✅ 六、显示最终.packageinfo-lang_golang_golang文件内容✅"
