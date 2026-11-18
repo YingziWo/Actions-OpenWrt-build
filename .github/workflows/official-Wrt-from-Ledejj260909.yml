@@ -416,7 +416,9 @@ jobs:
           ### 📒 插件列表:
           ```
           AdGuardHome
+          daed
           Passwall
+          honk
           MosDNS
           Openclash
           iStore  
