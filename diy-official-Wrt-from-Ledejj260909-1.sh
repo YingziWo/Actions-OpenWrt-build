@@ -85,10 +85,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-diskman 
 #git_sparse_clone main https://github.com/lisaac/luci-lib-docker luci-lib-docker        #编译测试报错不能用 20260919
 
 #luci-app-store
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
-##git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-store
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-taskd
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-lib-xterm
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages taskd
 #git_sparse_clone main https://github.com/linkease/istore luci/luci-app-store  #2024版的用法
 #git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-taskd  #2024版的用法
 #git_sparse_clone main https://github.com/linkease/istore luci/luci-lib-xterm  #2024版的用法
