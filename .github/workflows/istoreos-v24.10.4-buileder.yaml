@@ -375,7 +375,7 @@ jobs:
         #body_path: release.txt    #body_path优先于body ，body的内容会不输出，因此屏蔽body_path
         files: ${{ env.FIRMWARE }}/*
         body: |
-          ===Firmware for x86_64===
+          ===iStoreOS Firmware V25.12.6 for x86_64===
            
           ### 📒 固件信息
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
@@ -383,7 +383,7 @@ jobs:
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🚀 内核版本:  K6.12.112
           - ⚠️ openwrt版本：25.12.6
-          - 🌐 默认地址: 192.168.1.1 
+          - 🌐 默认地址: 192.168.100.1 
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
        
@@ -393,11 +393,14 @@ jobs:
           Docker (需手动安装，然后禁用fw3、开放fw4的访问)
           Openclash
           Passwall & 2
+          daede
+          honk
           SSR+
           AdguardHome
           iStore
           mosDNS
           动态DNS
+          wireguard
           ACME证书
           ...
 
