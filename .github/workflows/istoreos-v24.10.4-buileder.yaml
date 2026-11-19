@@ -237,30 +237,30 @@ jobs:
         make defconfig
         make download -j8
         #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，不起作用，改下面四句，20261116
+        #注：改动要能让插件编译系统真正认到被改动过的golang版本上，必须修改下面三文件中内容，再配合上编译插件前先要提前编译goang工具，版本到好修改要求的golang版本host上，才能让需要的go版本工具具体生效，两者缺一不可，20261119。
+        echo "✅ 一、显示golang目录下文件内容✅"
+        ls -lah feeds/packages/lang/golang
+        echo "✅ 二、显示golang目录下golang-values.mk文件内容✅"
+        cat feeds/packages/lang/golang/golang-values.mk
+        echo "✅ 三、显示packages.tmp/info目录下.packageinfo-lang_golang_golang文件内容✅"
+        cat feeds/packages.tmp/info/.packageinfo-lang_golang_golang
+        echo "✅ 四、对上面两个文件中涉及golang版本的内容进行替换✅"
+        sed -i 's/GO_DEFAULT_VERSION:=1.26/GO_DEFAULT_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
+        sed -i 's/1.26/1.27/g' feeds/packages.tmp/info/.packageinfo-lang_golang_golang 
+        sed -i 's/GO_HOST_VERSION:=$(patsubst golang%\/host,%\,$(filter golang%\/host,$(PKG_BUILD_DEPENDS)))/GO_HOST_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
+        echo "✅ 五、显示最终golang-values.mk文件内容✅"
+        cat feeds/packages/lang/golang/golang-values.mk
+        echo "✅ 六、显示最终.packageinfo-lang_golang_golang文件内容✅"
+        cat feeds/packages.tmp/info/.packageinfo-lang_golang_golang
+        pwd
+        echo "✅ 七、替换golang版本文件内容步骤结束✅"
+        echo "✅ 八、显示原golang-package.mk文件内容✅"      #改GOTOOLCHAIN=local到GOTOOLCHAIN=auto后，go版本使用缺省的1.22版本，GOTOOLCHAIN又不允许下载合适版本，改动失败
+        cat feeds/packages/lang/golang/golang-package.mk
+        echo "✅ 九、替换golang-package.mk文件的GOTOOLCHAIN=local到GOTOOLCHAIN=auto内容✅"
+        sed -i 's/GOTOOLCHAIN=local/GOTOOLCHAIN=auto/g' feeds/packages/lang/golang/golang-package.mk
+        echo "✅ 十、显示golang-package.mk被修改后的文件内容✅"
+        cat feeds/packages/lang/golang/golang-package.mk
         
-        ##echo "✅ 一、显示golang目录下文件内容✅"
-        ##ls -lah feeds/packages/lang/golang
-        ##echo "✅ 二、显示golang目录下golang-values.mk文件内容✅"
-        ##cat feeds/packages/lang/golang/golang-values.mk
-        ##echo "✅ 三、显示packages.tmp/info目录下.packageinfo-lang_golang_golang文件内容✅"
-        ##cat feeds/packages.tmp/info/.packageinfo-lang_golang_golang
-        ##echo "✅ 四、对上面两个文件中涉及golang版本的内容进行替换✅"
-        ##sed -i 's/GO_DEFAULT_VERSION:=1.26/GO_DEFAULT_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
-        ##sed -i 's/1.26/1.27/g' feeds/packages.tmp/info/.packageinfo-lang_golang_golang 
-        ##sed -i 's/GO_HOST_VERSION:=$(patsubst golang%\/host,%\,$(filter golang%\/host,$(PKG_BUILD_DEPENDS)))/GO_HOST_VERSION:=1.27/g' feeds/packages/lang/golang/golang-values.mk
-        ##echo "✅ 五、显示最终golang-values.mk文件内容✅"
-        ##cat feeds/packages/lang/golang/golang-values.mk
-        ##echo "✅ 六、显示最终.packageinfo-lang_golang_golang文件内容✅"
-        ##cat feeds/packages.tmp/info/.packageinfo-lang_golang_golang
-        ##pwd
-        ##echo "✅ 七、替换golang版本文件内容步骤结束✅"
-        
-        #echo "✅ 八、显示原golang-package.mk文件内容✅"      #改GOTOOLCHAIN=local到GOTOOLCHAIN=auto后，go版本使用缺省的1.22版本，GOTOOLCHAIN又不允许下载合适版本，改动失败
-        #cat feeds/packages/lang/golang/golang-package.mk
-        #echo "✅ 九、替换golang-package.mk文件的GOTOOLCHAIN=local到GOTOOLCHAIN=auto内容✅"
-        #sed -i 's/GOTOOLCHAIN=local/GOTOOLCHAIN=auto/g' feeds/packages/lang/golang/golang-package.mk
-        #echo "✅ 十、显示golang-package.mk被修改后的文件内容✅"
-        #cat feeds/packages/lang/golang/golang-package.mk
         #rm -rf package/feeds/packages/tini     # 2024.09.13再编译时，它报错，删除再试。之前的编译在参数都相同的情况下没有报错.真正原因是因为go编译器版本不对，上游的lede源码核心升级到了6.6.50，原来是6.6.46，因此编译必须要跟着升级到23.x版本，原来是22.x版本。更换了编译就正常通过，这条就注释掉。
         #rm -rf package/kernel/bpf-headers        #在24.10.4版本和25.12版本中都报错，删了看看结果如何，只要其他的部件用到LLVM/clang工具的都会报错。主要是涉及用到eBPF的插件类。
         #find dl -size -1024c -exec ls -l {} \;
@@ -283,7 +283,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make package/golang1.27/host/compile
+        make package/golang1.27/host/compile   
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
