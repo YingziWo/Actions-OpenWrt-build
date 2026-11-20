@@ -210,7 +210,17 @@ jobs:
         rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件
         rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
-
+        rm -rf package/feeds/video/cairo
+        rm -rf package/feeds/video/kmscube
+        rm -rf package/feeds/video/libepoxy
+        rm -rf package/feeds/video/libwpe
+        rm -rf package/feeds/video/qt5base
+        rm -rf package/feeds/video/sdl2
+        rm -rf package/feeds/video/vkmark
+        rm -rf package/feeds/video/weston
+        rm -rf package/feeds/video/wlroots
+        rm -rf package/feeds/video/wpebackend-fdo
+        
         #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，即使删除，编译工具就使用更早的版本，而无视1.27版本的存在，没有起做，故，注释掉。20261116
         
                
