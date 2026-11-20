@@ -112,6 +112,7 @@ git_sparse_clone main https://github.com/daeuniverse/openwrt-packages dae
 git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-dae
 git_sparse_clone main https://github.com/daeuniverse/openwrt-packages honk
 git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-honk
+git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-lib-daeuniverse
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
