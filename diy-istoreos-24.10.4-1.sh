@@ -108,13 +108,13 @@ git clone https://github.com/QiuSimons/vmlinux-btf package/yingziwo/vmlinux-btf
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
 
 # 用QiuSimons的dae和honk的源码，在yaml中删除kenzok8/small的dae、daede、honk、luci-app-honk，20261119源码报dae的core错误，要等上游修复，这里改用QiuSimons。用QiuSimons的honk要额外用到zig、bpf-linker工具的安装，换官方的源码。
-#git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae dae
-#git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
-git_sparse_clone main https://github.com/daeuniverse/dae dae
-git_sparse_clone main https://github.com/daeuniverse/honk honk
-git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-dae
-git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-honk
-git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-lib-daeuniverse
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae dae
+git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
+#git_sparse_clone main https://github.com/daeuniverse/dae dae
+#git_sparse_clone main https://github.com/daeuniverse/honk honk
+#git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-dae
+#git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-honk
+#git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-lib-daeuniverse
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
