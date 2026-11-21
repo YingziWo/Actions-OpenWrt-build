@@ -288,7 +288,7 @@ jobs:
         sudo rm -f ./tmp/zig.tar.xz
         #sudo chmod +x ./usr/"zig-linux-x86_64-${ZIG_VERSION}"
         sudo ln -sf "/usr/zig-linux-x86_64-${ZIG_VERSION}/zig" ./usr/bin/zig
-        sudo chmod +x ./usr/bin/zig
+        #sudo chmod +x ./usr/bin/zig
         #sudo tar -xf "zig-linux-x86_64-${ZIG_VERSION}.tar.xz" -C files/usr
         #sudo ln -sf "/files/usr/zig-linux-x86_64-${ZIG_VERSION}/zig" files/usr/bin/zig
         #rm -f "zig-linux-x86_64-${ZIG_VERSION}.tar.xz"
