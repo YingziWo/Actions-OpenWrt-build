@@ -282,10 +282,13 @@ jobs:
         echo "Detected ZIG_VERSION=${ZIG_VERSION}, BPF_LINKER_VERSION=${BPF_LINKER_VERSION}"
 
         # 2. 精确安装插件要求的 Zig 版本
-        wget -q "https://ziglang.org{ZIG_VERSION}/zig-linux-x86_64-${ZIG_VERSION}.tar.xz"
-        sudo tar -xf "zig-linux-x86_64-${ZIG_VERSION}.tar.xz" -C files/usr
-        sudo ln -sf "/files/usr/zig-linux-x86_64-${ZIG_VERSION}/zig" files/usr/bin/zig
-        rm -f "zig-linux-x86_64-${ZIG_VERSION}.tar.xz"
+        #wget -q "https://ziglang.org{ZIG_VERSION}/zig-linux-x86_64-${ZIG_VERSION}.tar.xz"
+        sudo wget -O ./tmp/zig.tar.xz "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
+        sudo tar -xf ./tmp/zig.tar.xz -C ./files/usr/bin
+        sudo rm -f ./tmp/zig.tar.xz
+        #sudo tar -xf "zig-linux-x86_64-${ZIG_VERSION}.tar.xz" -C files/usr
+        #sudo ln -sf "/files/usr/zig-linux-x86_64-${ZIG_VERSION}/zig" files/usr/bin/zig
+        #rm -f "zig-linux-x86_64-${ZIG_VERSION}.tar.xz"
         zig version
 
         # 3. 直接下载预编译的 bpf-linker 并进行 SHA256 校验（秒装，无需漫长编译）
