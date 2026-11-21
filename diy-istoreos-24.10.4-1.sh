@@ -55,7 +55,7 @@ pwd
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 #honk
-git clone https://github.com/QiuSimons/luci-app-honk.git package/luci-app-honk
+git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
