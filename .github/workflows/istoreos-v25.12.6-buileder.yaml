@@ -286,7 +286,7 @@ jobs:
         sudo wget -O ./tmp/zig.tar.xz "https://ziglang.org/download/${ZIG_VERSION}/zig-x86_64-linux-${ZIG_VERSION}.tar.xz"
         sudo tar -xf ./tmp/zig.tar.xz -C ./usr
         sudo rm -f ./tmp/zig.tar.xz
-        sudo chmod +x ./usr/zig-linux-x86_64-${ZIG_VERSION}
+        sudo chmod +x ./usr/"zig-linux-x86_64-${ZIG_VERSION}"
         sudo ln -sf "/usr/zig-linux-x86_64-${ZIG_VERSION}/zig" ./usr/bin/zig
         sudo chmod +x ./usr/bin/zig
         #sudo tar -xf "zig-linux-x86_64-${ZIG_VERSION}.tar.xz" -C files/usr
@@ -296,7 +296,7 @@ jobs:
 
         # 3. 直接下载预编译的 bpf-linker 并进行 SHA256 校验（秒装，无需漫长编译）
         BPF_TAR="bpf-linker-x86_64-unknown-linux-gnu.tar.xz"
-        sudo wget -O ./tmp/${BPF_TAR} "https://github.com/aya-rs/bpf-linker/releases/download/v0.11.0/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
+        sudo wget -O ./tmp/"${BPF_TAR}" "https://github.com/aya-rs/bpf-linker/releases/download/v0.11.0/bpf-linker-x86_64-unknown-linux-musl.tar.zst"
         #wget -q "https://github.com{BPF_LINKER_VERSION}/${BPF_TAR}"
         echo "${BPF_LINKER_SHA256}  ${BPF_TAR}" | ./tmp/sha256sum -c -
         sudo tar -xf ./tmp/"${BPF_TAR}" -C ./usr/bin/
@@ -305,8 +305,9 @@ jobs:
 
         # 4. 确保系统具备 libclang（bpf-linker 运行依赖）
         sudo apt-get -qq update && sudo apt-get -qq install -y libclang-dev 
-        ls -lah files/usr
-        ls -lah files/usr/bin
+        ls -lah /usr
+        ls -lah /usr/bin
+        ls -lah /usr/bin/"zig-linux-x86_64-${ZIG_VERSION}"
 
 
     - name: Compile the firmware
