@@ -303,12 +303,12 @@ jobs:
         rm -f ./tmp/"${BPF_TAR}"
         
         # 3.1 检测两工具版本
-        cd ./usr/bin
-        zig --version
-        cd ..
-        cd ..
-        cd ./tmp/"${BPF_TAR}"
-        bpf-linker --version
+        #cd ./usr/bin
+        #zig --version
+        #cd ..
+        #cd ..
+        #cd ./tmp/"${BPF_TAR}"
+        #bpf-linker --version
 
         # 4. 确保系统具备 libclang（bpf-linker 运行依赖）
         sudo apt-get -qq update && sudo apt-get -qq install -y libclang-dev 
