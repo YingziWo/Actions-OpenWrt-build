@@ -54,6 +54,9 @@ pwd
 #lucky
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
+#honk
+git clone https://github.com/QiuSimons/luci-app-honk.git luci-app-honk
+
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
@@ -110,6 +113,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardh
 # 用QiuSimons的dae和honk的源码，在yaml中删除kenzok8/small的dae、daede、honk、luci-app-honk，20261119源码报dae的core错误，要等上游修复，这里改用QiuSimons。用QiuSimons的honk要额外用到zig、bpf-linker工具的安装，换官方的源码。
 git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae dae
 git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
+#git_sparse_clone master https://github.com/QiuSimons/luci-app-honk honk
+#git_sparse_clone master https://github.com/QiuSimons/luci-app-honk luci-app-honk
 #git_sparse_clone main https://github.com/daeuniverse/dae dae
 #git_sparse_clone main https://github.com/daeuniverse/honk honk
 #git_sparse_clone main https://github.com/daeuniverse/openwrt-packages luci-app-dae
