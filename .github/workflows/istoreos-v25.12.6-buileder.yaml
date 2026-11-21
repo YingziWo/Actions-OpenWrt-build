@@ -272,7 +272,7 @@ jobs:
       run: |
         cd openwrt
         # 1. 定位 honk 插件目录并读取其锁定的精确版本号
-        HONK_DIR=$(find . -maxdepth 5 -type f -name "honk_toolchain.sh" -exec dirname {} \; | head -n 1)
+        HONK_DIR=$(find . -maxdepth 6 -type f -name "honk_toolchain.sh" -exec dirname {} \; | head -n 1)
         if [ -z "$HONK_DIR" ]; then
           echo "ERROR: honk_toolchain.sh not found!"
           exit 1
