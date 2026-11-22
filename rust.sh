@@ -25,7 +25,11 @@ echo "rust 替换完成！"
 
 echo "开始给宿主机安装bpf-linker中的 ..."
 echo "========================================"
-cargo install bpf-linker --version 0.11.0 --locked
-sudo ln -sf "$HOME/.cargo/bin/bpf-linker" /usr/local/bin/bpf-linker
+#cargo install bpf-linker --version 0.11.0 --locked
+#sudo ln -sf "$HOME/.cargo/bin/bpf-linker" /usr/local/bin/bpf-linker
+gh release download v0.11.0 -R aya-rs/bpf-linker -p "bpf-linker-x86_64-unknown-linux-musl.tar.zst" -D /tmp
+sudo tar --zstd -xf /tmp/bpf-linker-x86_64-unknown-linux-musl.tar.zst -C /usr/local/bin
+rm -f /tmp/bpf-linker-x86_64-unknown-linux-musl.tar.zst
+bpf-linker --version
 echo "========================================"
 echo "bpf-linker 安装完成！"
