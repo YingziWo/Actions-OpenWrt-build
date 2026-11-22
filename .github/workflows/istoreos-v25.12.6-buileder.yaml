@@ -438,9 +438,8 @@ jobs:
           Docker (需手动安装，然后禁用fw3、开放fw4的访问)
           Openclash
           Passwall & 2
-          daede
+          daed
           honk
-          SSR+
           AdguardHome
           iStore
           mosDNS
