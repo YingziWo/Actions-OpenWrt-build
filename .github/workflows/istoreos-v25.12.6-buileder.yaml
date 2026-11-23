@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-24.04
     env:
       #GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+      #GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
     steps:
     - name: Checkout
       uses: actions/checkout@v6  #actions/checkout@main
@@ -149,7 +149,7 @@ jobs:
 
     - name: Load custom configuration
       env:
-          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
