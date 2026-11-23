@@ -36,7 +36,8 @@ HOST="https://github.com"
 PATH_URL="/aya-rs/bpf-linker/releases/download/v0.11.0/${FILE}"
 
 # 1. 优先尝试 gh 下载；若失败自动切换 curl 兜底（if 条件内的报错不会触发 set -e）
-if ! gh release download v0.11.0 -R aya-rs/bpf-linker -p "$FILE" -D /tmp; then
+#if ! gh release download v0.11.0 -R aya-rs/bpf-linker -p "$FILE" -D /tmp; then
+if ! gh release download v0.11.0 -R aya-rs/bpf-linker -p "bpf-linker-x86_64-unknown-linux-musl.tar.zst" -D /tmp; then
     echo "⚠️ gh 下载失败，自动切换为 curl 直链下载..."
     curl -fsSL "${HOST}${PATH_URL}" -o "/tmp/${FILE}"
 fi
