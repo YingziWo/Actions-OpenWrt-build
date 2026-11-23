@@ -288,13 +288,18 @@ jobs:
         fi
         eval "$("$HONK_DIR/honk_toolchain.sh" "$HONK_DIR/Makefile")"
         echo "Detected ZIG_VERSION=${ZIG_VERSION}, BPF_LINKER_VERSION=${BPF_LINKER_VERSION}"
+        # 关键：将变量持久化写入 GitHub Actions 环境变量，可延续到下面的步骤，因为变量只在本步骤有效，步骤结束，变量也结束生命，不能延续到下面的步骤，必须把变量赋值到github的整个环境变量上
+        echo "ZIG_VERSION=${ZIG_VERSION}" >> "$GITHUB_ENV"
+        echo "BPF_LINKER_VERSION=${BPF_LINKER_VERSION}" >> "$GITHUB_ENV"
 
     - name: Setup Zig
       uses: mlugg/setup-zig@v2
       with:
         #version: 0.14.1
-        version: ${ZIG_VERSION}
-
+        #version: ${ZIG_VERSION}  #这个写法报错，不能延续上面步骤中的变量名称
+        #version: ${{ env.ZIG_VERSION }}
+        version: ${{ env.ZIG_VERSION }}
+         
     - name: install bpf-linker
       env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -309,11 +314,13 @@ jobs:
         ###bpf-linker --version
         FILE="bpf-linker-x86_64-unknown-linux-musl.tar.zst"
         HOST="https://github.com"
+        #PATH_URL="/aya-rs/bpf-linker/releases/download/${BPF_LINKER_VERSION}/${FILE}"
         PATH_URL="/aya-rs/bpf-linker/releases/download/${BPF_LINKER_VERSION}/${FILE}"
 
         # 1. 优先尝试 gh 下载；若失败自动切换 curl 兜底（if 条件内的报错不会触发 set -e）
-        if ! gh release download "${BPF_LINKER_VERSION}" -R aya-rs/bpf-linker -p "$FILE" -D /tmp; then
-        #if ! gh release download "${BPF_LINKER_VERSION}" -R aya-rs/bpf-linker -p "bpf-linker-x86_64-unknown-linux-musl.tar.zst" -D /tmp; then
+        #if ! gh release download "$BPF_LINKER_VERSION" -R aya-rs/bpf-linker -p "$FILE" -D /tmp; then
+        if ! gh release download "$BPF_LINKER_VERSION" -R aya-rs/bpf-linker -p "$FILE" -D /tmp; then
+        #if ! gh release download "$BPF_LINKER_VERSION" -R aya-rs/bpf-linker -p "bpf-linker-x86_64-unknown-linux-musl.tar.zst" -D /tmp; then
          echo "⚠️ gh 下载失败，自动切换为 curl 直链下载..."
          curl -fsSL "${HOST}${PATH_URL}" -o "/tmp/${FILE}"
         fi
