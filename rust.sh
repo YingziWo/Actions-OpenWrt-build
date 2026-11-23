@@ -1,5 +1,6 @@
 #!/bin/bash
-set -x 
+set -x
+set -e
 cd openwrt
 pwd
 echo "开始替换 feeds中的rust ..."
