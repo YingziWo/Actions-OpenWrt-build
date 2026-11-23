@@ -312,7 +312,7 @@ jobs:
         ###sudo tar --zstd -xf /tmp/bpf-linker-x86_64-unknown-linux-musl.tar.zst -C /usr/local/bin
         ###rm -f /tmp/bpf-linker-x86_64-unknown-linux-musl.tar.zst
         ###bpf-linker --version
-        ID=${{ env.BPF_LINKER_VERSION }}
+        ID=v${{ env.BPF_LINKER_VERSION }}
         FILE="bpf-linker-x86_64-unknown-linux-musl.tar.zst"
         HOST="https://github.com"
         #PATH_URL="/aya-rs/bpf-linker/releases/download/${ID}/${FILE}"
