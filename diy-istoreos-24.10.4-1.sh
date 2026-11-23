@@ -57,6 +57,11 @@ pwd
 #honk
 git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
+# for ssr+ 的两个新依赖，查到上游代码有改动，老版本不需要这两个依赖 20261123
+GH="https://github.com"
+git clone --depth=1 "${GH}/muziling/3proxy-openwrt.git" package/3proxy
+git clone --depth=1 "${GH}/permails/kcptun-client.git" package/kcptun-client
+
 # 移除冲突包
 rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
