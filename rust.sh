@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x 
-cd openwrt
+# cd openwrt  #本身就在openwrt下，会报没有该目录或文件的错误，会触发set -e而立刻终止执行下面的步骤
 pwd
 echo "开始替换 feeds中的rust ..."
 echo "========================================"
