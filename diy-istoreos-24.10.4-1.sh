@@ -26,7 +26,7 @@ sed -i "/helloworld/d" "feeds.conf.default"
 #sed -i "1i src-git vmlinux-btf https://github.com/kenzok8/vmlinux-btf" "feeds.conf.default" #报错
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
-sed -i "4i src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+sed -i "4i src-git helloworld https://github.com/fw876/helloworld.git" "feeds.conf.default"
 #echo "src-git vmlinux-btf https://github.com/QiuSimons/vmlinux-btf.git" >> "feeds.conf.default" #报错
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
