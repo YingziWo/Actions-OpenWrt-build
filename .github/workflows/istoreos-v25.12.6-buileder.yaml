@@ -148,6 +148,8 @@ jobs:
 
 
     - name: Load custom configuration
+      env:
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
