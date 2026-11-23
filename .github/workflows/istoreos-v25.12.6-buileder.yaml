@@ -227,7 +227,7 @@ jobs:
         rm -rf package/feeds/video/wlroots
         rm -rf package/feeds/video/wpebackend-fdo
 
-        #rm -rf package/feeds/small/luci-app-ssr-plus
+        rm -rf package/feeds/small/luci-app-ssr-plus
         
         #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，即使删除，编译工具就使用更早的版本，而无视1.27版本的存在，没有起做，故，注释掉。20261116
         
