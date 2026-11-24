@@ -86,6 +86,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-taskd
 git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 
+# for ssr-plus package
+git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus
 
 # for dae 20261112
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
