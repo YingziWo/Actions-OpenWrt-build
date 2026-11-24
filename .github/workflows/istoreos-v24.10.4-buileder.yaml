@@ -143,10 +143,11 @@ jobs:
         #sed -i 's/PKG_BUILD_DEPENDS:=golang/host/PKG_BUILD_DEPENDS:=golang1.27/host/g' feeds/packages/net/adguardhome/Makefile
         #sed -i 's/PKG_BUILD_DEPENDS:=golang/host/PKG_BUILD_DEPENDS:=golang1.27/host/g' feeds/packages/net/xray-core/Makefile
         # 上面三句改相关组件的go编译条件到go1.27上，让golang的编译Makefile中的自动扫描组件编译条件看能不能满足条件，激发go版本定位到go1.27上。经过测试，改了插件go版本后，系统依然顽固地使用go1.26版本，所谓的搜寻插件go版本，就是个笑话。20261118
-        #rm -rf feeds/packages/lang/golang
+        rm -rf feeds/packages/lang/golang               # 针对openwrt24.10版本
         #git clone https://github.com/sbwml/packages_lang_golang -b main feeds/packages/lang/golang
-        #git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang   
-        
+        git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang   # 针对openwrt24.10版本
+        #rm -rf feeds/packages/lang/golang
+        #git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
         
         
         
