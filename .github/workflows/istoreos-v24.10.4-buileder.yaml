@@ -26,9 +26,9 @@ on:
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos
-  REPO_BRANCH: istoreos-25.12                              #24.10.4
+  REPO_BRANCH: istoreos-24.10.4
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: istoreos-24.10.4.config  
+  CONFIG_FILE: istoreos-24.10.4-2.config  
   DIY_P1_SH: diy-istoreos-24.10.4-1.sh
   DIY_P2_SH: diy-istoreos-24.10.4-2.sh
   DIY_P3_SH: rust.sh
@@ -83,7 +83,7 @@ jobs:
                         libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool llvm lrzsz libnsl-dev ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools python3-setuptools \
                         qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd xz-utils zlib1g-dev \
                         ruby bc pciutils lm-sensors pciutils gcc git perl golang \
-                        make gcc lld pahole dwarves libbpf-dev
+                        make gcc lld pahole dwarves libbpf-dev libboost-system-dev
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
 
@@ -177,59 +177,62 @@ jobs:
     - name: Inject Kernel Configs
       run: |
         cd openwrt
-        sed -i '/CONFIG_XDP_SOCKETS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_XDP_SOCKETS_DIAG/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF_SYSCALL/d' target/linux/x86/config-6.12        
-        sed -i '/CONFIG_BPF_JIT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_CGROUPS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.12
-        sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.12
-        sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.12
+        sed -i '/CONFIG_XDP_SOCKETS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_XDP_SOCKETS_DIAG/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF_SYSCALL/d' target/linux/x86/config-6.6        
+        sed -i '/CONFIG_BPF_JIT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_CGROUPS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_KPROBES/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_EGRESS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_SCH_INGRESS/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_INGRES/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_CLS_BPF/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_NET_CLS_ACT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_BPF_STREAM_PARSER/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_DEBUG_INFO/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_DEBUG_INFO_BT/d' target/linux/x86/config-6.6
+        sed -i '/CONFIG_KPROBE_EVENTS/d' target/linux/x86/config-6.6
+        sed -i '/CCONFIG_BPF_EVENTS/d' target/linux/x86/config-6.6
 
-        echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_SYSCALL=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.12
-        echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.12
-        echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.12        
+        echo "CONFIG_XDP_SOCKETS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_XDP_SOCKETS_DIAG=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_SYSCALL=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_JIT=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_CGROUPS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_KPROBES=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_INGRESS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_EGRESS=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_SCH_INGRESS=m" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_CLS_BPF=m" >> target/linux/x86/config-6.6
+        echo "CONFIG_NET_CLS_ACT=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_BPF_STREAM_PARSER=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_DEBUG_INFO=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_DEBUG_INFO_BTF=y" >> target/linux/x86/config-6.6
+        echo "CONFIG_KPROBE_EVENTS=y" >> target/linux/x86/config-6.16
+        echo "CONFIG_BPF_EVENTS=y" >> target/linux/x86/config-6.6       
         
 
     - name: Download package
       id: package
       run: |
         cd openwrt
-        rm -rf package/feeds/small/dae     #缺少依赖的8个项，不影响选中项目删这260912八条
+        #rm -rf package/feeds/small/dae     #缺少依赖的8个项，不影响选中项目删这260912八条
         rm -rf package/feeds/small/daed
         rm -rf package/feeds/small/honk
         #rm -rf package/feeds/luci/luci-app-dae
         #rm -rf package/feeds/luci/luci-app-daed
         rm -rf package/feeds/kenzo/luci-app-dockerman
-        rm -rf package/feeds/small/luci-app-daede
+        #rm -rf package/feeds/small/luci-app-daede
         rm -rf package/feeds/small/luci-app-honk
         rm -rf package/feeds/wall/docker   #2026.09.13去除编译错误的插件
         rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件
         rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
+
+        rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
+        rm -rf package/yingziwo/luci-app-honk         #openwrt24.10.4版本不支持honk
 
         #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，即使删除，编译工具就使用更早的版本，而无视1.27版本的存在，没有起做，故，注释掉。20261116
         
@@ -375,14 +378,14 @@ jobs:
         #body_path: release.txt    #body_path优先于body ，body的内容会不输出，因此屏蔽body_path
         files: ${{ env.FIRMWARE }}/*
         body: |
-          ===iStoreOS Firmware V25.12.6 for x86_64===
+          ===iStoreOS Firmware V24.10.4 for x86_64===
            
           ### 📒 固件信息
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.12.112
-          - ⚠️ openwrt版本：25.12.6
+          - 🚀 内核版本:  K6.6.94
+          - ⚠️ openwrt版本：24.10.4
           - 🌐 默认地址: 192.168.100.1 
           - 🔑 默认密码: 无 （缺省） 
           - 🔗 配置文件：${{ env.CONFIG_FILE }}    
