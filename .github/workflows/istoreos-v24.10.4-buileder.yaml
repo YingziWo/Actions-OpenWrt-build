@@ -233,7 +233,9 @@ jobs:
 
         rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
         rm -rf package/yingziwo/luci-app-honk         #openwrt24.10.4版本不支持honk
-
+        rm -rf package/yingziwo/dae                   #用small的dae ，不用QiuSimons ，因small的报错，转用QiuSimons，再测试看small还报错不
+        rm -rf package/yingziwo/luci-app-dae          #用small的luci-app-daede ，不用QiuSimons
+        
         #rm -rf feeds/packages/lang/golang/golang1.26      #删除一直占位的go1.26.9版本，让位给go1.27.1版本，即使删除，编译工具就使用更早的版本，而无视1.27版本的存在，没有起做，故，注释掉。20261116
         
                
