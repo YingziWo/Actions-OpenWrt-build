@@ -133,35 +133,23 @@ jobs:
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-        cd ./feeds/packages/lang
-        ls -lah
-        rm -rf ./golang
-        ls -lah
-        git clone https://github.com/sbwml/packages_lang_golang -b 27.x ./golang
-        ls -lah
-        cd ./golang
-        ls -lah
-
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
-        cd ./feeds/packages/lang
-        ls -lah
-        rm -rf ./golang
-        ls -lah
-        git clone https://github.com/sbwml/packages_lang_golang -b 27.x ./golang
-        ls -lah
-        cd ./golang
-        ls -lah  
+
         #sed -i 's/PKG_BUILD_DEPENDS:=golang/host/PKG_BUILD_DEPENDS:=golang1.27/host/g' feeds/packages/net/cloudflared/Makefile
         #sed -i 's/PKG_BUILD_DEPENDS:=golang/host/PKG_BUILD_DEPENDS:=golang1.27/host/g' feeds/packages/net/adguardhome/Makefile
         #sed -i 's/PKG_BUILD_DEPENDS:=golang/host/PKG_BUILD_DEPENDS:=golang1.27/host/g' feeds/packages/net/xray-core/Makefile
         # 上面三句改相关组件的go编译条件到go1.27上，让golang的编译Makefile中的自动扫描组件编译条件看能不能满足条件，激发go版本定位到go1.27上。经过测试，改了插件go版本后，系统依然顽固地使用go1.26版本，所谓的搜寻插件go版本，就是个笑话。20261118
         #git clone https://github.com/sbwml/packages_lang_golang -b main feeds/packages/lang/golang
-        #rm -rf feeds/packages/lang/golang
-        #git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+        
+
+    - name: 更换go版本
+      run: |
+        pwd
+        ls -lah
+        rm -rf feeds/packages/lang/golang
+        git clone https://github.com/sbwml/packages_lang_golang -b 27.x feeds/packages/lang/golang
         
         
         
