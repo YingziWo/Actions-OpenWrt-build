@@ -219,7 +219,7 @@ jobs:
       run: |
         cd openwrt
         #rm -rf package/feeds/small/dae     #缺少依赖的8个项，不影响选中项目删这260912八条
-        rm -rf package/feeds/small/daed
+        #rm -rf package/feeds/small/daed
         rm -rf package/feeds/small/honk
         #rm -rf package/feeds/luci/luci-app-dae
         #rm -rf package/feeds/luci/luci-app-daed
@@ -232,6 +232,7 @@ jobs:
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
 
         rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
+        rm -rf package/yingziwo/luci-app-ssr-plus     #缺依赖3proxy 删除
         rm -rf package/yingziwo/luci-app-honk         #openwrt24.10.4版本不支持honk
         rm -rf package/yingziwo/dae                   #用small的dae ，不用QiuSimons ，因small的报错，转用QiuSimons，再测试看small还报错不
         rm -rf package/yingziwo/luci-app-dae          #用small的luci-app-daede ，不用QiuSimons
@@ -288,7 +289,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make package/golang1.27/host/compile   
+        make package/golang1.27/host/compile V=s  
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
