@@ -64,6 +64,8 @@ git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.
 cd  package/3proxy
 git checkout v0.9.5-20250506
 cd  ../../
+pwd
+ls -lah
 #git clone --depth=1 "${GH}/permails/kcptun-client.git" package/kcptun-client
 
 # 移除冲突包
