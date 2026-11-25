@@ -389,7 +389,7 @@ jobs:
           - 💻 平台架构: x86_64 ( 128K 1536M )                       
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🚀 内核版本:  K6.6.94
+          - 🚀 内核版本:  K6.6.110
           - ⚠️ openwrt版本：24.10.4
           - 🌐 默认地址: 192.168.100.1 
           - 🔑 默认密码: 无 （缺省） 
@@ -402,8 +402,6 @@ jobs:
           Openclash
           Passwall & 2
           daede
-          honk
-          SSR+
           AdguardHome
           iStore
           mosDNS
