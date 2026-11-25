@@ -26,7 +26,7 @@ sed -i "/helloworld/d" "feeds.conf.default"
 #sed -i "1i src-git vmlinux-btf https://github.com/kenzok8/vmlinux-btf" "feeds.conf.default" #报错
 sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
-sed -i "4i src-git helloworld https://github.com/fw876/helloworld" "feeds.conf.default"
+#sed -i "4i src-git helloworld https://github.com/fw876/helloworld" "feeds.conf.default"
 #echo "src-git vmlinux-btf https://github.com/QiuSimons/vmlinux-btf.git" >> "feeds.conf.default" #报错
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
@@ -55,7 +55,7 @@ pwd
 #git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 #honk
-git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
+#git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
 # for ssr+ 的两个新依赖，查到上游代码有改动，老版本不需要这两个依赖 20261123
 GH="https://github.com"
@@ -87,7 +87,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 
 # for ssr-plus package
-git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus
+#git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus
 
 # for dae 20261112
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
@@ -206,7 +206,7 @@ git_sparse_clone main https://github.com/kenzok8/small lua-neturl               
 git_sparse_clone main https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
 git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small xray-core
+#git_sparse_clone main https://github.com/kenzok8/small xray-core
 
 ##########################################其他设置##########################################
 ####################### 改用原作者xiaorouji源头的依赖代码######################################## #核查已经删库了，得改源头到kenzok8上
