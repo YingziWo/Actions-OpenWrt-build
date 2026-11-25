@@ -58,14 +58,14 @@ pwd
 #git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
 # for ssr+ 的两个新依赖，查到上游代码有改动，老版本不需要这两个依赖 20261123
-#GH="https://github.com"
+GH="https://github.com"
 #git clone --depth=1 "${GH}/muziling/3proxy-openwrt.git" package/3proxy   #版本是0.8.10，太旧了，编译该版本报错，换下面的源码是0.9.5版本，用到3proxy/3proxy的源码
-#git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.6面前还是不能编译
-#cd  package/3proxy
-#git checkout v0.9.5-20250506
-#cd  ../../
-#pwd
-#ls -lah
+git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.6面前还是不能编译
+cd  package/3proxy
+git checkout v0.9.5-20250506
+cd  ../../
+pwd
+ls -lah
 #git clone --depth=1 "${GH}/permails/kcptun-client.git" package/kcptun-client
 
 # 移除冲突包
