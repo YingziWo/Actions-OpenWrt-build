@@ -24,11 +24,13 @@ ls
 sed -i "/helloworld/d" "feeds.conf.default"
 #sed -i "1i src-git kenzo https://github.com/kenzok8/openwrt-packages" "feeds.conf.default"
 #sed -i "1i src-git vmlinux-btf https://github.com/kenzok8/vmlinux-btf" "feeds.conf.default" #报错
-sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
+####sed -i "2i src-git small https://github.com/kenzok8/small" "feeds.conf.default"
+echo "src-git jell https://github.com/kenzok8/jell.git" >> feeds.conf.default
+cat feeds.conf.default
 #sed -i "3i src-git wall https://github.com/kenzok8/wall" "feeds.conf.default"
 #sed -i "4i src-git helloworld https://github.com/fw876/helloworld" "feeds.conf.default"
 #echo "src-git vmlinux-btf https://github.com/QiuSimons/vmlinux-btf.git" >> "feeds.conf.default" #报错
-#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >> feeds.conf.default
 
 #=================================================
 # 自定义
@@ -58,7 +60,7 @@ pwd
 #git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
 # for ssr+ 的两个新依赖，查到上游代码有改动，老版本不需要这两个依赖 20261123
-git clone https://github.com/kenzok8/jell package/3proxy
+####git clone https://github.com/kenzok8/jell package/3proxy
 #GH="https://github.com"
 #git clone --depth=1 "${GH}/muziling/3proxy-openwrt.git" package/3proxy   #版本是0.8.10，太旧了，编译该版本报错，换下面的源码是0.9.5版本，用到3proxy/3proxy的源码
 #git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.6面前还是不能编译
@@ -71,12 +73,12 @@ git clone https://github.com/kenzok8/jell package/3proxy
 #git clone --depth=1 "${GH}/permails/kcptun-client.git" package/kcptun-client
 
 # 移除冲突包
-rm -rf feeds/packages/net/mosdns
+####rm -rf feeds/packages/net/mosdns
 #rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
 #rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/luci/applications/luci-app-netdata
+####rm -rf feeds/luci/applications/luci-app-mosdns
+####rm -rf feeds/luci/applications/luci-app-netdata
 #rm -rf feeds/small8/shadowsocks-rust
 
 #luci-theme-argone   #上游原码中介绍说有23版本，实际情况是不存在的，仅由main一个版本。而main版本在最新的openwrt版本中会报错，lede版本也同样跟随上游的openwrt，在2024年的10月下旬开始的master编译中也同样会报错了，在10月初的编译还未报错，显然lede的master原码luci版本跟随了openwrt的最新版本。
@@ -84,8 +86,8 @@ rm -rf feeds/luci/applications/luci-app-netdata
 #git_sparse_clone master https://github.com/jerrykuku/luci-theme-argon luci-theme-argon                 #适应于23.05，这是原作者的链接 。同时支持改master --》 18.06版本 
 #git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argone-config
 #git_sparse_clone master https://github.com/jerrykuku/luci-app-argon-config luci-app-argon-config
-git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-theme-argon        # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-app-argon-config   # 核查有260909
 
 # 2026.11.08为能编程出dae、daed而禁用了24、26句后，软件仓库istore的包没了，这里补上
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-store
@@ -94,7 +96,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 
 # for ssr-plus package
-git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus              #新版本，用到3proxy，支持sock5和http代理
+####git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus              #新版本，用到3proxy，支持sock5和http代理
 #git_sparse_clone master https://github.com/YingziWo/kenzok8_small luci-app-ssr-plus    #老版本，不带http代理功能，仅仅支持单一sock5代理，手持设备往往不支持sock5代理，没有用到3proxy
 
 # for dae 20261112
@@ -124,7 +126,7 @@ git clone https://github.com/QiuSimons/vmlinux-btf package/yingziwo/vmlinux-btf
 #adguardhome
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages adguardhome
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-app-adguardhome  # 核查有260909
 
 # 用QiuSimons的dae和honk的源码，在yaml中删除kenzok8/small的dae、daede、honk、luci-app-honk，20261119源码报dae的core错误，要等上游修复，这里改用QiuSimons。用QiuSimons的honk要额外用到zig、bpf-linker工具的安装，换官方的源码。
 git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae dae
@@ -139,10 +141,10 @@ git_sparse_clone kix https://github.com/QiuSimons/luci-app-dae luci-app-dae
 
 #科学上网
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-openclash
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash         # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash         # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-passwall    #启用原passwall作者的仓库，以便跟上更新，这个第三方的注释掉
 #git_sparse_clone 4.78-2 https://github.com/xiaorouji/openwrt-passwall luci-app-passwall     #原始作者仓库源，4.78-3和main都在总节点分流上有bug 截止到2024.10.22 #原作者仓库不见了，改到kenzok8上
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall          # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall          # 核查有260909
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus    #与第20句内容的功能一样，这里注释掉
 #更换插件名称
 #sed -i 's/ShadowSocksR Plus+/软件插件/g' feeds/small8/luci-app-ssr-plus/luasrc/controller/shadowsocksr.lua
@@ -166,10 +168,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ddns-go 
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 ##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
 ##git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
-rm -rf feeds/packages/utils/v2dat
-rm -rf package/feeds/packages/v2dat
+####rm -rf feeds/packages/utils/v2dat
+####rm -rf package/feeds/packages/v2dat
 #git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
-git_sparse_clone main https://github.com/kenzok8/small-package v2dat                      # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package v2dat                      # 核查有260909
 
 #zerotier
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
@@ -177,7 +179,7 @@ git_sparse_clone main https://github.com/kenzok8/small-package v2dat            
 
 #luci-app-autotimeset
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-autotimeset
-git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset       # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotimeset       # 核查有260909
 
 
 ########非原作者的依赖包########
@@ -210,10 +212,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-app-autotime
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 ##git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone main https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
-git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small lua-neturl                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small redsocks2                             #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small shadow-tls                            #kenzok8 的small-package中无此插件，在small中 # 核查有260909
+####git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb                                                               # 核查有260909
 #git_sparse_clone main https://github.com/kenzok8/small xray-core
 
 ##########################################其他设置##########################################
@@ -250,10 +252,10 @@ git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb    
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  # 这段核查有260909 ，经编译发现缺少许多的依赖而告警，换源头：https://github.com/Openwrt-Passwall/openwrt-passwall 2026.09.12
 #src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main  #官方语句
 #src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main               #官方语句
-git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall_packages
+####git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages passwall_packages
 #git_sparse_clone main https://github.com/kenzok8/openwrt-packages kenzo
 #git_sparse_clone main https://github.com/kenzok8/small small
-git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall passwall_luci
+####git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall passwall_luci
 #-------------------------------------------------------------------------
 #git_sparse_clone main https://github.com/kenzok8/small-package brook
 #git_sparse_clone main https://github.com/kenzok8/small-package chinadns-ng
