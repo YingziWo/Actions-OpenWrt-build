@@ -232,7 +232,7 @@ jobs:
         rm -rf package/feeds/wall/dockerd  #2026.09.13去除编译错误的插件
         rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
-
+        rm -rf feeds/jell/shadowsocks-libev   #该包的上游已经更新，原 shadowsocks/shadowsocks-libev 已更名为 shadowsocks/shadowsocks-c，本报未更新，在调用上游源码时对不上号，打不了补丁而报错。
         rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
         #rm -rf package/yingziwo/luci-app-ssr-plus     #换老版本luci-app-ssr-plus，看还要不要3proxy依赖
         rm -rf package/yingziwo/luci-app-honk         #openwrt24.10.4版本不支持honk
