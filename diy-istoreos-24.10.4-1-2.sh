@@ -62,11 +62,11 @@ GH="https://github.com"
 #git clone --depth=1 "${GH}/muziling/3proxy-openwrt.git" package/3proxy   #版本是0.8.10，太旧了，编译该版本报错，换下面的源码是0.9.5版本，用到3proxy/3proxy的源码
 #git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.6面前还是不能编译
 git clone https://github.com/3proxy/3proxy.git package/3proxy
-#cd  package/3proxy
-#git checkout 0.9
-#cd  ../../
-#pwd
-#ls -lah
+cd  package/3proxy
+git checkout 0.9.9.4
+cd  ../../
+pwd
+ls -lah
 #git clone --depth=1 "${GH}/permails/kcptun-client.git" package/kcptun-client
 
 # 移除冲突包
