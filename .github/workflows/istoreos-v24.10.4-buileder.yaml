@@ -233,8 +233,8 @@ jobs:
         rm -rf package/feeds/video/mesa    #2026.11.08缺少依赖'input-support'等九个依赖，不知这是什么东东
         rm -rf package/feeds/video/kmscon  #2026.11.08缺少依赖'input-support'一个依赖
 
-        #rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
-        rm -rf package/yingziwo/luci-app-ssr-plus     #换老版本luci-app-ssr-plus，看还要不要3proxy依赖
+        rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
+        #rm -rf package/yingziwo/luci-app-ssr-plus     #换老版本luci-app-ssr-plus，看还要不要3proxy依赖
         rm -rf package/yingziwo/luci-app-honk         #openwrt24.10.4版本不支持honk
         #rm -rf package/yingziwo/dae                   #不用small的dae ，用QiuSimons ，因small的报错，转用QiuSimons，再测试看small还报错不
         #rm -rf package/yingziwo/luci-app-dae          #不用small的luci-app-daede ，用QiuSimons
@@ -291,7 +291,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        #make package/3proxy/compile V=s
+        make package/3proxy/compile V=s
         make package/golang/host/compile  
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
