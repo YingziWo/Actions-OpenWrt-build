@@ -58,6 +58,7 @@ pwd
 #git clone https://github.com/QiuSimons/luci-app-honk.git package/yingziwo/luci-app-honk
 
 # for ssr+ 的两个新依赖，查到上游代码有改动，老版本不需要这两个依赖 20261123
+git clone https://github.com/kenzok8/jell package/3proxy
 #GH="https://github.com"
 #git clone --depth=1 "${GH}/muziling/3proxy-openwrt.git" package/3proxy   #版本是0.8.10，太旧了，编译该版本报错，换下面的源码是0.9.5版本，用到3proxy/3proxy的源码
 #git clone "${GH}/osnosn/3proxy-openwrt.git" package/3proxy     #在openwrt25.12.6面前还是不能编译
@@ -93,8 +94,8 @@ git_sparse_clone main https://github.com/kenzok8/small-package luci-lib-xterm
 git_sparse_clone main https://github.com/kenzok8/small-package taskd
 
 # for ssr-plus package
-#git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus
-git_sparse_clone master https://github.com/YingziWo/kenzok8_small luci-app-ssr-plus
+git_sparse_clone dev https://github.com/fw876/helloworld luci-app-ssr-plus              #新版本，用到3proxy，支持sock5和http代理
+#git_sparse_clone master https://github.com/YingziWo/kenzok8_small luci-app-ssr-plus    #老版本，不带http代理功能，仅仅支持单一sock5代理，手持设备往往不支持sock5代理，没有用到3proxy
 
 # for dae 20261112
 #git_sparse_clone main https://github.com/kenzok8/openwrt-daede luci-app-daede
