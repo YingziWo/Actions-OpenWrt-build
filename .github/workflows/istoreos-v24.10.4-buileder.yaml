@@ -238,6 +238,7 @@ jobs:
         rm -rf feeds/jell/mmdvm-host
         rm -rf feeds/jell/mmdvm-luci
         rm -rf feeds/jell/mmdvm
+        rm -rf feeds/jell/mmdvm-luci-i18n-zh-c
         
         rm -rf package/feeds/small/luci-app-ssr-plus  #用helloworld的源码，删small源码
         #rm -rf package/yingziwo/luci-app-ssr-plus     #换老版本luci-app-ssr-plus，看还要不要3proxy依赖
